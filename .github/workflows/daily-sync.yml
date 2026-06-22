@@ -1,0 +1,50 @@
+name: Daily phenology sync
+
+on:
+  schedule:
+    - cron: '0 22 * * *'   # 22:00 UTC = 06:00 CST (Asia/Taipei), daily
+  workflow_dispatch:        # allow manual runs
+
+permissions:
+  contents: write           # needed to push regenerated files back to main
+
+concurrency:
+  group: daily-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Re-pull all historical observations of the 93 species at the site and
+      # re-attribute to units (hybrid species×site + GPS). Pure stdlib, no deps.
+      - name: Backfill historical observations from iNaturalist
+        run: python3 backfill.py
+
+      - name: Rebuild per-unit phenology timeline pages
+        run: python3 build_unit_page.py --all
+
+      - name: Rebuild transect index
+        run: python3 build_transect_html.py
+
+      # Commit + push only if the data actually changed; push to main triggers
+      # the GitHub Pages build automatically (Pages source = main / root).
+      - name: Commit & deploy if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes today — nothing to deploy."
+          else
+            git commit -m "Daily phenology sync $(date -u +%Y-%m-%d)"
+            git push
+            echo "Deployed updated phenology data."
+          fi
