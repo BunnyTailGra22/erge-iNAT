@@ -28,14 +28,15 @@ Run the scripts in order from the project root; each writes into `data/<survey-d
 - Elevation is **not** in iNat — sampled from SRTM 30 m (Open Topo Data, bilinear).
 
 ## Key decisions
-- **Ridgeline scope = observations before 14:56 CST** (95 obs / 63 species). The real off-crest
+- **Ridgeline scope = observations before 14:56 CST, minus the first two trailhead points**
+  (93 obs / 63 species; excluded IDs 353345277, 353345653 via `EXCLUDE_IDS` in build_profile.py). The real off-crest
   descent begins at the 14:56 time-gap, not the earlier 14:37:27 trial cutoff (DEM-confirmed:
   crest ~645 m, roadside herbs after 14:56 drop 584→502 m and are excluded).
 - **GPS handling**: any fix with `positional_accuracy > 100 m` (6 points, incl. the displaced
   #27 *Prunus phaeosticta* at 1594 m) is unreliable in position AND in the DEM elevation sampled
   there. Each is **snapped to the time-interpolated position between its nearest reliable
   neighbours**, then elevation re-sampled and distance recomputed. This removed artificial
-  elevation dips and ~230 m of spurious back-and-forth distance (true trail ≈ 640 m, not 870 m).
+  elevation dips and ~230 m of spurious back-and-forth distance (true trail ≈ 636 m, not 870 m).
 - **Snapshot pinning**: iNat IDs are mutable (needs_id → research-grade over time); datasets are
   pinned to a snapshot label (baseline `2026/04/25 · 14:41 CST`) recorded in `metadata.json`.
 - **Visualization** = elevation transect (x = along-trail distance, y = elevation). The full

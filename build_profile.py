@@ -12,6 +12,7 @@ BASE = os.path.join(HERE, "data", "2026-04-25")
 TW = timezone(timedelta(hours=8))
 ACC_THRESH = 100.0            # m; above this a fix is treated as unreliable
 CUTOFF = "2026-04-25T14:56:00+08:00"
+EXCLUDE_IDS = {"353345277", "353345653"}   # first two (trailhead) obs, removed per request
 
 
 def t(s):
@@ -31,7 +32,7 @@ for r in rows:
     r["_t"] = t(r["time_observed_at"]); r["_lat"] = float(r["lat"]); r["_lng"] = float(r["lng"])
     r["_acc"] = float(r["positional_accuracy"]) if r["positional_accuracy"] else 0.0
 rows.sort(key=lambda r: r["_t"])
-seg = [r for r in rows if r["_t"] < t(CUTOFF)]          # 95 ridgeline obs
+seg = [r for r in rows if r["_t"] < t(CUTOFF) and r["id"] not in EXCLUDE_IDS]  # ridgeline obs
 
 # --- snap every unreliable fix (acc>thresh) to time-interpolated good neighbours ---
 def good(i):
