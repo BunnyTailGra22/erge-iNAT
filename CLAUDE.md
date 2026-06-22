@@ -45,6 +45,12 @@ Run the scripts in order from the project root; each writes into `data/<survey-d
   南仁山-style 圖18 vegetation profile with 優勢單位 is **deferred** — it needs measured 優勢度
   (quadrat / point-intercept) + canopy height; iNat walk data is presence-only, so do NOT
   fabricate dominance from encounter frequency.
+- **Phenophase source of truth = iNaturalist annotations.** Flower/fruit/bud come from iNat
+  term-12 annotations, read by `backfill.py`; annotate ON iNat (Identify/Annotate panel) and the
+  daily sync ingests them — no separate codes file. Leaf has no native iNat annotation → deferred
+  (would need an iNat Observation Field). Never auto-write annotations back to iNat.
+- **Daily changelog**: the sync workflow runs `changelog.py` (HEAD vs new `records.json`:
+  新增/移除/重新鑑定/品質變更/新物候註記) and puts the summary in each commit message.
 
 ## Conventions
 - **Brand palette = 荒野保護協會 (SOW)**; tokens in `SOW/brand/` (`sow_palette.css/json`).

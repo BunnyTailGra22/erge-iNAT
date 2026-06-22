@@ -44,7 +44,8 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes today — nothing to deploy."
           else
-            git commit -m "Daily phenology sync $(date -u +%Y-%m-%d)"
+            CL=$(python3 changelog.py)
+            git commit -m "Daily phenology sync $(date -u +%Y-%m-%d)" -m "$CL"
             git push
-            echo "Deployed updated phenology data."
+            echo "Deployed: $CL"
           fi
