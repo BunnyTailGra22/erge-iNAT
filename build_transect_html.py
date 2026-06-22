@@ -22,6 +22,11 @@ DATA = json.dumps(pts, ensure_ascii=False)
 nsp = len({p["s"] for p in pts})
 nfam = len({p["famSci"] for p in pts})
 ngen = len({p["genSci"] for p in pts})
+
+RECS = json.load(open(os.path.join(HERE, "data", "history", "records.json")))
+arch_obs = len(RECS)                                   # total observations in the archive
+arch_obr = len({r["user"] for r in RECS if r.get("user")})   # distinct observers
+ay = sorted({r["observed_on"][:4] for r in RECS if r.get("observed_on")})
 els = [p["y"] for p in pts]
 dist = int(round(pts[-1]["x"]))
 xmax = int(math.ceil(pts[-1]["x"] / 25) * 25)
@@ -88,10 +93,10 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
 <body>
 <div class="wrap">
   <h1>二格山稜線 · 植被海拔剖面圖</h1>
-  <p class="sub">2026-04-25 踏查 · 稜線段（14:56 前）</p>
+  <p class="sub">2026-04-25 踏查 · 稜線段 93 樣點　|　歷史資料庫 archive：<b>__AOBS__</b> 筆觀察 · <b>__AOBR__</b> 位觀察者 · __AY0__–__AY1__（每日同步 daily）</p>
 
   <div class="cards">
-    <div class="card"><div class="lbl">觀察數 observations</div><div class="val">__N__</div></div>
+    <div class="card"><div class="lbl">樣點 units</div><div class="val">__N__</div></div>
     <div class="card"><div class="lbl">物種數 species</div><div class="val">__SP__</div></div>
     <div class="card"><div class="lbl">科別 family</div><select id="famSel" autocomplete="off"></select></div>
     <div class="card"><div class="lbl">屬別 genus</div><select id="genSel" autocomplete="off"></select></div>
@@ -207,7 +212,9 @@ if(window.Chart){go();}else{var w=setInterval(function(){if(window.Chart){clearI
 HTML = (HTML.replace("__DATA__", DATA).replace("__N__", str(len(pts)))
             .replace("__SP__", str(nsp)).replace("__DIST__", str(dist))
             .replace("__XMAX__", str(xmax)).replace("__CLIMB__", str(climb))
-            .replace("__E0__", str(e0)).replace("__E1__", str(e1)))
+            .replace("__E0__", str(e0)).replace("__E1__", str(e1))
+            .replace("__AOBS__", f"{arch_obs:,}").replace("__AOBR__", str(arch_obr))
+            .replace("__AY0__", ay[0]).replace("__AY1__", ay[-1]))
 for path in (os.path.join(BASE, "transect_2026-04-25.html"), os.path.join(HERE, "index.html")):
     open(path, "w").write(HTML)
 print(f"wrote transect ({len(HTML)} bytes) + index.html | {len(pts)} obs, {nsp} sp, "
