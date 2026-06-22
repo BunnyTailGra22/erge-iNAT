@@ -9,6 +9,7 @@ import json, os, sys, datetime, collections
 HERE = os.path.dirname(os.path.abspath(__file__))
 REG = json.load(open(os.path.join(HERE, "data", "registry", "units.json")))
 RECS = json.load(open(os.path.join(HERE, "data", "history", "records.json")))
+TX = json.load(open(os.path.join(HERE, "data", "registry", "taxa_taicol.json")))
 BYUNIT = collections.defaultdict(list)
 for r in RECS:
     if r["observed_on"]:
@@ -29,7 +30,10 @@ TPL = """<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8">
 .wrap{max-width:1000px;margin:0 auto;padding:30px 26px 34px}
 .nav{font-size:13px;margin:0 0 16px}.nav a{color:var(--green);text-decoration:none;margin-right:14px}
 h1{font-weight:700;font-size:23px;color:var(--green);margin:0 0 2px}h1 .sci{font-style:italic;font-weight:500}
-.sub{font-size:14px;color:var(--gray);margin:0 0 20px}
+.sub{font-size:14px;color:var(--gray);margin:0 0 6px}
+.note{font-size:12.5px;color:var(--gray);margin:0 0 18px}.note i{font-style:italic}
+.bdg{font-size:12px;font-weight:500;padding:2px 9px;border-radius:11px;margin-left:8px;white-space:nowrap}
+.bdg.end{background:#eaf3de;color:#3B6D11}.bdg.thr{background:#fcebeb;color:#A32D2D}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 18px}
 @media(max-width:600px){.cards{grid-template-columns:repeat(2,1fr)}}
 .card{background:#f5f4ef;border-radius:10px;padding:11px 12px}
@@ -46,8 +50,9 @@ h1{font-weight:700;font-size:23px;color:var(--green);margin:0 0 2px}h1 .sci{font
 .foot{margin-top:20px;font-size:11.5px;color:var(--gray2);line-height:1.6}
 </style></head><body><div class="wrap">
 <div class="nav"><a href="../../index.html">← 剖面圖 transect</a>__PN__</div>
-<h1>__UID__ · <span class="sci">__SCI__</span> __CN__</h1>
-<p class="sub">__FZ__ __FAM__ · 海拔 __EL__ m · 步道 __DX__ m　|　二格山稜線長期定點 · 物候時間軸</p>
+<h1>__UID__ · <span class="sci">__SCI__</span> __CN____BADGES__</h1>
+<p class="sub">__FAMZH__ __FAMSCI__　·　屬 __GENZH__ __GENSCI__　·　海拔 __EL__ m · 步道 __DX__ m　|　二格山稜線長期定點</p>
+__ACCNOTE__
 <div class="cards">
   <div class="card"><div class="lbl">觀察數 observations</div><div class="val">__NOBS__</div></div>
   <div class="card"><div class="lbl">年期 years</div><div class="val">__NYR__</div><div class="sub2">__YSPAN__</div></div>
@@ -62,7 +67,7 @@ h1{font-weight:700;font-size:23px;color:var(--green);margin:0 0 2px}h1 .sci{font
 </div>
 <p class="insight">__INSIGHT__</p>
 <div class="chartbox"><canvas id="c" role="img" aria-label="__UID__ 物候時間軸：橫軸為一年中的日序（月份），縱軸為年份，點為觀察，顏色為物候階段"></canvas></div>
-<p class="foot">資料來源 iNaturalist（地點 二格山 place_id 130869，同種就近歸入此樣點）· 物候階段取自 iNat 註記（term 12：開花/結果/花苞）；其餘為僅有照片之觀察，葉相需由照片判讀 · 點擊點位開啟 iNaturalist · 色彩：荒野保護協會。</p>
+<p class="foot">資料來源 iNaturalist（地點 二格山 place_id 130869，同種就近歸入此樣點）· 物候階段取自 iNat 註記（term 12：開花/結果/花苞）；其餘為僅有照片之觀察，葉相需由照片判讀 · 學名/科屬中拉名/特有/保育：TaiCoL 臺灣物種名錄 · 點擊點位開啟 iNaturalist · 色彩：荒野保護協會。</p>
 </div>
 <script>
 var DATA=__DATA__;
@@ -101,6 +106,21 @@ new Chart(document.getElementById('c'),{type:'scatter',
 def build(i):
     u = REG[i]
     UNIT = u["unit_id"]
+    e = TX.get(u["scientific"], {})
+    fam_sci = e.get("fam_sci") or u["family"]
+    fam_zh = e.get("fam_zh") or (u["family_zh"] or "")
+    gen_sci = e.get("gen_sci") or u["scientific"].split(" ")[0]
+    gen_zh = e.get("gen_zh") or ""
+    threat = e.get("threat")
+    badges = ""
+    if e.get("is_endemic"):
+        badges += '<span class="bdg end">臺灣特有</span>'
+    if threat:
+        lab = ("IUCN " + threat) if threat in ("CR", "EN", "VU", "NT") else ("紅皮書 " + threat)
+        badges += f'<span class="bdg thr">{lab}</span>'
+    acc = e.get("accepted_sci")
+    accnote = (f'<p class="note">臺灣接受學名 TaiCoL：<i>{acc}</i></p>'
+               if acc and acc != u["scientific"] else "")
     rows = BYUNIT.get(UNIT, [])
     pts = []
     for r in rows:
@@ -138,7 +158,9 @@ def build(i):
     if i < len(ORDER) - 1:
         pn.append(f'<a href="{ORDER[i+1]}.html">{ORDER[i+1]} ›</a>')
     rep = {"__UID__": UNIT, "__SCI__": u["scientific"], "__CN__": u["common"] or "",
-           "__FZ__": u["family_zh"] or "", "__FAM__": u["family"], "__EL__": str(int(u["elev_m"])),
+           "__BADGES__": badges, "__ACCNOTE__": accnote,
+           "__FAMZH__": fam_zh, "__FAMSCI__": fam_sci, "__GENZH__": gen_zh, "__GENSCI__": gen_sci,
+           "__EL__": str(int(u["elev_m"])),
            "__DX__": str(int(u["dist_m"])), "__NOBS__": str(nobs), "__NYR__": str(len(years)),
            "__YSPAN__": f"{years[0]}–{years[-1]}", "__NOB__": str(nob), "__NPH__": str(npheno),
            "__PHBR__": phbr, "__INSIGHT__": insight, "__PN__": (" · " + " ".join(pn)) if pn else "",

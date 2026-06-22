@@ -8,11 +8,20 @@ import json, os, math
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = os.path.join(HERE, "data", "2026-04-25")
 pts = json.load(open(os.path.join(BASE, "profile_enriched.json")))
+TX = json.load(open(os.path.join(HERE, "data", "registry", "taxa_taicol.json")))
+for p in pts:                                  # merge TaiCoL family/genus (中拉) + status
+    e = TX.get(p["s"], {})
+    p["famSci"] = e.get("fam_sci") or p["f"]
+    p["famZh"] = e.get("fam_zh") or p["fz"]
+    p["genSci"] = e.get("gen_sci") or p["s"].split(" ")[0]
+    p["genZh"] = e.get("gen_zh") or ""
+    p["end"] = bool(e.get("is_endemic"))
+    p["threat"] = e.get("threat")
 DATA = json.dumps(pts, ensure_ascii=False)
 
 nsp = len({p["s"] for p in pts})
-nfam = len({p["f"] for p in pts})
-ngen = len({p["s"].split(" ")[0] for p in pts})
+nfam = len({p["famSci"] for p in pts})
+ngen = len({p["genSci"] for p in pts})
 els = [p["y"] for p in pts]
 dist = int(round(pts[-1]["x"]))
 xmax = int(math.ceil(pts[-1]["x"] / 25) * 25)
@@ -107,7 +116,8 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
   <p class="foot">
     資料來源 iNaturalist API（觀察者 bunnytailgrass，地點 二格山 place_id 130869）·
     海拔 SRTM 30 m（雙線性內插）· GPS &gt;100 m 之點，位置與高程以鄰近可靠點時間內插
-    （避免錯誤定位導致高程突降）· 資料快照 2026/04/25 · 14:41 CST · 色彩：荒野保護協會。
+    （避免錯誤定位導致高程突降）· 科/屬中拉名與特有/保育狀態：TaiCoL 臺灣物種名錄 ·
+    資料快照 2026/04/25 · 14:41 CST · 色彩：荒野保護協會。
   </p>
 </div>
 
@@ -115,8 +125,8 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
 var DATA = __DATA__;
 var FAM='*', GEN='*', chart;
 function isMobile(){return window.matchMedia('(max-width:760px)').matches;}
-function gen(d){return d.s.split(' ')[0];}
-function active(d){return (FAM==='*'||d.f===FAM)&&(GEN==='*'||gen(d)===GEN);}
+function gen(d){return d.genSci;}
+function active(d){return (FAM==='*'||d.famSci===FAM)&&(GEN==='*'||gen(d)===GEN);}
 function pcol(c){var d=c.raw;if(!active(d))return '#D3D1C7';return d.g==='research'?'#587A30':'#90B821';}
 function pbord(c){var d=c.raw;if(!active(d))return '#D3D1C7';return d.fl?'#E8380D':'#ffffff';}
 function pbw(c){return (c.raw.fl&&active(c.raw))?2.5:1;}
@@ -131,8 +141,11 @@ function extTip(ctx){
   var uid='ERG-'+String(d.n).padStart(3,'0');
   var img=d.ph?('<img src="'+d.ph+'" alt="">'):'';
   var link=mob?('<a class="lnk" href="data/units/'+uid+'.html">查看物候時間軸 →</a>'):'';
+  var bd=(d.end?'<span style="color:#3B6D11">⬥臺灣特有</span> ':'')+(d.threat?'<span style="color:#A32D2D">'+(['CR','EN','VU','NT'].indexOf(d.threat)>=0?'IUCN ':'紅皮書 ')+d.threat+'</span>':'');
   el.innerHTML=img+'<div>'+'<div class="nm">'+(d.c||'—')+'</div><div class="sci">'+d.s+
-    '</div><div class="fam">'+d.fz+' · '+d.f+(d.fl?'　<span style="color:#E8380D">±'+Math.round(d.a)+'m</span>':'')+'</div>'+link+'</div>';
+    '</div><div class="fam">'+(d.famZh||'')+' '+d.famSci+'</div><div class="fam">'+(d.genZh||'')+' '+d.genSci+'</div>'+
+    (bd?'<div class="fam">'+bd+'</div>':'')+
+    (d.fl?'<div class="fam" style="color:#E8380D">GPS ±'+Math.round(d.a)+'m</div>':'')+link+'</div>';
   if(mob){
     el.className='ctt sheet';
     el.style.left='0';el.style.right='0';el.style.bottom='0';el.style.top='auto';el.style.width='';
@@ -147,18 +160,18 @@ function extTip(ctx){
 }
 function fillFamilies(){
   var fc={}, fz={};
-  DATA.forEach(function(d){fc[d.f]=(fc[d.f]||0)+1; fz[d.f]=d.fz;});
+  DATA.forEach(function(d){fc[d.famSci]=(fc[d.famSci]||0)+1; fz[d.famSci]=d.famZh;});
   var keys=Object.keys(fc).sort(function(a,b){return fc[b]-fc[a];});
   var h='<option value="*">全部 all ('+keys.length+' 科)</option>';
-  keys.forEach(function(k){h+='<option value="'+k+'">'+fz[k]+' '+k+' · '+fc[k]+'</option>';});
+  keys.forEach(function(k){h+='<option value="'+k+'">'+(fz[k]?fz[k]+' ':'')+k+' · '+fc[k]+'</option>';});
   document.getElementById('famSel').innerHTML=h;
 }
 function fillGenera(fam){
-  var gc={};
-  DATA.forEach(function(d){if(fam==='*'||d.f===fam){var g=gen(d);gc[g]=(gc[g]||0)+1;}});
+  var gc={}, gz={};
+  DATA.forEach(function(d){if(fam==='*'||d.famSci===fam){gc[d.genSci]=(gc[d.genSci]||0)+1;gz[d.genSci]=d.genZh;}});
   var keys=Object.keys(gc).sort();
   var h='<option value="*">全部 all ('+keys.length+' 屬)</option>';
-  keys.forEach(function(k){h+='<option value="'+k+'">'+k+' · '+gc[k]+'</option>';});
+  keys.forEach(function(k){h+='<option value="'+k+'">'+(gz[k]?gz[k]+' ':'')+k+' · '+gc[k]+'</option>';});
   document.getElementById('genSel').innerHTML=h;
 }
 function go(){
