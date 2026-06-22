@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Publish the 二格山 ridgeline elevation transect as a self-contained HTML page:
 荒野保護協會 brand palette, minimalist, summary cards (觀察/物種/科/屬/步道長/爬升),
-科別+屬別 filter dropdowns, and photo + name tooltips. Also writes index.html."""
+科別+屬別 filter dropdowns, photo tooltips. Mobile: pinch-zoom + pan, bottom-sheet
+tooltip, responsive cards. Also writes index.html (GitHub Pages entry)."""
 import json, os, math
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -22,10 +23,12 @@ HTML = """<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>二格山稜線 植被海拔剖面圖 · 2026-04-25</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js"></script>
 <style>
 :root{--green:#587A30;--green2:#90B821;--gray:#666;--gray2:#B2B2B2;--yellow:#FFD900;--red:#E8380D;--ink:#3a3a36}
 *{box-sizing:border-box}
@@ -34,31 +37,49 @@ body{margin:0;background:#fff;color:var(--ink);font-family:"Noto Sans TC",system
 h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spacing:.5px}
 .sub{font-size:14px;color:var(--gray);margin:0 0 22px}
 .cards{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:0 0 22px}
-@media(max-width:760px){.cards{grid-template-columns:repeat(3,1fr)}}
 .card{background:#f5f4ef;border-radius:10px;padding:11px 12px}
 .card .lbl{font-size:12px;color:var(--gray);margin-bottom:4px}
 .card .val{font-size:22px;font-weight:500;color:var(--ink);line-height:1.15}
 .card .sub2{font-size:11px;color:var(--gray2);margin-top:2px}
 .card select{width:100%;font-family:inherit;font-size:13px;color:var(--ink);background:#fff;
   border:0.5px solid var(--gray2);border-radius:6px;padding:7px 6px;margin-top:3px;cursor:pointer}
-.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--gray);margin:0 0 12px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--gray);margin:0 0 10px}
 .legend i{display:inline-block;vertical-align:middle;margin-right:6px}
 .dot{width:11px;height:11px;border-radius:50%}
 .diam{width:10px;height:10px;background:var(--green);border:1.5px solid var(--red);transform:rotate(45deg)}
-.chartbox{position:relative;width:100%;height:450px}
-.ctt{position:absolute;pointer-events:none;opacity:0;transition:opacity .12s;width:178px;background:#fff;
-  border:0.5px solid var(--gray2);border-radius:8px;padding:8px;z-index:5;font-size:12px;line-height:1.45}
-.ctt img{width:100%;height:118px;object-fit:cover;border-radius:6px;margin-bottom:6px;background:#f1efe8;display:block}
-.ctt .nm{font-weight:700;color:var(--green);font-size:14px}
+.ctrl{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 8px;font-size:12px;color:var(--gray2)}
+.ctrl button{font-family:inherit;font-size:12px;color:var(--gray);background:#fff;border:0.5px solid var(--gray2);
+  border-radius:6px;padding:5px 10px;cursor:pointer}
+.ctrl button:active{transform:scale(.97)}
+.chartbox{position:relative;width:100%;height:450px;touch-action:none}
+.ctt{position:fixed;opacity:0;transition:opacity .12s;background:#fff;z-index:30;font-size:12px;line-height:1.45;
+  border:0.5px solid var(--gray2);border-radius:8px;padding:8px}
+.ctt.float{width:178px;pointer-events:none}
+.ctt.float img{width:100%;height:118px;object-fit:cover;border-radius:6px;margin-bottom:6px;display:block;background:#f1efe8}
+.ctt.sheet{left:0;right:0;bottom:0;width:100%;border:none;border-top:0.5px solid var(--gray2);border-radius:12px 12px 0 0;
+  box-shadow:0 -2px 14px rgba(0,0,0,.10);padding:12px 16px;display:flex;gap:12px;align-items:center;pointer-events:auto}
+.ctt.sheet img{width:88px;height:88px;flex:0 0 auto;object-fit:cover;border-radius:8px;background:#f1efe8;margin:0}
+.ctt .nm{font-weight:700;color:var(--green);font-size:15px}
 .ctt .sci{font-style:italic;color:var(--gray)}
 .ctt .fam{color:var(--gray)}
+.ctt .lnk{display:inline-block;margin-top:6px;color:var(--green);font-weight:500;text-decoration:none}
 .foot{margin-top:22px;font-size:11.5px;color:var(--gray2);line-height:1.6}
+@media(max-width:760px){
+  .wrap{padding:24px 16px 30px}
+  .cards{grid-template-columns:repeat(3,1fr);gap:8px}
+  .chartbox{height:400px}
+}
+@media(max-width:480px){
+  h1{font-size:20px}.sub{font-size:13px;margin-bottom:16px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .card .val{font-size:19px}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>二格山稜線 · 植被海拔剖面圖</h1>
-  <p class="sub">2026-04-25 踏查 · 稜線段（14:56 前）· 滑過點位看照片，點擊開啟 iNaturalist</p>
+  <p class="sub">2026-04-25 踏查 · 稜線段（14:56 前）</p>
 
   <div class="cards">
     <div class="card"><div class="lbl">觀察數 observations</div><div class="val">__N__</div></div>
@@ -75,8 +96,13 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
     <span><i class="diam"></i>GPS &gt;100 m · 位置/高程內插 interpolated</span>
   </div>
 
+  <div class="ctrl">
+    <span>縮放：雙指 / 滾輪　平移：拖曳　點選：看物種與照片</span>
+    <button id="rz" type="button">重置 reset</button>
+  </div>
+
   <div class="chartbox"><canvas id="t" role="img"
-    aria-label="二格山稜線植被海拔剖面圖，橫軸為沿步道水平距離，縱軸為海拔，點為植物觀察，可依科屬篩選"></canvas></div>
+    aria-label="二格山稜線植被海拔剖面圖，橫軸為沿步道水平距離，縱軸為海拔，點為植物觀察，可縮放、平移與依科屬篩選"></canvas></div>
 
   <p class="foot">
     資料來源 iNaturalist API（觀察者 bunnytailgrass，地點 二格山 place_id 130869）·
@@ -87,7 +113,8 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
 
 <script>
 var DATA = __DATA__;
-var FAM='*', GEN='*';
+var FAM='*', GEN='*', chart;
+function isMobile(){return window.matchMedia('(max-width:760px)').matches;}
 function gen(d){return d.s.split(' ')[0];}
 function active(d){return (FAM==='*'||d.f===FAM)&&(GEN==='*'||gen(d)===GEN);}
 function pcol(c){var d=c.raw;if(!active(d))return '#D3D1C7';return d.g==='research'?'#587A30':'#90B821';}
@@ -96,20 +123,27 @@ function pbw(c){return (c.raw.fl&&active(c.raw))?2.5:1;}
 function prad(c){var d=c.raw;if(!active(d))return 2.5;return d.fl?5.5:4;}
 function pstyle(c){return c.raw.fl?'rectRot':'circle';}
 function extTip(ctx){
-  var chart=ctx.chart, tip=ctx.tooltip, wrap=chart.canvas.parentNode;
-  var el=wrap.querySelector('.ctt');
-  if(!el){el=document.createElement('div');el.className='ctt';wrap.appendChild(el);}
+  var tip=ctx.tooltip, mob=isMobile();
+  var el=document.getElementById('ctt');
+  if(!el){el=document.createElement('div');el.id='ctt';document.body.appendChild(el);}
   if(tip.opacity===0){el.style.opacity=0;return;}
   var d=tip.dataPoints[0].raw;
   var img=d.ph?('<img src="'+d.ph+'" alt="">'):'';
-  el.innerHTML=img+'<div class="nm">'+(d.c||'—')+'</div><div class="sci">'+d.s+
-    '</div><div class="fam">'+d.fz+' · '+d.f+'</div>';
-  var cw=wrap.clientWidth, left=tip.caretX+16;
-  if(left+186>cw){left=tip.caretX-186;} if(left<0){left=4;}
-  var top=tip.caretY-30; if(top<0){top=4;}
-  el.style.left=left+'px'; el.style.top=top+'px'; el.style.opacity=1;
+  var link=mob?('<a class="lnk" href="'+d.u+'" target="_blank" rel="noopener">在 iNaturalist 開啟 ↗</a>'):'';
+  el.innerHTML=img+'<div>'+'<div class="nm">'+(d.c||'—')+'</div><div class="sci">'+d.s+
+    '</div><div class="fam">'+d.fz+' · '+d.f+(d.fl?'　<span style="color:#E8380D">±'+Math.round(d.a)+'m</span>':'')+'</div>'+link+'</div>';
+  if(mob){
+    el.className='ctt sheet';
+    el.style.left='0';el.style.right='0';el.style.bottom='0';el.style.top='auto';el.style.width='';
+  }else{
+    el.className='ctt float';
+    var r=ctx.chart.canvas.getBoundingClientRect();
+    var left=r.left+tip.caretX+16; if(left+186>window.innerWidth)left=r.left+tip.caretX-186; if(left<4)left=4;
+    var top=r.top+tip.caretY-30; if(top<4)top=4;
+    el.style.left=left+'px';el.style.top=top+'px';el.style.right='auto';el.style.bottom='auto';
+  }
+  el.style.opacity=1;
 }
-var chart;
 function fillFamilies(){
   var fc={}, fz={};
   DATA.forEach(function(d){fc[d.f]=(fc[d.f]||0)+1; fz[d.f]=d.fz;});
@@ -130,6 +164,7 @@ function go(){
   fillFamilies(); fillGenera('*');
   document.getElementById('famSel').onchange=function(){FAM=this.value;GEN='*';fillGenera(FAM);chart.update();};
   document.getElementById('genSel').onchange=function(){GEN=this.value;chart.update();};
+  document.getElementById('rz').onclick=function(){if(chart.resetZoom)chart.resetZoom();};
   chart=new Chart(document.getElementById('t'),{type:'line',
     data:{datasets:[{data:DATA,borderColor:'#666666',borderWidth:1.5,fill:'start',
       backgroundColor:'rgba(178,178,178,0.20)',tension:0.3,
@@ -137,8 +172,11 @@ function go(){
       pointRadius:prad,pointStyle:pstyle,pointHoverRadius:function(c){return prad(c)+2;}}]},
     options:{responsive:true,maintainAspectRatio:false,
       interaction:{mode:'nearest',intersect:false},
-      onClick:function(e,els){if(els.length)window.open(DATA[els[0].index].u,'_blank');},
-      plugins:{legend:{display:false},tooltip:{enabled:false,external:extTip}},
+      onClick:function(e,els){if(!isMobile()&&els.length)window.open(DATA[els[0].index].u,'_blank');},
+      plugins:{legend:{display:false},tooltip:{enabled:false,external:extTip},
+        zoom:{pan:{enabled:true,mode:'x'},
+              zoom:{wheel:{enabled:true},pinch:{enabled:true},mode:'x'},
+              limits:{x:{min:0,max:__XMAX__,minRange:40}}}},
       scales:{
         x:{type:'linear',min:0,max:__XMAX__,
            title:{display:true,text:'沿步道水平距離 horizontal distance (m)',color:'#666666'},
