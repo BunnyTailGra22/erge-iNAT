@@ -99,7 +99,9 @@ for j, r in enumerate(seg):
                 "c": r["common_name"] or "", "f": r["family"] or "",
                 "fz": fam_zh.get(r["family"], ""), "g": r["quality_grade"],
                 "a": r["_acc"], "x": round(dist, 1), "y": r["_el"], "fl": r["fl"],
-                "corr": r["corr"], "u": r["uri"], "ph": r["first_photo"] or ""})
+                "corr": r["corr"], "u": r["uri"], "ph": r["first_photo"] or "",
+                "tid": int(r["taxon_id"]) if r["taxon_id"] else None,
+                "lat": round(r["_lat"], 7), "lng": round(r["_lng"], 7)})
 
 # fallback: interpolate any missing elevation by distance between good neighbours
 for i, p in enumerate(pts):
