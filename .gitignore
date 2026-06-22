@@ -1,0 +1,13 @@
+# macOS / Drive
+.DS_Store
+**/.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Helper / intermediate files (regenerable)
+**/_*.json
+
+# Large raw API dump (regenerate with fetch_inat.py)
+**/observations_raw.json

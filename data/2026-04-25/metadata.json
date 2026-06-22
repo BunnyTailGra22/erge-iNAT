@@ -1,0 +1,26 @@
+{
+  "survey": "二格山 長期定點調查 (iNAT in Erge)",
+  "observer": "bunnytailgrass",
+  "place": "二格山, NT, TW",
+  "place_id": 130869,
+  "observed_on": "2026-04-25",
+  "snapshot_label": "2026/04/25 · 14:41 CST",
+  "snapshot_at": "2026-04-25T14:41:00+08:00",
+  "data_retrieved_at": "2026-06-21T23:05:47+08:00",
+  "source": "iNaturalist API v1 /observations",
+  "query": {
+    "user_login": "bunnytailgrass",
+    "observed_on": "2026-04-25",
+    "place_id": 130869
+  },
+  "totals": {
+    "observations": 111,
+    "species": 79,
+    "families": 48,
+    "research_grade": 38,
+    "needs_id": 73
+  },
+  "observation_time_window_cst": "10:27–15:14",
+  "upload_time_window_cst": "15:32–20:46",
+  "note": "Snapshot pinned at 2026/04/25 14:41 CST. iNaturalist identifications are mutable (needs_id records may later reach research grade); this records the dataset state treated as the baseline target sample for the long-term site survey."
+}
