@@ -65,7 +65,9 @@ __ACCNOTE__
   <span><i style="background:#90B821"></i>花苞 bud</span>
   <span><i style="background:#CFCDC4"></i>未標記（僅照片）photo only</span>
 </div>
+<div class="legend" style="color:var(--gray2)">距樣點 GPS 距離（形狀 shape）：<span>● ≤50 m 此株 on-spot</span><span>▲ 50–250 m 鄰近 near</span><span>◆ &gt;250 m 他處同種 elsewhere</span></div>
 <p class="insight">__INSIGHT__</p>
+<p class="insight" style="color:var(--gray);margin-top:-8px">__DISTSUM__</p>
 <div class="chartbox"><canvas id="c" role="img" aria-label="__UID__ 物候時間軸：橫軸為一年中的日序（月份），縱軸為年份，點為觀察，顏色為物候階段"></canvas></div>
 <p class="foot">資料來源 iNaturalist（地點 二格山 place_id 130869，同種就近歸入此樣點）· 物候階段取自 iNat 註記（term 12：開花/結果/花苞）；其餘為僅有照片之觀察，葉相需由照片判讀 · 學名/科屬中拉名/特有/保育：TaiCoL 臺灣物種名錄 · 點擊點位開啟 iNaturalist · 色彩：荒野保護協會。</p>
 </div>
@@ -73,6 +75,7 @@ __ACCNOTE__
 var DATA=__DATA__;
 function col(p){if(p.indexOf('flower')>=0)return '#E8380D';if(p.indexOf('fruit')>=0)return '#FFD900';if(p.indexOf('bud')>=0)return '#90B821';return '#CFCDC4';}
 function bord(p){if(p.indexOf('fruit')>=0)return '#BA7517';if(!p)return '#B2B2B2';return '#ffffff';}
+function shp(dm){return (dm==null||dm<=50)?'circle':(dm<=250?'triangle':'rectRot');}
 var ZH={flower:'開花',fruit:'結果',bud:'花苞'};
 function phZh(p){return p?p.split(';').map(function(x){return ZH[x]||x;}).join('、'):'（未標記）';}
 function extTip(ctx){var tip=ctx.tooltip;var el=document.getElementById('ctt');
@@ -80,7 +83,7 @@ function extTip(ctx){var tip=ctx.tooltip;var el=document.getElementById('ctt');
   if(tip.opacity===0){el.style.opacity=0;return;}
   var d=tip.dataPoints[0].raw;
   el.innerHTML=(d.ph?'<img src="'+d.ph+'" alt="">':'')+'<div class="ph">'+phZh(d.p)+'</div>'+
-    '<div class="mt">'+d.d+'　'+d.q+'</div><div class="mt">@'+d.ob+'</div>';
+    '<div class="mt">'+d.d+'　'+d.q+'</div><div class="mt">@'+d.ob+'　·　距樣點 '+(d.dm==null?'?':Math.round(d.dm))+' m</div>';
   var r=ctx.chart.canvas.getBoundingClientRect();var left=r.left+tip.caretX+14;
   if(left+178>window.innerWidth)left=r.left+tip.caretX-178;if(left<4)left=4;
   var top=r.top+tip.caretY-20;if(top<4)top=4;
@@ -91,7 +94,8 @@ new Chart(document.getElementById('c'),{type:'scatter',
  data:{datasets:[{data:DATA.map(function(d){return Object.assign({x:d.doy,y:d.yj},d);}),
    pointBackgroundColor:function(c){return col(c.raw.p);},pointBorderColor:function(c){return bord(c.raw.p);},
    pointBorderWidth:function(c){return c.raw.p?1.5:1;},
-   pointRadius:function(c){return c.raw.p?6:4;},pointHoverRadius:function(c){return (c.raw.p?6:4)+2;}}]},
+   pointRadius:function(c){return c.raw.p?6:4;},pointHoverRadius:function(c){return (c.raw.p?6:4)+2;},
+   pointStyle:function(c){return shp(c.raw.dm);}}]},
  options:{responsive:true,maintainAspectRatio:false,
    onClick:function(e,el){if(el.length)window.open('https://www.inaturalist.org/observations/'+DATA[el[0].index].id,'_blank');},
    plugins:{legend:{display:false},tooltip:{enabled:false,external:extTip}},
@@ -127,7 +131,7 @@ def build(i):
         dt = datetime.date.fromisoformat(r["observed_on"])
         pts.append({"yr": dt.year, "doy": dt.timetuple().tm_yday, "d": r["observed_on"],
                     "p": r["phenophase"], "ph": r["photo"], "ob": r["user"],
-                    "q": r["quality"], "id": r["obs_id"]})
+                    "q": r["quality"], "id": r["obs_id"], "dm": r.get("dist_to_unit_m")})
     pts.sort(key=lambda x: x["d"])
     g = collections.defaultdict(list)
     for k, p in enumerate(pts):
@@ -141,6 +145,13 @@ def build(i):
     nob = len({p["ob"] for p in pts})
     pc = collections.Counter(ph for p in pts for ph in (p["p"].split(";") if p["p"] else []))
     npheno = sum(1 for p in pts if p["p"])
+    dm = sorted(p["dm"] for p in pts if p["dm"] is not None)
+    near = sum(1 for x in dm if x <= 50)
+    mid = sum(1 for x in dm if 50 < x <= 250)
+    far = len(dm) - near - mid
+    med = int(dm[len(dm) // 2]) if dm else 0
+    distsum = (f"距樣點 GPS 距離（形狀）：● 此株 ≤50 m {near} · ▲ 鄰近 50–250 m {mid} · "
+               f"◆ 他處同種 &gt;250 m {far}（中位 {med} m）" if dm else "無 GPS 距離資料")
     spring = sum(1 for p in pts if 60 <= p["doy"] <= 151)
     if nobs == 0:
         insight = "尚無歷史觀察，後續每日同步將累積。"
@@ -163,7 +174,8 @@ def build(i):
            "__EL__": str(int(u["elev_m"])),
            "__DX__": str(int(u["dist_m"])), "__NOBS__": str(nobs), "__NYR__": str(len(years)),
            "__YSPAN__": f"{years[0]}–{years[-1]}", "__NOB__": str(nob), "__NPH__": str(npheno),
-           "__PHBR__": phbr, "__INSIGHT__": insight, "__PN__": (" · " + " ".join(pn)) if pn else "",
+           "__PHBR__": phbr, "__INSIGHT__": insight, "__DISTSUM__": distsum,
+           "__PN__": (" · " + " ".join(pn)) if pn else "",
            "__YMIN__": str(years[0] - 0.6), "__YMAX__": str(years[-1] + 0.6),
            "__DATA__": json.dumps(pts, ensure_ascii=False)}
     html = TPL
