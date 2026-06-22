@@ -1,26 +1,6 @@
-#!/usr/bin/env python3
-"""Phase-2: per-unit phenology timeline pages (day-of-year × year calendar with
-phenophase colour + photo tooltips), with back / prev / next navigation.
-Reads the registry + history store; writes data/units/<unit_id>.html.
-Usage:  python3 build_unit_page.py ERG-052     # one unit
-        python3 build_unit_page.py --all        # all 93 units"""
-import json, os, sys, datetime, collections
-
-HERE = os.path.dirname(os.path.abspath(__file__))
-REG = json.load(open(os.path.join(HERE, "data", "registry", "units.json")))
-RECS = json.load(open(os.path.join(HERE, "data", "history", "records.json")))
-BYUNIT = collections.defaultdict(list)
-for r in RECS:
-    if r["observed_on"]:
-        BYUNIT[r["unit_id"]].append(r)
-ORDER = [x["unit_id"] for x in REG]
-ZH = {"flower": "開花", "fruit": "結果", "bud": "花苞"}
-OUTDIR = os.path.join(HERE, "data", "units")
-os.makedirs(OUTDIR, exist_ok=True)
-
-TPL = """<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8">
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>__UID__ · __SCI__ 物候時間軸</title>
+<title>ERG-054 · Dendropanax dentigerus 物候時間軸</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
@@ -45,14 +25,14 @@ h1{font-weight:700;font-size:23px;color:var(--green);margin:0 0 2px}h1 .sci{font
 .ctt .ph{font-weight:700;color:var(--green)}.ctt .mt{color:var(--gray)}
 .foot{margin-top:20px;font-size:11.5px;color:var(--gray2);line-height:1.6}
 </style></head><body><div class="wrap">
-<div class="nav"><a href="../../index.html">← 剖面圖 transect</a>__PN__</div>
-<h1>__UID__ · <span class="sci">__SCI__</span> __CN__</h1>
-<p class="sub">__FZ__ __FAM__ · 海拔 __EL__ m · 步道 __DX__ m　|　二格山稜線長期定點 · 物候時間軸</p>
+<div class="nav"><a href="../../index.html">← 剖面圖 transect</a> · <a href="ERG-053.html">‹ ERG-053</a> <a href="ERG-055.html">ERG-055 ›</a></div>
+<h1>ERG-054 · <span class="sci">Dendropanax dentigerus</span> 樹參</h1>
+<p class="sub">五加科 Araliaceae · 海拔 585 m · 步道 310 m　|　二格山稜線長期定點 · 物候時間軸</p>
 <div class="cards">
-  <div class="card"><div class="lbl">觀察數 observations</div><div class="val">__NOBS__</div></div>
-  <div class="card"><div class="lbl">年期 years</div><div class="val">__NYR__</div><div class="sub2">__YSPAN__</div></div>
-  <div class="card"><div class="lbl">觀察者 observers</div><div class="val">__NOB__</div></div>
-  <div class="card"><div class="lbl">物候標記 phenophase</div><div class="val">__NPH__</div><div class="sub2">__PHBR__</div></div>
+  <div class="card"><div class="lbl">觀察數 observations</div><div class="val">7</div></div>
+  <div class="card"><div class="lbl">年期 years</div><div class="val">5</div><div class="sub2">2014–2026</div></div>
+  <div class="card"><div class="lbl">觀察者 observers</div><div class="val">5</div></div>
+  <div class="card"><div class="lbl">物候標記 phenophase</div><div class="val">0</div><div class="sub2">—</div></div>
 </div>
 <div class="legend">
   <span><i style="background:#E8380D"></i>開花 flower</span>
@@ -60,12 +40,12 @@ h1{font-weight:700;font-size:23px;color:var(--green);margin:0 0 2px}h1 .sci{font
   <span><i style="background:#90B821"></i>花苞 bud</span>
   <span><i style="background:#CFCDC4"></i>未標記（僅照片）photo only</span>
 </div>
-<p class="insight">__INSIGHT__</p>
-<div class="chartbox"><canvas id="c" role="img" aria-label="__UID__ 物候時間軸：橫軸為一年中的日序（月份），縱軸為年份，點為觀察，顏色為物候階段"></canvas></div>
+<p class="insight">3–5 月觀察占 14%；灰點為僅有照片、待判讀葉/花/果。</p>
+<div class="chartbox"><canvas id="c" role="img" aria-label="ERG-054 物候時間軸：橫軸為一年中的日序（月份），縱軸為年份，點為觀察，顏色為物候階段"></canvas></div>
 <p class="foot">資料來源 iNaturalist（地點 二格山 place_id 130869，同種就近歸入此樣點）· 物候階段取自 iNat 註記（term 12：開花/結果/花苞）；其餘為僅有照片之觀察，葉相需由照片判讀 · 點擊點位開啟 iNaturalist · 色彩：荒野保護協會。</p>
 </div>
 <script>
-var DATA=__DATA__;
+var DATA=[{"yr": 2014, "doy": 235, "d": "2014-08-23", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/470740218/small.jpeg", "ob": "chinaberryhuang", "q": "research", "id": 261971890, "yj": 2014.0}, {"yr": 2019, "doy": 301, "d": "2019-10-28", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/178302070/small.jpeg", "ob": "chinaberryhuang", "q": "research", "id": 106168613, "yj": 2019.0}, {"yr": 2022, "doy": 1, "d": "2022-01-01", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/174346243/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 104076858, "yj": 2022.0}, {"yr": 2025, "doy": 306, "d": "2025-11-02", "p": "", "ph": "https://static.inaturalist.org/photos/587255733/small.jpg", "ob": "naturalist44888", "q": "research", "id": 324455111, "yj": 2024.87}, {"yr": 2025, "doy": 306, "d": "2025-11-02", "p": "", "ph": "https://static.inaturalist.org/photos/587255661/small.jpg", "ob": "hsiaofeng", "q": "research", "id": 324455082, "yj": 2025.0}, {"yr": 2025, "doy": 306, "d": "2025-11-02", "p": "", "ph": "https://static.inaturalist.org/photos/587261367/small.jpg", "ob": "erose1", "q": "needs_id", "id": 324457726, "yj": 2025.13}, {"yr": 2026, "doy": 115, "d": "2026-04-25", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/644816060/small.jpg", "ob": "bunnytailgrass", "q": "needs_id", "id": 353390347, "yj": 2026.0}];
 function col(p){if(p.indexOf('flower')>=0)return '#E8380D';if(p.indexOf('fruit')>=0)return '#FFD900';if(p.indexOf('bud')>=0)return '#90B821';return '#CFCDC4';}
 function bord(p){if(p.indexOf('fruit')>=0)return '#BA7517';if(!p)return '#B2B2B2';return '#ffffff';}
 var ZH={flower:'開花',fruit:'結果',bud:'花苞'};
@@ -93,74 +73,6 @@ new Chart(document.getElementById('c'),{type:'scatter',
    scales:{x:{min:1,max:366,title:{display:true,text:'一年中的日序 day of year',color:'#666'},
      grid:{color:'rgba(178,178,178,0.25)'},ticks:{color:'#666',autoSkip:false,callback:function(v){var i=MS.indexOf(v);return i>=0?ML[i]:'';}},
      afterBuildTicks:function(a){a.ticks=MS.map(function(v){return {value:v};});}},
-    y:{min:__YMIN__,max:__YMAX__,title:{display:true,text:'年 year',color:'#666'},
+    y:{min:2013.4,max:2026.6,title:{display:true,text:'年 year',color:'#666'},
      grid:{color:'rgba(178,178,178,0.25)'},ticks:{color:'#666',stepSize:1,callback:function(v){return Number.isInteger(v)?v:'';}}}}}});
-</script></body></html>"""
-
-
-def build(i):
-    u = REG[i]
-    UNIT = u["unit_id"]
-    rows = BYUNIT.get(UNIT, [])
-    pts = []
-    for r in rows:
-        dt = datetime.date.fromisoformat(r["observed_on"])
-        pts.append({"yr": dt.year, "doy": dt.timetuple().tm_yday, "d": r["observed_on"],
-                    "p": r["phenophase"], "ph": r["photo"], "ob": r["user"],
-                    "q": r["quality"], "id": r["obs_id"]})
-    pts.sort(key=lambda x: x["d"])
-    g = collections.defaultdict(list)
-    for k, p in enumerate(pts):
-        g[(p["yr"], p["doy"])].append(k)
-    for idxs in g.values():
-        kk = len(idxs)
-        for j, k in enumerate(idxs):
-            pts[k]["yj"] = round(pts[k]["yr"] + (j - (kk - 1) / 2) * 0.13, 3)
-    years = sorted({p["yr"] for p in pts}) or [2026]
-    nobs = len(pts)
-    nob = len({p["ob"] for p in pts})
-    pc = collections.Counter(ph for p in pts for ph in (p["p"].split(";") if p["p"] else []))
-    npheno = sum(1 for p in pts if p["p"])
-    spring = sum(1 for p in pts if 60 <= p["doy"] <= 151)
-    if nobs == 0:
-        insight = "尚無歷史觀察，後續每日同步將累積。"
-    elif UNIT == "ERG-052":
-        insight = (f"觀察高峰落在 3–5 月（{100*spring//nobs}% 的觀察），對應金毛杜鵑花期；"
-                   "全年其餘月份為營養／果期照片。")
-    else:
-        insight = f"3–5 月觀察占 {100*spring//nobs}%；灰點為僅有照片、待判讀葉/花/果。"
-    phbr = " / ".join(f"{lab}{n}" for lab, n in
-                      [("花", pc.get("flower", 0)), ("果", pc.get("fruit", 0)), ("苞", pc.get("bud", 0))] if n) or "—"
-    # prev / next nav
-    pn = []
-    if i > 0:
-        pn.append(f'<a href="{ORDER[i-1]}.html">‹ {ORDER[i-1]}</a>')
-    if i < len(ORDER) - 1:
-        pn.append(f'<a href="{ORDER[i+1]}.html">{ORDER[i+1]} ›</a>')
-    rep = {"__UID__": UNIT, "__SCI__": u["scientific"], "__CN__": u["common"] or "",
-           "__FZ__": u["family_zh"] or "", "__FAM__": u["family"], "__EL__": str(int(u["elev_m"])),
-           "__DX__": str(int(u["dist_m"])), "__NOBS__": str(nobs), "__NYR__": str(len(years)),
-           "__YSPAN__": f"{years[0]}–{years[-1]}", "__NOB__": str(nob), "__NPH__": str(npheno),
-           "__PHBR__": phbr, "__INSIGHT__": insight, "__PN__": (" · " + " ".join(pn)) if pn else "",
-           "__YMIN__": str(years[0] - 0.6), "__YMAX__": str(years[-1] + 0.6),
-           "__DATA__": json.dumps(pts, ensure_ascii=False)}
-    html = TPL
-    for k, v in rep.items():
-        html = html.replace(k, v)
-    open(os.path.join(OUTDIR, f"{UNIT}.html"), "w").write(html)
-    return nobs
-
-
-def main():
-    arg = sys.argv[1] if len(sys.argv) > 1 else "ERG-052"
-    if arg == "--all":
-        tot = sum(build(i) for i in range(len(REG)))
-        print(f"wrote {len(REG)} unit pages -> {OUTDIR}  ({tot} records total)")
-    else:
-        i = ORDER.index(arg)
-        n = build(i)
-        print(f"wrote {arg}.html ({n} obs)")
-
-
-if __name__ == "__main__":
-    main()
+</script></body></html>

@@ -84,8 +84,8 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
   <div class="cards">
     <div class="card"><div class="lbl">觀察數 observations</div><div class="val">__N__</div></div>
     <div class="card"><div class="lbl">物種數 species</div><div class="val">__SP__</div></div>
-    <div class="card"><div class="lbl">科別 family</div><select id="famSel"></select></div>
-    <div class="card"><div class="lbl">屬別 genus</div><select id="genSel"></select></div>
+    <div class="card"><div class="lbl">科別 family</div><select id="famSel" autocomplete="off"></select></div>
+    <div class="card"><div class="lbl">屬別 genus</div><select id="genSel" autocomplete="off"></select></div>
     <div class="card"><div class="lbl">步道長 trail</div><div class="val">__DIST__ m</div></div>
     <div class="card"><div class="lbl">爬升 climb</div><div class="val">+__CLIMB__ m</div><div class="sub2">__E0__ → __E1__ m</div></div>
   </div>
@@ -97,7 +97,7 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
   </div>
 
   <div class="ctrl">
-    <span>縮放：雙指 / 滾輪　平移：拖曳　點選：看物種與照片</span>
+    <span>縮放：雙指 / 滾輪　平移：拖曳　點選點位 → 該物種物候時間軸</span>
     <button id="rz" type="button">重置 reset</button>
   </div>
 
@@ -128,8 +128,9 @@ function extTip(ctx){
   if(!el){el=document.createElement('div');el.id='ctt';document.body.appendChild(el);}
   if(tip.opacity===0){el.style.opacity=0;return;}
   var d=tip.dataPoints[0].raw;
+  var uid='ERG-'+String(d.n).padStart(3,'0');
   var img=d.ph?('<img src="'+d.ph+'" alt="">'):'';
-  var link=mob?('<a class="lnk" href="'+d.u+'" target="_blank" rel="noopener">在 iNaturalist 開啟 ↗</a>'):'';
+  var link=mob?('<a class="lnk" href="data/units/'+uid+'.html">查看物候時間軸 →</a>'):'';
   el.innerHTML=img+'<div>'+'<div class="nm">'+(d.c||'—')+'</div><div class="sci">'+d.s+
     '</div><div class="fam">'+d.fz+' · '+d.f+(d.fl?'　<span style="color:#E8380D">±'+Math.round(d.a)+'m</span>':'')+'</div>'+link+'</div>';
   if(mob){
@@ -172,7 +173,8 @@ function go(){
       pointRadius:prad,pointStyle:pstyle,pointHoverRadius:function(c){return prad(c)+2;}}]},
     options:{responsive:true,maintainAspectRatio:false,
       interaction:{mode:'nearest',intersect:false},
-      onClick:function(e,els){if(!isMobile()&&els.length)window.open(DATA[els[0].index].u,'_blank');},
+      onClick:function(e,els){if(!isMobile()&&els.length){var n=DATA[els[0].index].n;
+        location.href='data/units/ERG-'+String(n).padStart(3,'0')+'.html';}},
       plugins:{legend:{display:false},tooltip:{enabled:false,external:extTip},
         zoom:{pan:{enabled:true,mode:'x'},
               zoom:{wheel:{enabled:true},pinch:{enabled:true},mode:'x'},

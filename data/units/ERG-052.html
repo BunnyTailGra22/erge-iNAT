@@ -6,9 +6,9 @@
 <style>
 :root{--green:#587A30;--green2:#90B821;--gray:#666;--gray2:#B2B2B2;--yellow:#FFD900;--red:#E8380D;--ink:#3a3a36}
 *{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font-family:"Noto Sans TC",system-ui,sans-serif}
-.wrap{max-width:1000px;margin:0 auto;padding:40px 26px 34px}
-h1{font-weight:700;font-size:23px;color:var(--green);margin:0 0 2px}
-h1 .sci{font-style:italic;font-weight:500}
+.wrap{max-width:1000px;margin:0 auto;padding:30px 26px 34px}
+.nav{font-size:13px;margin:0 0 16px}.nav a{color:var(--green);text-decoration:none;margin-right:14px}
+h1{font-weight:700;font-size:23px;color:var(--green);margin:0 0 2px}h1 .sci{font-style:italic;font-weight:500}
 .sub{font-size:14px;color:var(--gray);margin:0 0 20px}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 18px}
 @media(max-width:600px){.cards{grid-template-columns:repeat(2,1fr)}}
@@ -17,7 +17,7 @@ h1 .sci{font-style:italic;font-weight:500}
 .card .sub2{font-size:11px;color:var(--gray2);margin-top:2px}
 .legend{display:flex;flex-wrap:wrap;gap:15px;font-size:13px;color:var(--gray);margin:0 0 8px}
 .legend i{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:middle;margin-right:6px}
-.insight{font-size:13px;color:var(--green);margin:0 0 14px}
+.insight{font-size:13px;color:var(--green);margin:0 0 14px;min-height:1px}
 .chartbox{position:relative;width:100%;height:430px}
 .ctt{position:fixed;opacity:0;transition:opacity .12s;width:170px;background:#fff;border:0.5px solid var(--gray2);
   border-radius:8px;padding:8px;z-index:30;font-size:12px;line-height:1.45;pointer-events:none}
@@ -25,6 +25,7 @@ h1 .sci{font-style:italic;font-weight:500}
 .ctt .ph{font-weight:700;color:var(--green)}.ctt .mt{color:var(--gray)}
 .foot{margin-top:20px;font-size:11.5px;color:var(--gray2);line-height:1.6}
 </style></head><body><div class="wrap">
+<div class="nav"><a href="../../index.html">← 剖面圖 transect</a> · <a href="ERG-051.html">‹ ERG-051</a> <a href="ERG-053.html">ERG-053 ›</a></div>
 <h1>ERG-052 · <span class="sci">Rhododendron oldhamii</span> 金毛杜鵑</h1>
 <p class="sub">杜鵑花科 Ericaceae · 海拔 586 m · 步道 307 m　|　二格山稜線長期定點 · 物候時間軸</p>
 <div class="cards">
@@ -63,16 +64,15 @@ var MS=[1,32,60,91,121,152,182,213,244,274,305,335];
 var ML=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 new Chart(document.getElementById('c'),{type:'scatter',
  data:{datasets:[{data:DATA.map(function(d){return Object.assign({x:d.doy,y:d.yj},d);}),
-   pointBackgroundColor:function(c){return col(c.raw.p);},
-   pointBorderColor:function(c){return bord(c.raw.p);},
+   pointBackgroundColor:function(c){return col(c.raw.p);},pointBorderColor:function(c){return bord(c.raw.p);},
    pointBorderWidth:function(c){return c.raw.p?1.5:1;},
    pointRadius:function(c){return c.raw.p?6:4;},pointHoverRadius:function(c){return (c.raw.p?6:4)+2;}}]},
  options:{responsive:true,maintainAspectRatio:false,
    onClick:function(e,el){if(el.length)window.open('https://www.inaturalist.org/observations/'+DATA[el[0].index].id,'_blank');},
    plugins:{legend:{display:false},tooltip:{enabled:false,external:extTip}},
    scales:{x:{min:1,max:366,title:{display:true,text:'一年中的日序 day of year',color:'#666'},
-     grid:{color:'rgba(178,178,178,0.25)'},ticks:{color:'#666',autoSkip:false,
-       callback:function(v){var i=MS.indexOf(v);return i>=0?ML[i]:'';}},afterBuildTicks:function(a){a.ticks=MS.map(function(v){return {value:v};});}},
-    y:{min:2017-0.6,max:2026+0.6,title:{display:true,text:'年 year',color:'#666'},
+     grid:{color:'rgba(178,178,178,0.25)'},ticks:{color:'#666',autoSkip:false,callback:function(v){var i=MS.indexOf(v);return i>=0?ML[i]:'';}},
+     afterBuildTicks:function(a){a.ticks=MS.map(function(v){return {value:v};});}},
+    y:{min:2016.4,max:2026.6,title:{display:true,text:'年 year',color:'#666'},
      grid:{color:'rgba(178,178,178,0.25)'},ticks:{color:'#666',stepSize:1,callback:function(v){return Number.isInteger(v)?v:'';}}}}}});
 </script></body></html>

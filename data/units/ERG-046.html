@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERG-046 · Diospyros morrisiana 物候時間軸</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root{--green:#587A30;--green2:#90B821;--gray:#666;--gray2:#B2B2B2;--yellow:#FFD900;--red:#E8380D;--ink:#3a3a36}
+*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font-family:"Noto Sans TC",system-ui,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:30px 26px 34px}
+.nav{font-size:13px;margin:0 0 16px}.nav a{color:var(--green);text-decoration:none;margin-right:14px}
+h1{font-weight:700;font-size:23px;color:var(--green);margin:0 0 2px}h1 .sci{font-style:italic;font-weight:500}
+.sub{font-size:14px;color:var(--gray);margin:0 0 20px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 18px}
+@media(max-width:600px){.cards{grid-template-columns:repeat(2,1fr)}}
+.card{background:#f5f4ef;border-radius:10px;padding:11px 12px}
+.card .lbl{font-size:12px;color:var(--gray)}.card .val{font-size:22px;font-weight:500}
+.card .sub2{font-size:11px;color:var(--gray2);margin-top:2px}
+.legend{display:flex;flex-wrap:wrap;gap:15px;font-size:13px;color:var(--gray);margin:0 0 8px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:middle;margin-right:6px}
+.insight{font-size:13px;color:var(--green);margin:0 0 14px;min-height:1px}
+.chartbox{position:relative;width:100%;height:430px}
+.ctt{position:fixed;opacity:0;transition:opacity .12s;width:170px;background:#fff;border:0.5px solid var(--gray2);
+  border-radius:8px;padding:8px;z-index:30;font-size:12px;line-height:1.45;pointer-events:none}
+.ctt img{width:100%;height:118px;object-fit:cover;border-radius:6px;margin-bottom:6px;display:block;background:#f1efe8}
+.ctt .ph{font-weight:700;color:var(--green)}.ctt .mt{color:var(--gray)}
+.foot{margin-top:20px;font-size:11.5px;color:var(--gray2);line-height:1.6}
+</style></head><body><div class="wrap">
+<div class="nav"><a href="../../index.html">← 剖面圖 transect</a> · <a href="ERG-045.html">‹ ERG-045</a> <a href="ERG-047.html">ERG-047 ›</a></div>
+<h1>ERG-046 · <span class="sci">Diospyros morrisiana</span> 山紅柿</h1>
+<p class="sub">柿樹科 Ebenaceae · 海拔 578 m · 步道 270 m　|　二格山稜線長期定點 · 物候時間軸</p>
+<div class="cards">
+  <div class="card"><div class="lbl">觀察數 observations</div><div class="val">34</div></div>
+  <div class="card"><div class="lbl">年期 years</div><div class="val">8</div><div class="sub2">2010–2026</div></div>
+  <div class="card"><div class="lbl">觀察者 observers</div><div class="val">14</div></div>
+  <div class="card"><div class="lbl">物候標記 phenophase</div><div class="val">1</div><div class="sub2">果1</div></div>
+</div>
+<div class="legend">
+  <span><i style="background:#E8380D"></i>開花 flower</span>
+  <span><i style="background:#FFD900;border:1px solid #BA7517"></i>結果 fruit</span>
+  <span><i style="background:#90B821"></i>花苞 bud</span>
+  <span><i style="background:#CFCDC4"></i>未標記（僅照片）photo only</span>
+</div>
+<p class="insight">3–5 月觀察占 23%；灰點為僅有照片、待判讀葉/花/果。</p>
+<div class="chartbox"><canvas id="c" role="img" aria-label="ERG-046 物候時間軸：橫軸為一年中的日序（月份），縱軸為年份，點為觀察，顏色為物候階段"></canvas></div>
+<p class="foot">資料來源 iNaturalist（地點 二格山 place_id 130869，同種就近歸入此樣點）· 物候階段取自 iNat 註記（term 12：開花/結果/花苞）；其餘為僅有照片之觀察，葉相需由照片判讀 · 點擊點位開啟 iNaturalist · 色彩：荒野保護協會。</p>
+</div>
+<script>
+var DATA=[{"yr": 2010, "doy": 328, "d": "2010-11-24", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/459401212/small.jpeg", "ob": "chinaberryhuang", "q": "research", "id": 256252065, "yj": 2010.0}, {"yr": 2020, "doy": 326, "d": "2020-11-21", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/105191907/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 65364760, "yj": 2020.0}, {"yr": 2020, "doy": 347, "d": "2020-12-12", "p": "", "ph": "https://static.inaturalist.org/photos/107124780/small.jpg", "ob": "yitingtseng", "q": "research", "id": 66450345, "yj": 2020.0}, {"yr": 2021, "doy": 121, "d": "2021-05-01", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/124394082/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 76025935, "yj": 2021.0}, {"yr": 2021, "doy": 260, "d": "2021-09-17", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/157851105/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 95106333, "yj": 2021.0}, {"yr": 2021, "doy": 319, "d": "2021-11-15", "p": "", "ph": "https://static.inaturalist.org/photos/168945917/small.jpg", "ob": "rebecca_chung", "q": "research", "id": 101181183, "yj": 2021.0}, {"yr": 2021, "doy": 352, "d": "2021-12-18", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/172739460/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 103239242, "yj": 2021.0}, {"yr": 2022, "doy": 3, "d": "2022-01-03", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/174662806/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 104252086, "yj": 2022.0}, {"yr": 2022, "doy": 183, "d": "2022-07-02", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/211145328/small.jpg", "ob": "tzuting_huang", "q": "research", "id": 124564843, "yj": 2021.935}, {"yr": 2022, "doy": 183, "d": "2022-07-02", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/211144446/small.jpg", "ob": "tzuting_huang", "q": "research", "id": 124564343, "yj": 2022.065}, {"yr": 2022, "doy": 254, "d": "2022-09-11", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/229335017/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 134535361, "yj": 2022.0}, {"yr": 2022, "doy": 266, "d": "2022-09-23", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/232297271/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 136135708, "yj": 2021.935}, {"yr": 2022, "doy": 266, "d": "2022-09-23", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/232297545/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 136135927, "yj": 2022.065}, {"yr": 2022, "doy": 298, "d": "2022-10-25", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/239462632/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 139944076, "yj": 2022.0}, {"yr": 2023, "doy": 29, "d": "2023-01-29", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/257706756/small.jpg", "ob": "cyunf", "q": "research", "id": 149544238, "yj": 2022.935}, {"yr": 2023, "doy": 29, "d": "2023-01-29", "p": "fruit", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/257708487/small.jpg", "ob": "cyunf", "q": "research", "id": 149544243, "yj": 2023.065}, {"yr": 2023, "doy": 106, "d": "2023-04-16", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/268792805/small.jpeg", "ob": "chinaberryhuang", "q": "research", "id": 155510562, "yj": 2022.935}, {"yr": 2023, "doy": 106, "d": "2023-04-16", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/268793279/small.jpeg", "ob": "chinaberryhuang", "q": "research", "id": 155510594, "yj": 2023.065}, {"yr": 2023, "doy": 141, "d": "2023-05-21", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/282704585/small.jpeg", "ob": "cyunf", "q": "research", "id": 163459671, "yj": 2023.0}, {"yr": 2023, "doy": 209, "d": "2023-07-28", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/304687502/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 175326391, "yj": 2023.0}, {"yr": 2023, "doy": 237, "d": "2023-08-25", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/313641498/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 180089528, "yj": 2023.0}, {"yr": 2023, "doy": 295, "d": "2023-10-22", "p": "", "ph": "https://static.inaturalist.org/photos/353279002/small.jpg", "ob": "emmachou2233", "q": "needs_id", "id": 200254985, "yj": 2022.935}, {"yr": 2023, "doy": 295, "d": "2023-10-22", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/329888517/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 188472577, "yj": 2023.065}, {"yr": 2024, "doy": 48, "d": "2024-02-17", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/352884095/small.jpeg", "ob": "naturalist14740", "q": "research", "id": 200054377, "yj": 2024.0}, {"yr": 2024, "doy": 307, "d": "2024-11-02", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/447229170/small.jpeg", "ob": "daniel1110501", "q": "research", "id": 250107145, "yj": 2024.0}, {"yr": 2024, "doy": 320, "d": "2024-11-15", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/450498174/small.jpeg", "ob": "bunnytailgrass", "q": "needs_id", "id": 251740346, "yj": 2024.0}, {"yr": 2024, "doy": 340, "d": "2024-12-05", "p": "", "ph": "https://static.inaturalist.org/photos/455422891/small.jpg", "ob": "naturalist8806", "q": "research", "id": 254276791, "yj": 2024.0}, {"yr": 2025, "doy": 142, "d": "2025-05-22", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/508954949/small.jpg", "ob": "bunnytailgrass", "q": "needs_id", "id": 283257292, "yj": 2025.0}, {"yr": 2025, "doy": 283, "d": "2025-10-10", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/579221857/small.jpg", "ob": "chihuahuaking", "q": "needs_id", "id": 320365345, "yj": 2024.935}, {"yr": 2025, "doy": 283, "d": "2025-10-10", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/599540259/small.jpg", "ob": "xingxing", "q": "needs_id", "id": 330604803, "yj": 2025.065}, {"yr": 2026, "doy": 74, "d": "2026-03-15", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/624783575/small.jpg", "ob": "naturalist29320", "q": "research", "id": 343034643, "yj": 2025.935}, {"yr": 2026, "doy": 74, "d": "2026-03-15", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/625289165/small.jpg", "ob": "mira_hlt", "q": "research", "id": 343285385, "yj": 2026.065}, {"yr": 2026, "doy": 115, "d": "2026-04-25", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/644814236/small.jpg", "ob": "bunnytailgrass", "q": "needs_id", "id": 353389050, "yj": 2026.0}, {"yr": 2026, "doy": 169, "d": "2026-06-18", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/681374467/small.jpg", "ob": "bunnytailgrass", "q": "research", "id": 372861242, "yj": 2026.0}];
+function col(p){if(p.indexOf('flower')>=0)return '#E8380D';if(p.indexOf('fruit')>=0)return '#FFD900';if(p.indexOf('bud')>=0)return '#90B821';return '#CFCDC4';}
+function bord(p){if(p.indexOf('fruit')>=0)return '#BA7517';if(!p)return '#B2B2B2';return '#ffffff';}
+var ZH={flower:'開花',fruit:'結果',bud:'花苞'};
+function phZh(p){return p?p.split(';').map(function(x){return ZH[x]||x;}).join('、'):'（未標記）';}
+function extTip(ctx){var tip=ctx.tooltip;var el=document.getElementById('ctt');
+  if(!el){el=document.createElement('div');el.id='ctt';el.className='ctt';document.body.appendChild(el);}
+  if(tip.opacity===0){el.style.opacity=0;return;}
+  var d=tip.dataPoints[0].raw;
+  el.innerHTML=(d.ph?'<img src="'+d.ph+'" alt="">':'')+'<div class="ph">'+phZh(d.p)+'</div>'+
+    '<div class="mt">'+d.d+'　'+d.q+'</div><div class="mt">@'+d.ob+'</div>';
+  var r=ctx.chart.canvas.getBoundingClientRect();var left=r.left+tip.caretX+14;
+  if(left+178>window.innerWidth)left=r.left+tip.caretX-178;if(left<4)left=4;
+  var top=r.top+tip.caretY-20;if(top<4)top=4;
+  el.style.left=left+'px';el.style.top=top+'px';el.style.opacity=1;}
+var MS=[1,32,60,91,121,152,182,213,244,274,305,335];
+var ML=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+new Chart(document.getElementById('c'),{type:'scatter',
+ data:{datasets:[{data:DATA.map(function(d){return Object.assign({x:d.doy,y:d.yj},d);}),
+   pointBackgroundColor:function(c){return col(c.raw.p);},pointBorderColor:function(c){return bord(c.raw.p);},
+   pointBorderWidth:function(c){return c.raw.p?1.5:1;},
+   pointRadius:function(c){return c.raw.p?6:4;},pointHoverRadius:function(c){return (c.raw.p?6:4)+2;}}]},
+ options:{responsive:true,maintainAspectRatio:false,
+   onClick:function(e,el){if(el.length)window.open('https://www.inaturalist.org/observations/'+DATA[el[0].index].id,'_blank');},
+   plugins:{legend:{display:false},tooltip:{enabled:false,external:extTip}},
+   scales:{x:{min:1,max:366,title:{display:true,text:'一年中的日序 day of year',color:'#666'},
+     grid:{color:'rgba(178,178,178,0.25)'},ticks:{color:'#666',autoSkip:false,callback:function(v){var i=MS.indexOf(v);return i>=0?ML[i]:'';}},
+     afterBuildTicks:function(a){a.ticks=MS.map(function(v){return {value:v};});}},
+    y:{min:2009.4,max:2026.6,title:{display:true,text:'年 year',color:'#666'},
+     grid:{color:'rgba(178,178,178,0.25)'},ticks:{color:'#666',stepSize:1,callback:function(v){return Number.isInteger(v)?v:'';}}}}}});
+</script></body></html>

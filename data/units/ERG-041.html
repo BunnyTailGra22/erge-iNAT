@@ -1,26 +1,6 @@
-#!/usr/bin/env python3
-"""Phase-2: per-unit phenology timeline pages (day-of-year × year calendar with
-phenophase colour + photo tooltips), with back / prev / next navigation.
-Reads the registry + history store; writes data/units/<unit_id>.html.
-Usage:  python3 build_unit_page.py ERG-052     # one unit
-        python3 build_unit_page.py --all        # all 93 units"""
-import json, os, sys, datetime, collections
-
-HERE = os.path.dirname(os.path.abspath(__file__))
-REG = json.load(open(os.path.join(HERE, "data", "registry", "units.json")))
-RECS = json.load(open(os.path.join(HERE, "data", "history", "records.json")))
-BYUNIT = collections.defaultdict(list)
-for r in RECS:
-    if r["observed_on"]:
-        BYUNIT[r["unit_id"]].append(r)
-ORDER = [x["unit_id"] for x in REG]
-ZH = {"flower": "開花", "fruit": "結果", "bud": "花苞"}
-OUTDIR = os.path.join(HERE, "data", "units")
-os.makedirs(OUTDIR, exist_ok=True)
-
-TPL = """<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8">
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>__UID__ · __SCI__ 物候時間軸</title>
+<title>ERG-041 · Glochidion acuminatum 物候時間軸</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
@@ -45,14 +25,14 @@ h1{font-weight:700;font-size:23px;color:var(--green);margin:0 0 2px}h1 .sci{font
 .ctt .ph{font-weight:700;color:var(--green)}.ctt .mt{color:var(--gray)}
 .foot{margin-top:20px;font-size:11.5px;color:var(--gray2);line-height:1.6}
 </style></head><body><div class="wrap">
-<div class="nav"><a href="../../index.html">← 剖面圖 transect</a>__PN__</div>
-<h1>__UID__ · <span class="sci">__SCI__</span> __CN__</h1>
-<p class="sub">__FZ__ __FAM__ · 海拔 __EL__ m · 步道 __DX__ m　|　二格山稜線長期定點 · 物候時間軸</p>
+<div class="nav"><a href="../../index.html">← 剖面圖 transect</a> · <a href="ERG-040.html">‹ ERG-040</a> <a href="ERG-042.html">ERG-042 ›</a></div>
+<h1>ERG-041 · <span class="sci">Glochidion acuminatum</span> 裏白饅頭果</h1>
+<p class="sub">葉下珠科 Phyllanthaceae · 海拔 570 m · 步道 239 m　|　二格山稜線長期定點 · 物候時間軸</p>
 <div class="cards">
-  <div class="card"><div class="lbl">觀察數 observations</div><div class="val">__NOBS__</div></div>
-  <div class="card"><div class="lbl">年期 years</div><div class="val">__NYR__</div><div class="sub2">__YSPAN__</div></div>
-  <div class="card"><div class="lbl">觀察者 observers</div><div class="val">__NOB__</div></div>
-  <div class="card"><div class="lbl">物候標記 phenophase</div><div class="val">__NPH__</div><div class="sub2">__PHBR__</div></div>
+  <div class="card"><div class="lbl">觀察數 observations</div><div class="val">13</div></div>
+  <div class="card"><div class="lbl">年期 years</div><div class="val">6</div><div class="sub2">2020–2026</div></div>
+  <div class="card"><div class="lbl">觀察者 observers</div><div class="val">9</div></div>
+  <div class="card"><div class="lbl">物候標記 phenophase</div><div class="val">0</div><div class="sub2">—</div></div>
 </div>
 <div class="legend">
   <span><i style="background:#E8380D"></i>開花 flower</span>
@@ -60,12 +40,12 @@ h1{font-weight:700;font-size:23px;color:var(--green);margin:0 0 2px}h1 .sci{font
   <span><i style="background:#90B821"></i>花苞 bud</span>
   <span><i style="background:#CFCDC4"></i>未標記（僅照片）photo only</span>
 </div>
-<p class="insight">__INSIGHT__</p>
-<div class="chartbox"><canvas id="c" role="img" aria-label="__UID__ 物候時間軸：橫軸為一年中的日序（月份），縱軸為年份，點為觀察，顏色為物候階段"></canvas></div>
+<p class="insight">3–5 月觀察占 69%；灰點為僅有照片、待判讀葉/花/果。</p>
+<div class="chartbox"><canvas id="c" role="img" aria-label="ERG-041 物候時間軸：橫軸為一年中的日序（月份），縱軸為年份，點為觀察，顏色為物候階段"></canvas></div>
 <p class="foot">資料來源 iNaturalist（地點 二格山 place_id 130869，同種就近歸入此樣點）· 物候階段取自 iNat 註記（term 12：開花/結果/花苞）；其餘為僅有照片之觀察，葉相需由照片判讀 · 點擊點位開啟 iNaturalist · 色彩：荒野保護協會。</p>
 </div>
 <script>
-var DATA=__DATA__;
+var DATA=[{"yr": 2020, "doy": 112, "d": "2020-04-21", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/68195796/small.jpeg", "ob": "sandy-huiping", "q": "research", "id": 42947298, "yj": 2020.0}, {"yr": 2020, "doy": 321, "d": "2020-11-16", "p": "", "ph": "https://static.inaturalist.org/photos/104934568/small.jpeg", "ob": "chinaberryhuang", "q": "research", "id": 65219705, "yj": 2020.0}, {"yr": 2021, "doy": 319, "d": "2021-11-15", "p": "", "ph": "https://static.inaturalist.org/photos/168950172/small.jpg", "ob": "rebecca_chung", "q": "research", "id": 101183243, "yj": 2021.0}, {"yr": 2022, "doy": 40, "d": "2022-02-09", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/178889073/small.jpeg", "ob": "chinaberryhuang", "q": "research", "id": 106487541, "yj": 2022.0}, {"yr": 2023, "doy": 106, "d": "2023-04-16", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/268792840/small.jpeg", "ob": "chinaberryhuang", "q": "research", "id": 155510565, "yj": 2023.0}, {"yr": 2024, "doy": 136, "d": "2024-05-15", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/382411083/small.jpeg", "ob": "kuo3351", "q": "research", "id": 216239021, "yj": 2024.0}, {"yr": 2026, "doy": 36, "d": "2026-02-05", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/613347589/small.jpg", "ob": "ysc94611", "q": "needs_id", "id": 337401944, "yj": 2026.0}, {"yr": 2026, "doy": 60, "d": "2026-03-01", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/620119534/small.jpg", "ob": "chihuahuaking", "q": "needs_id", "id": 340730128, "yj": 2026.0}, {"yr": 2026, "doy": 74, "d": "2026-03-15", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/625289603/small.jpg", "ob": "mira_hlt", "q": "needs_id", "id": 343285407, "yj": 2025.935}, {"yr": 2026, "doy": 74, "d": "2026-03-15", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/625289817/small.jpg", "ob": "mira_hlt", "q": "needs_id", "id": 343285421, "yj": 2026.065}, {"yr": 2026, "doy": 93, "d": "2026-04-03", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/635953675/small.jpg", "ob": "isyuan", "q": "needs_id", "id": 348678981, "yj": 2025.935}, {"yr": 2026, "doy": 93, "d": "2026-04-03", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/632521708/small.jpg", "ob": "bunnytailgrass", "q": "needs_id", "id": 346951110, "yj": 2026.065}, {"yr": 2026, "doy": 115, "d": "2026-04-25", "p": "", "ph": "https://inaturalist-open-data.s3.amazonaws.com/photos/644813521/small.jpg", "ob": "bunnytailgrass", "q": "needs_id", "id": 353388557, "yj": 2026.0}];
 function col(p){if(p.indexOf('flower')>=0)return '#E8380D';if(p.indexOf('fruit')>=0)return '#FFD900';if(p.indexOf('bud')>=0)return '#90B821';return '#CFCDC4';}
 function bord(p){if(p.indexOf('fruit')>=0)return '#BA7517';if(!p)return '#B2B2B2';return '#ffffff';}
 var ZH={flower:'開花',fruit:'結果',bud:'花苞'};
@@ -93,74 +73,6 @@ new Chart(document.getElementById('c'),{type:'scatter',
    scales:{x:{min:1,max:366,title:{display:true,text:'一年中的日序 day of year',color:'#666'},
      grid:{color:'rgba(178,178,178,0.25)'},ticks:{color:'#666',autoSkip:false,callback:function(v){var i=MS.indexOf(v);return i>=0?ML[i]:'';}},
      afterBuildTicks:function(a){a.ticks=MS.map(function(v){return {value:v};});}},
-    y:{min:__YMIN__,max:__YMAX__,title:{display:true,text:'年 year',color:'#666'},
+    y:{min:2019.4,max:2026.6,title:{display:true,text:'年 year',color:'#666'},
      grid:{color:'rgba(178,178,178,0.25)'},ticks:{color:'#666',stepSize:1,callback:function(v){return Number.isInteger(v)?v:'';}}}}}});
-</script></body></html>"""
-
-
-def build(i):
-    u = REG[i]
-    UNIT = u["unit_id"]
-    rows = BYUNIT.get(UNIT, [])
-    pts = []
-    for r in rows:
-        dt = datetime.date.fromisoformat(r["observed_on"])
-        pts.append({"yr": dt.year, "doy": dt.timetuple().tm_yday, "d": r["observed_on"],
-                    "p": r["phenophase"], "ph": r["photo"], "ob": r["user"],
-                    "q": r["quality"], "id": r["obs_id"]})
-    pts.sort(key=lambda x: x["d"])
-    g = collections.defaultdict(list)
-    for k, p in enumerate(pts):
-        g[(p["yr"], p["doy"])].append(k)
-    for idxs in g.values():
-        kk = len(idxs)
-        for j, k in enumerate(idxs):
-            pts[k]["yj"] = round(pts[k]["yr"] + (j - (kk - 1) / 2) * 0.13, 3)
-    years = sorted({p["yr"] for p in pts}) or [2026]
-    nobs = len(pts)
-    nob = len({p["ob"] for p in pts})
-    pc = collections.Counter(ph for p in pts for ph in (p["p"].split(";") if p["p"] else []))
-    npheno = sum(1 for p in pts if p["p"])
-    spring = sum(1 for p in pts if 60 <= p["doy"] <= 151)
-    if nobs == 0:
-        insight = "尚無歷史觀察，後續每日同步將累積。"
-    elif UNIT == "ERG-052":
-        insight = (f"觀察高峰落在 3–5 月（{100*spring//nobs}% 的觀察），對應金毛杜鵑花期；"
-                   "全年其餘月份為營養／果期照片。")
-    else:
-        insight = f"3–5 月觀察占 {100*spring//nobs}%；灰點為僅有照片、待判讀葉/花/果。"
-    phbr = " / ".join(f"{lab}{n}" for lab, n in
-                      [("花", pc.get("flower", 0)), ("果", pc.get("fruit", 0)), ("苞", pc.get("bud", 0))] if n) or "—"
-    # prev / next nav
-    pn = []
-    if i > 0:
-        pn.append(f'<a href="{ORDER[i-1]}.html">‹ {ORDER[i-1]}</a>')
-    if i < len(ORDER) - 1:
-        pn.append(f'<a href="{ORDER[i+1]}.html">{ORDER[i+1]} ›</a>')
-    rep = {"__UID__": UNIT, "__SCI__": u["scientific"], "__CN__": u["common"] or "",
-           "__FZ__": u["family_zh"] or "", "__FAM__": u["family"], "__EL__": str(int(u["elev_m"])),
-           "__DX__": str(int(u["dist_m"])), "__NOBS__": str(nobs), "__NYR__": str(len(years)),
-           "__YSPAN__": f"{years[0]}–{years[-1]}", "__NOB__": str(nob), "__NPH__": str(npheno),
-           "__PHBR__": phbr, "__INSIGHT__": insight, "__PN__": (" · " + " ".join(pn)) if pn else "",
-           "__YMIN__": str(years[0] - 0.6), "__YMAX__": str(years[-1] + 0.6),
-           "__DATA__": json.dumps(pts, ensure_ascii=False)}
-    html = TPL
-    for k, v in rep.items():
-        html = html.replace(k, v)
-    open(os.path.join(OUTDIR, f"{UNIT}.html"), "w").write(html)
-    return nobs
-
-
-def main():
-    arg = sys.argv[1] if len(sys.argv) > 1 else "ERG-052"
-    if arg == "--all":
-        tot = sum(build(i) for i in range(len(REG)))
-        print(f"wrote {len(REG)} unit pages -> {OUTDIR}  ({tot} records total)")
-    else:
-        i = ORDER.index(arg)
-        n = build(i)
-        print(f"wrote {arg}.html ({n} obs)")
-
-
-if __name__ == "__main__":
-    main()
+</script></body></html>
