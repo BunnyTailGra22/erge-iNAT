@@ -135,7 +135,7 @@ function active(d){return (FAM==='*'||d.famSci===FAM)&&(GEN==='*'||gen(d)===GEN)
 function pcol(c){var d=c.raw;if(!active(d))return '#D3D1C7';return d.g==='research'?'#587A30':'#90B821';}
 function pbord(c){var d=c.raw;if(!active(d))return '#D3D1C7';return d.fl?'#E8380D':'#ffffff';}
 function pbw(c){return (c.raw.fl&&active(c.raw))?2.5:1;}
-function prad(c){var d=c.raw;if(!active(d))return 2.5;return d.fl?5.5:4;}
+function prad(c){var d=c.raw;if(!active(d))return 0;return d.fl?5.5:4;}
 function pstyle(c){return c.raw.fl?'rectRot':'circle';}
 function extTip(ctx){
   var tip=ctx.tooltip, mob=isMobile();
@@ -143,6 +143,7 @@ function extTip(ctx){
   if(!el){el=document.createElement('div');el.id='ctt';document.body.appendChild(el);}
   if(tip.opacity===0){el.style.opacity=0;return;}
   var d=tip.dataPoints[0].raw;
+  if(!active(d)){el.style.opacity=0;return;}
   var uid='ERG-'+String(d.n).padStart(3,'0');
   var img=d.ph?('<img src="'+d.ph+'" alt="">'):'';
   var link=mob?('<a class="lnk" href="data/units/'+uid+'.html">查看物候時間軸 →</a>'):'';
@@ -188,11 +189,11 @@ function go(){
     data:{datasets:[{data:DATA,borderColor:'#666666',borderWidth:1.5,fill:'start',
       backgroundColor:'rgba(178,178,178,0.20)',tension:0.3,
       pointBackgroundColor:pcol,pointBorderColor:pbord,pointBorderWidth:pbw,
-      pointRadius:prad,pointStyle:pstyle,pointHoverRadius:function(c){return prad(c)+2;}}]},
+      pointRadius:prad,pointStyle:pstyle,pointHoverRadius:function(c){return active(c.raw)?prad(c)+2:0;}}]},
     options:{responsive:true,maintainAspectRatio:false,
       interaction:{mode:'nearest',intersect:false},
-      onClick:function(e,els){if(!isMobile()&&els.length){var n=DATA[els[0].index].n;
-        location.href='data/units/ERG-'+String(n).padStart(3,'0')+'.html';}},
+      onClick:function(e,els){if(!isMobile()&&els.length){var p=DATA[els[0].index];if(!active(p))return;
+        location.href='data/units/ERG-'+String(p.n).padStart(3,'0')+'.html';}},
       plugins:{legend:{display:false},tooltip:{enabled:false,external:extTip},
         zoom:{pan:{enabled:true,mode:'x'},
               zoom:{wheel:{enabled:true},pinch:{enabled:true},mode:'x'},
