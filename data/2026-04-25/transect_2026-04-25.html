@@ -154,9 +154,10 @@ function go(){
     data:{datasets:[{data:DATA,borderColor:'#666666',borderWidth:1.5,fill:'start',
       backgroundColor:'rgba(178,178,178,0.20)',tension:0.3,
       pointBackgroundColor:pcol,pointBorderColor:pbord,pointBorderWidth:pbw,
-      pointRadius:prad,pointStyle:pstyle,pointHoverRadius:function(c){return active(c.raw)?prad(c)+2:0;}}]},
+      pointRadius:prad,pointStyle:pstyle,pointHitRadius:function(c){return active(c.raw)?10:0;},
+      pointHoverRadius:function(c){return active(c.raw)?prad(c)+2:0;}}]},
     options:{responsive:true,maintainAspectRatio:false,
-      interaction:{mode:'nearest',intersect:false},
+      interaction:{mode:'nearest',intersect:true},
       onClick:function(e,els){if(!isMobile()&&els.length){var p=DATA[els[0].index];if(!active(p))return;
         location.href='data/units/ERG-'+String(p.n).padStart(3,'0')+'.html';}},
       plugins:{legend:{display:false},tooltip:{enabled:false,external:extTip},
