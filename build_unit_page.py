@@ -42,9 +42,10 @@ h1{font-weight:700;font-size:23px;color:var(--green);margin:0 0 2px}h1 .sci{font
 .legend{display:flex;flex-wrap:wrap;gap:15px;font-size:13px;color:var(--gray);margin:0 0 8px}
 .legend i{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:middle;margin-right:6px}
 .insight{font-size:13px;color:var(--green);margin:0 0 14px;min-height:1px}
-.filt{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px;font-size:13px;align-items:center}
-.filt button{font-family:inherit;font-size:13px;color:var(--gray);background:#fff;border:0.5px solid var(--gray2);border-radius:8px;padding:6px 12px;cursor:pointer}
-.filt button.on{background:var(--green);color:#fff;border-color:transparent;font-weight:500}
+.dband{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 10px;font-size:13px;color:var(--gray2)}
+.dband button{font-family:inherit;font-size:13px;color:var(--ink);background:#fff;border:0.5px solid var(--gray2);border-radius:8px;padding:6px 12px;cursor:pointer}
+.dband button.off{opacity:.4;text-decoration:line-through}
+.dband .med{color:var(--gray2)}
 .chartbox{position:relative;width:100%;height:430px}
 .ctt{position:fixed;opacity:0;transition:opacity .12s;width:170px;background:#fff;border:0.5px solid var(--gray2);
   border-radius:8px;padding:8px;z-index:30;font-size:12px;line-height:1.45;pointer-events:none}
@@ -68,13 +69,12 @@ __ACCNOTE__
   <span><i style="background:#90B821"></i>花苞 bud</span>
   <span><i style="background:#CFCDC4"></i>未標記（僅照片）photo only</span>
 </div>
-<div class="legend" style="color:var(--gray2)">距樣點 GPS 距離（形狀 shape）：<span>● ≤50 m 此株 on-spot</span><span>▲ 50–250 m 鄰近 near</span><span>◆ &gt;250 m 他處同種 elsewhere</span></div>
 <p class="insight">__INSIGHT__</p>
-<p class="insight" style="color:var(--gray);margin-top:-8px">__DISTSUM__</p>
-<div class="filt"><span style="color:var(--gray2)">顯示 show：</span>
-  <button data-t="0" class="on">全部 all</button>
-  <button data-t="250">≤250 m 鄰近 near</button>
-  <button data-t="50">≤50 m 此株 on-spot</button></div>
+<div class="dband">距樣點 distance（點圖例篩選 click to filter）：
+  <button data-b="near" class="on">● 此株 ≤50 m · __NEAR__</button>
+  <button data-b="mid" class="on">▲ 鄰近 50–250 m · __MID__</button>
+  <button data-b="far" class="on">◆ 他處同種 &gt;250 m · __FAR__</button>
+  <span class="med">中位 median __MED__ m</span></div>
 <div class="chartbox"><canvas id="c" role="img" aria-label="__UID__ 物候時間軸：橫軸為一年中的日序（月份），縱軸為年份，點為觀察，顏色為物候階段，可依距樣點距離篩選"></canvas></div>
 <p class="foot">資料來源 iNaturalist（地點 二格山 place_id 130869，同種就近歸入此樣點）· 物候階段取自 iNat 註記（term 12：開花/結果/花苞）；其餘為僅有照片之觀察，葉相需由照片判讀 · 學名/科屬中拉名/特有/保育：TaiCoL 臺灣物種名錄 · 點擊點位開啟 iNaturalist · 色彩：荒野保護協會。</p>
 </div>
@@ -112,10 +112,11 @@ var chart=new Chart(document.getElementById('c'),{type:'scatter',
      afterBuildTicks:function(a){a.ticks=MS.map(function(v){return {value:v};});}},
     y:{min:__YMIN__,max:__YMAX__,title:{display:true,text:'年 year',color:'#666'},
      grid:{color:'rgba(178,178,178,0.25)'},ticks:{color:'#666',stepSize:1,callback:function(v){return Number.isInteger(v)?v:'';}}}}}});
-document.querySelectorAll('.filt button').forEach(function(b){b.onclick=function(){
-  document.querySelectorAll('.filt button').forEach(function(x){x.classList.remove('on');});
-  b.classList.add('on');var t=+b.getAttribute('data-t');
-  chart.data.datasets[0].data=t?ALL.filter(function(d){return d.dm!=null&&d.dm<=t;}):ALL;chart.update();};});
+var active={near:true,mid:true,far:true};
+function band(dm){return (dm==null||dm<=50)?'near':(dm<=250?'mid':'far');}
+document.querySelectorAll('.dband button').forEach(function(b){b.onclick=function(){
+  var k=b.getAttribute('data-b');active[k]=!active[k];b.classList.toggle('off',!active[k]);
+  chart.data.datasets[0].data=ALL.filter(function(d){return active[band(d.dm)];});chart.update();};});
 </script></body></html>"""
 
 
@@ -162,8 +163,6 @@ def build(i):
     mid = sum(1 for x in dm if 50 < x <= 250)
     far = len(dm) - near - mid
     med = int(dm[len(dm) // 2]) if dm else 0
-    distsum = (f"距樣點 GPS 距離（形狀）：● 此株 ≤50 m {near} · ▲ 鄰近 50–250 m {mid} · "
-               f"◆ 他處同種 &gt;250 m {far}（中位 {med} m）" if dm else "無 GPS 距離資料")
     spring = sum(1 for p in pts if 60 <= p["doy"] <= 151)
     if nobs == 0:
         insight = "尚無歷史觀察，後續每日同步將累積。"
@@ -186,7 +185,8 @@ def build(i):
            "__EL__": str(int(u["elev_m"])),
            "__DX__": str(int(u["dist_m"])), "__NOBS__": str(nobs), "__NYR__": str(len(years)),
            "__YSPAN__": f"{years[0]}–{years[-1]}", "__NOB__": str(nob), "__NPH__": str(npheno),
-           "__PHBR__": phbr, "__INSIGHT__": insight, "__DISTSUM__": distsum,
+           "__PHBR__": phbr, "__INSIGHT__": insight,
+           "__NEAR__": str(near), "__MID__": str(mid), "__FAR__": str(far), "__MED__": str(med),
            "__PN__": (" · " + " ".join(pn)) if pn else "",
            "__YMIN__": str(years[0] - 0.6), "__YMAX__": str(years[-1] + 0.6),
            "__DATA__": json.dumps(pts, ensure_ascii=False)}
