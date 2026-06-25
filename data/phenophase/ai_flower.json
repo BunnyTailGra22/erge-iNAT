@@ -1,0 +1,16 @@
+{
+  "47978986":  {"flower": true,  "confidence": 0.98, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "204942828": {"flower": true,  "confidence": 0.97, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "20200486":  {"flower": true,  "confidence": 0.95, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "339213047": {"flower": true,  "confidence": 0.98, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "70468778":  {"flower": true,  "confidence": 0.98, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "23301228":  {"flower": false, "confidence": 0.05, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "25802215":  {"flower": false, "confidence": 0.08, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "9230922":   {"flower": false, "confidence": 0.10, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "71048819":  {"flower": false, "confidence": 0.10, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "67783538":  {"flower": false, "confidence": 0.15, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "68961667":  {"flower": false, "confidence": 0.05, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "69872830":  {"flower": false, "confidence": 0.12, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "70298457":  {"flower": false, "confidence": 0.15, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"},
+  "73464419":  {"flower": false, "confidence": 0.05, "n_photos": 1, "model": "claude-opus-vision-demo", "at": "2026-06-25"}
+}

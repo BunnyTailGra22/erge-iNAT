@@ -10,6 +10,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REG = json.load(open(os.path.join(HERE, "data", "registry", "units.json")))
 RECS = json.load(open(os.path.join(HERE, "data", "history", "records.json")))
 TX = json.load(open(os.path.join(HERE, "data", "registry", "taxa_taicol.json")))
+_aifp = os.path.join(HERE, "data", "phenophase", "ai_flower.json")
+AIFLOWER = json.load(open(_aifp)) if os.path.exists(_aifp) else {}   # AI-suggested flowering layer
 BYUNIT = collections.defaultdict(list)
 for r in RECS:
     if r["observed_on"]:
@@ -68,6 +70,7 @@ __ACCNOTE__
   <span><i style="background:#FFD900;border:1px solid #BA7517"></i>結果 fruit</span>
   <span><i style="background:#90B821"></i>花苞 bud</span>
   <span><i style="background:#CFCDC4"></i>未標記（僅照片）photo only</span>
+  <span><i style="background:transparent;border:2px solid #E8380D"></i>AI 建議開花 AI-suggested</span>
 </div>
 <p class="insight">__INSIGHT__</p>
 <div class="dband">距樣點 distance（點圖例篩選 click to filter）：
@@ -90,6 +93,7 @@ function extTip(ctx){var tip=ctx.tooltip;var el=document.getElementById('ctt');
   if(tip.opacity===0){el.style.opacity=0;return;}
   var d=tip.dataPoints[0].raw;
   el.innerHTML=(d.ph?'<img src="'+d.ph+'" alt="">':'')+'<div class="ph">'+phZh(d.p)+'</div>'+
+    (d.aifl?'<div class="mt" style="color:#E8380D">AI 建議開花 · 信心 '+d.aiconf+'</div>':'')+
     '<div class="mt">'+d.d+'　'+d.q+'</div><div class="mt">@'+d.ob+'　·　距樣點 '+(d.dm==null?'?':Math.round(d.dm))+' m</div>';
   var r=ctx.chart.canvas.getBoundingClientRect();var left=r.left+tip.caretX+14;
   if(left+178>window.innerWidth)left=r.left+tip.caretX-178;if(left<4)left=4;
@@ -100,9 +104,10 @@ var ML=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 var ALL=DATA.map(function(d){return Object.assign({x:d.doy,y:d.yj},d);});
 var chart=new Chart(document.getElementById('c'),{type:'scatter',
  data:{datasets:[{data:ALL,
-   pointBackgroundColor:function(c){return col(c.raw.p);},pointBorderColor:function(c){return bord(c.raw.p);},
-   pointBorderWidth:function(c){return c.raw.p?1.5:1;},
-   pointRadius:function(c){return c.raw.p?6:4;},pointHoverRadius:function(c){return (c.raw.p?6:4)+2;},
+   pointBackgroundColor:function(c){return col(c.raw.p);},
+   pointBorderColor:function(c){return c.raw.aifl?'#E8380D':bord(c.raw.p);},
+   pointBorderWidth:function(c){return c.raw.aifl?3:(c.raw.p?1.5:1);},
+   pointRadius:function(c){return c.raw.aifl?5.5:(c.raw.p?6:4);},pointHoverRadius:function(c){return (c.raw.aifl?5.5:(c.raw.p?6:4))+2;},
    pointStyle:function(c){return shp(c.raw.dm);}}]},
  options:{responsive:true,maintainAspectRatio:false,
    onClick:function(e,el,ch){if(el.length)window.open('https://www.inaturalist.org/observations/'+ch.data.datasets[0].data[el[0].index].id,'_blank');},
@@ -142,9 +147,13 @@ def build(i):
     pts = []
     for r in rows:
         dt = datetime.date.fromisoformat(r["observed_on"])
+        ai = AIFLOWER.get(str(r["obs_id"]))
+        aifl = 1 if (ai and ai.get("flower") and ai.get("confidence", 0) >= 0.5
+                     and "flower" not in (r["phenophase"] or "")) else 0
         pts.append({"yr": dt.year, "doy": dt.timetuple().tm_yday, "d": r["observed_on"],
                     "p": r["phenophase"], "ph": r["photo"], "ob": r["user"],
-                    "q": r["quality"], "id": r["obs_id"], "dm": r.get("dist_to_unit_m")})
+                    "q": r["quality"], "id": r["obs_id"], "dm": r.get("dist_to_unit_m"),
+                    "aifl": aifl, "aiconf": (round(ai["confidence"], 2) if ai else None)})
     pts.sort(key=lambda x: x["d"])
     g = collections.defaultdict(list)
     for k, p in enumerate(pts):
@@ -171,6 +180,9 @@ def build(i):
                    "全年其餘月份為營養／果期照片。")
     else:
         insight = f"3–5 月觀察占 {100*spring//nobs}%；灰點為僅有照片、待判讀葉/花/果。"
+    n_aifl = sum(p["aifl"] for p in pts)
+    if n_aifl:
+        insight += f"　AI 另建議 {n_aifl} 筆開花（iNat 未標，紅圈標示）。"
     phbr = " / ".join(f"{lab}{n}" for lab, n in
                       [("花", pc.get("flower", 0)), ("果", pc.get("fruit", 0)), ("苞", pc.get("bud", 0))] if n) or "—"
     # prev / next nav
