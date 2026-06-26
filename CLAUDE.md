@@ -72,6 +72,12 @@ term-12 annotations.
   script default). `--skip-annotated` skips obs iNat already marks as flowering; `--limit N` caps.
 - `build_unit_page.py` renders an AI flowering suggestion (confidence ≥ 0.5, iNat-unmarked) as a
   distinct **red ring** + confidence tooltip + legend + per-unit count.
+- **Human corrections overlay** `data/phenophase/ai_corrections.json` (`{obs_id: {flower, note, by, at}}`):
+  `build_unit_page.py` always applies it over the AI verdict, so QA fixes survive even a full
+  `ai_flower.json` rebuild. Keep `ai_flower.json` as raw AI output; record human verdicts here. The
+  vision model is prone to **fruit-as-flower** errors on showy fruit (Illicium star-follicles,
+  Viburnum/Psychotria/Clerodendrum berries) — to find them, cross-check AI-flower flags against iNat
+  `phenophase` containing "fruit", then verify the photos before adding an override.
 - **`rebuild_after_vision.sh`** rebuilds all unit pages + transect from the updated
   `ai_flower.json`, prints a summary, then asks before commit/push (`-y` skips the prompt). It
   deliberately skips `backfill.py` so it won't re-pull iNat data and desync from the vision run.

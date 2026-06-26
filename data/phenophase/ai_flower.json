@@ -315,13 +315,11 @@
     "at": "2026-06-25"
   },
   "336468221": {
-    "flower": false,
+    "flower": true,
     "confidence": 0.95,
     "n_photos": 1,
     "model": "claude-haiku-4-5",
-    "at": "2026-06-25",
-    "flower_ai": true,
-    "corrected": "human 2026-06-25: 是果非花 — Illicium arborescens star-follicle on ground"
+    "at": "2026-06-25"
   },
   "336468220": {
     "flower": true,

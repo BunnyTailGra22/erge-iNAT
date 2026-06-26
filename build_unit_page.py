@@ -12,6 +12,8 @@ RECS = json.load(open(os.path.join(HERE, "data", "history", "records.json")))
 TX = json.load(open(os.path.join(HERE, "data", "registry", "taxa_taicol.json")))
 _aifp = os.path.join(HERE, "data", "phenophase", "ai_flower.json")
 AIFLOWER = json.load(open(_aifp)) if os.path.exists(_aifp) else {}   # AI-suggested flowering layer
+_corrp = os.path.join(HERE, "data", "phenophase", "ai_corrections.json")
+AICORR = json.load(open(_corrp)) if os.path.exists(_corrp) else {}   # human overrides of AI flags (obs_id -> {flower: bool})
 BYUNIT = collections.defaultdict(list)
 for r in RECS:
     if r["observed_on"]:
@@ -148,7 +150,9 @@ def build(i):
     for r in rows:
         dt = datetime.date.fromisoformat(r["observed_on"])
         ai = AIFLOWER.get(str(r["obs_id"]))
-        aifl = 1 if (ai and ai.get("flower") and ai.get("confidence", 0) >= 0.5
+        corr = AICORR.get(str(r["obs_id"]))          # human override wins over the AI verdict
+        flower_ok = corr["flower"] if corr else (ai.get("flower") if ai else False)
+        aifl = 1 if (ai and flower_ok and ai.get("confidence", 0) >= 0.5
                      and "flower" not in (r["phenophase"] or "")) else 0
         pts.append({"yr": dt.year, "doy": dt.timetuple().tm_yday, "d": r["observed_on"],
                     "p": r["phenophase"], "ph": r["photo"], "ob": r["user"],
