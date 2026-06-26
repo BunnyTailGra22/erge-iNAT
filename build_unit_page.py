@@ -79,7 +79,7 @@ __ACCNOTE__
   <button data-b="far" class="on">◆ 他處同種 &gt;250 m · __FAR__</button>
   <span class="med">中位 median __MED__ m</span></div>
 <div class="chartbox"><canvas id="c" role="img" aria-label="__UID__ 物候時間軸：橫軸為一年中的日序（月份），縱軸為年份，點為觀察，顏色為物候階段，可依距樣點距離篩選"></canvas></div>
-<p class="foot">資料來源 iNaturalist（地點 二格山 place_id 130869，同種就近歸入此樣點）· 物候階段取自 iNat 註記（term 12：開花/結果/花苞）；其餘為僅有照片之觀察，葉相需由照片判讀 · 學名/科屬中拉名/特有/保育：TaiCoL 臺灣物種名錄 · 點擊點位開啟 iNaturalist · 色彩：荒野保護協會。</p>
+<p class="foot">資料來源 iNaturalist（地點 二格山 place_id 130869，同種就近歸入此樣點）· 物候階段取自 iNat 註記（term 12：開花/結果/花苞）；其餘為僅有照片之觀察，葉相需由照片判讀 · 學名/科屬中拉名/特有/保育：TaiCoL 臺灣物種名錄 · 點擊點位開啟 iNaturalist。</p>
 </div>
 <script>
 var DATA=__DATA__;

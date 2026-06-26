@@ -52,6 +52,30 @@ Run the scripts in order from the project root; each writes into `data/<survey-d
 - **Daily changelog**: the sync workflow runs `changelog.py` (HEAD vs new `records.json`:
   新增/移除/重新鑑定/品質變更/新物候註記) and puts the summary in each commit message.
 
+## AI flower-suggestion layer (vision) — optional, separate from iNat
+The phenophase source of truth stays iNaturalist (above). On top of it a vision model adds an
+independent **「AI 建議開花」** layer — it never writes back to iNat and is not merged into the
+term-12 annotations.
+
+- `ai_flower.py` aggregates ALL photos of an observation → `{flower, confidence}` (open flowers
+  only; tight buds / fruit / leaves-only do NOT count). Writes `data/phenophase/ai_flower.json`
+  (`{obs_id: {flower, confidence, n_photos, model, at}}`). Flower is the only reliable vision
+  phenophase (fruit = medium, bud = med-low, 落葉 = infeasible — absence + evergreens).
+- Needs `ANTHROPIC_API_KEY` (user-provided env var — **never commit it**; not wired into CI, to
+  avoid per-run cost). The committed `ai_flower.json` was seeded by a hand-verified ERG-052 demo.
+- **One-time backfill** (run in the terminal that holds the key; resumable — caches every 20 obs
+  and skips already-classified ones on rerun, so Ctrl-C is safe):
+  ```bash
+  VISION_MODEL=claude-haiku-4-5 python3 ai_flower.py --all --skip-annotated
+  ```
+  Haiku 4.5 is enough for this binary call (~$1–2 for all ~1.8k obs; `claude-sonnet-4-6` is the
+  script default). `--skip-annotated` skips obs iNat already marks as flowering; `--limit N` caps.
+- `build_unit_page.py` renders an AI flowering suggestion (confidence ≥ 0.5, iNat-unmarked) as a
+  distinct **red ring** + confidence tooltip + legend + per-unit count.
+- **`rebuild_after_vision.sh`** rebuilds all unit pages + transect from the updated
+  `ai_flower.json`, prints a summary, then asks before commit/push (`-y` skips the prompt). It
+  deliberately skips `backfill.py` so it won't re-pull iNat data and desync from the vision run.
+
 ## Conventions
 - **Brand palette = 荒野保護協會 (SOW)**; tokens in `SOW/brand/` (`sow_palette.css/json`).
   research = 荒野綠 `#587A30`, needs-ID = 荒野綠2 `#90B821`, terrain/grid = 荒野灰 `#666666`/`#B2B2B2`,

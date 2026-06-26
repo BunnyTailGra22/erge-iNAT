@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Publish the 二格山 ridgeline elevation transect as a self-contained HTML page:
-荒野保護協會 brand palette, minimalist, summary cards (觀察/物種/科/屬/步道長/爬升),
+brand palette, minimalist, summary cards (觀察/物種/科/屬/步道長/爬升),
 科別+屬別 filter dropdowns, photo tooltips. Mobile: pinch-zoom + pan, bottom-sheet
 tooltip, responsive cards. Also writes index.html (GitHub Pages entry)."""
 import json, os, math
@@ -122,7 +122,7 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
     資料來源 iNaturalist API（觀察者 bunnytailgrass，地點 二格山 place_id 130869）·
     海拔 SRTM 30 m（雙線性內插）· GPS &gt;100 m 之點，位置與高程以鄰近可靠點時間內插
     （避免錯誤定位導致高程突降）· 科/屬中拉名與特有/保育狀態：TaiCoL 臺灣物種名錄 ·
-    資料快照 2026/04/25 · 14:41 CST · 色彩：荒野保護協會。
+    資料快照 2026/04/25 · 14:41 CST。
   </p>
 </div>
 
