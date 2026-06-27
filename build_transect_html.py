@@ -47,7 +47,9 @@ _PHZH = {"flower": "花", "fruit": "果", "bud": "苞"}
 trows = []
 for uid in sorted(INS):
     d = INS[uid]
-    ph = " ".join(f'{_PHZH[k]}{_months(v["months"])}' for k, v in d["pheno"].items()) or "—"
+    # show only phases with ≥2 observations; single-obs phases are noise (matches insights.py)
+    ph = " ".join(f'{_PHZH[k]}{_months(v["months"])}'
+                  for k, v in d["pheno"].items() if v["n"] >= 2) or "—"
     cons = ""
     if d["endemic"]:
         cons += '<span class="t-end">特有</span>'

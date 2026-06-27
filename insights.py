@@ -26,6 +26,7 @@ OUT = os.path.join(HERE, "data", "registry", "insights.json")
 
 PHASES = ("flower", "fruit", "bud")
 ZH = {"flower": "開花", "fruit": "結果", "bud": "花苞"}
+MIN_PHENO_N = 2     # a phase seen only once is treated as noise in the headline sentence
 
 BYUNIT = collections.defaultdict(list)
 for r in RECS:
@@ -91,9 +92,14 @@ def digest(unit):
         d["insight"] = "尚無歷史觀察，後續每日同步將累積。"
         return d
     if pheno:
-        parts = [f"{ZH[ph]} {fmt_months(pheno[ph]['months'])}（n={pheno[ph]['n']}）"
-                 for ph in PHASES if ph in pheno]
-        d["insight"] = "；".join(parts) + "。其餘為僅照片觀察、葉/花/果待判讀。"
+        strong = [ph for ph in PHASES if ph in pheno and pheno[ph]["n"] >= MIN_PHENO_N]
+        if strong:
+            parts = [f"{ZH[ph]} {fmt_months(pheno[ph]['months'])}（n={pheno[ph]['n']}）"
+                     for ph in strong]
+            d["insight"] = "；".join(parts) + "。其餘為僅照片觀察、葉/花/果待判讀。"
+        else:
+            nsig = sum(v["n"] for v in pheno.values())
+            d["insight"] = f"物候標記稀少（共 {nsig} 筆，皆單筆），尚難判斷花/果期。"
     else:
         d["insight"] = (f"目前 {nobs} 筆觀察尚無 iNat 物候標記，"
                         "待標記累積後方能判斷花/果期。")
