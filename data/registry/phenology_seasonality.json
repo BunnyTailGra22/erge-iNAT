@@ -1,0 +1,398 @@
+{
+ "community": {
+  "by_month": [
+   {
+    "m": 1,
+    "flower": 3,
+    "fruit": 8,
+    "bud": 1,
+    "obs_total": 167
+   },
+   {
+    "m": 2,
+    "flower": 5,
+    "fruit": 5,
+    "bud": 6,
+    "obs_total": 134
+   },
+   {
+    "m": 3,
+    "flower": 29,
+    "fruit": 2,
+    "bud": 5,
+    "obs_total": 243
+   },
+   {
+    "m": 4,
+    "flower": 47,
+    "fruit": 4,
+    "bud": 5,
+    "obs_total": 458
+   },
+   {
+    "m": 5,
+    "flower": 6,
+    "fruit": 7,
+    "bud": 2,
+    "obs_total": 231
+   },
+   {
+    "m": 6,
+    "flower": 7,
+    "fruit": 1,
+    "bud": 1,
+    "obs_total": 95
+   },
+   {
+    "m": 7,
+    "flower": 2,
+    "fruit": 1,
+    "bud": 0,
+    "obs_total": 43
+   },
+   {
+    "m": 8,
+    "flower": 0,
+    "fruit": 4,
+    "bud": 0,
+    "obs_total": 64
+   },
+   {
+    "m": 9,
+    "flower": 1,
+    "fruit": 4,
+    "bud": 0,
+    "obs_total": 62
+   },
+   {
+    "m": 10,
+    "flower": 2,
+    "fruit": 14,
+    "bud": 0,
+    "obs_total": 133
+   },
+   {
+    "m": 11,
+    "flower": 1,
+    "fruit": 2,
+    "bud": 0,
+    "obs_total": 159
+   },
+   {
+    "m": 12,
+    "flower": 5,
+    "fruit": 3,
+    "bud": 0,
+    "obs_total": 127
+   }
+  ],
+  "totals": {
+   "flower": 108,
+   "fruit": 55,
+   "bud": 20
+  },
+  "note": "Pooled across all species; observer-effort confounded. Descriptive seasonality only, not a climate trend."
+ },
+ "by_species": {
+  "ERG-052": {
+   "common": "金毛杜鵑",
+   "scientific": "Rhododendron oldhamii",
+   "n_flower": 10,
+   "flower_by_month": [
+    2,
+    1,
+    6,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "1–4 月"
+  },
+  "ERG-038": {
+   "common": "華八仙",
+   "scientific": "Hydrangea chinensis",
+   "n_flower": 9,
+   "flower_by_month": [
+    0,
+    2,
+    2,
+    5,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "2–4 月"
+  },
+  "ERG-087": {
+   "common": "大頭茶",
+   "scientific": "Polyspora axillaris",
+   "n_flower": 8,
+   "flower_by_month": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    1,
+    5
+   ],
+   "flower_span": "10–12 月"
+  },
+  "ERG-079": {
+   "common": "呂宋莢蒾",
+   "scientific": "Viburnum luzonicum",
+   "n_flower": 8,
+   "flower_by_month": [
+    0,
+    0,
+    4,
+    4,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "3–4 月"
+  },
+  "ERG-043": {
+   "common": "燈稱花",
+   "scientific": "Ilex asprella",
+   "n_flower": 8,
+   "flower_by_month": [
+    0,
+    0,
+    2,
+    6,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "3–4 月"
+  },
+  "ERG-069": {
+   "common": "華八仙",
+   "scientific": "Hydrangea chinensis",
+   "n_flower": 7,
+   "flower_by_month": [
+    0,
+    1,
+    1,
+    5,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "2–4 月"
+  },
+  "ERG-018": {
+   "common": "綠樟",
+   "scientific": "Meliosma squamulata",
+   "n_flower": 5,
+   "flower_by_month": [
+    0,
+    0,
+    0,
+    5,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "4 月"
+  },
+  "ERG-088": {
+   "common": "長花厚殼樹",
+   "scientific": "Ehretia longiflora",
+   "n_flower": 5,
+   "flower_by_month": [
+    0,
+    0,
+    1,
+    4,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "3–4 月"
+  },
+  "ERG-093": {
+   "common": "昆欄樹",
+   "scientific": "Trochodendron aralioides",
+   "n_flower": 4,
+   "flower_by_month": [
+    0,
+    0,
+    1,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "3–4 月"
+  },
+  "ERG-075": {
+   "common": "白背櫟",
+   "scientific": "Quercus salicina",
+   "n_flower": 4,
+   "flower_by_month": [
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "3 月"
+  },
+  "ERG-089": {
+   "common": "毽子櫟",
+   "scientific": "Quercus sessilifolia",
+   "n_flower": 4,
+   "flower_by_month": [
+    0,
+    0,
+    2,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "3–4 月"
+  },
+  "ERG-092": {
+   "common": "山龍眼",
+   "scientific": "Helicia formosana",
+   "n_flower": 4,
+   "flower_by_month": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "6 月"
+  },
+  "ERG-028": {
+   "common": "臺灣山桂花",
+   "scientific": "Maesa perlaria formosana",
+   "n_flower": 3,
+   "flower_by_month": [
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "3 月"
+  },
+  "ERG-085": {
+   "common": "茜草樹",
+   "scientific": "Aidia cochinchinensis",
+   "n_flower": 3,
+   "flower_by_month": [
+    0,
+    0,
+    1,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "3–4 月"
+  },
+  "ERG-033": {
+   "common": "細梗絡石",
+   "scientific": "Trachelospermum asiaticum",
+   "n_flower": 3,
+   "flower_by_month": [
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "flower_span": "4 月"
+  }
+ }
+}
