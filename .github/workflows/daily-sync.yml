@@ -28,6 +28,9 @@ jobs:
       - name: Backfill historical observations from iNaturalist
         run: python3 backfill.py
 
+      - name: Refresh per-sample insight digest
+        run: python3 insights.py
+
       - name: Rebuild per-unit phenology timeline pages
         run: python3 build_unit_page.py --all
 

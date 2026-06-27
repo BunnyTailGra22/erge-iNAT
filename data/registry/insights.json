@@ -1,0 +1,2372 @@
+{
+ "ERG-001": {
+  "scientific": "Elaeocarpus decipiens",
+  "common": "杜英",
+  "fam_zh": "杜英科",
+  "fam_sci": "Elaeocarpaceae",
+  "nobs": 14,
+  "nyears": 5,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 9,
+  "near50": 11,
+  "located": 14,
+  "near50_pct": 79,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 14 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-002": {
+  "scientific": "Ardisia cornudentata",
+  "common": "雨傘仔",
+  "fam_zh": "報春花科",
+  "fam_sci": "Primulaceae",
+  "nobs": 7,
+  "nyears": 3,
+  "y0": 2024,
+  "y1": 2026,
+  "observers": 7,
+  "near50": 2,
+  "located": 7,
+  "near50_pct": 29,
+  "pheno": {},
+  "endemic": true,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 7 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-003": {
+  "scientific": "Antidesma japonicum",
+  "common": "日本五月茶",
+  "fam_zh": "葉下珠科",
+  "fam_sci": "Phyllanthaceae",
+  "nobs": 4,
+  "nyears": 3,
+  "y0": 2024,
+  "y1": 2026,
+  "observers": 2,
+  "near50": 4,
+  "located": 4,
+  "near50_pct": 100,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 4 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-004": {
+  "scientific": "Trachelospermum asiaticum",
+  "common": "細梗絡石",
+  "fam_zh": "夾竹桃科",
+  "fam_sci": "Apocynaceae",
+  "nobs": 3,
+  "nyears": 1,
+  "y0": 2026,
+  "y1": 2026,
+  "observers": 2,
+  "near50": 1,
+  "located": 3,
+  "near50_pct": 33,
+  "pheno": {},
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 3 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-005": {
+  "scientific": "Machilus thunbergii",
+  "common": "紅楠",
+  "fam_zh": "樟科",
+  "fam_sci": "Lauraceae",
+  "nobs": 11,
+  "nyears": 4,
+  "y0": 2022,
+  "y1": 2026,
+  "observers": 9,
+  "near50": 7,
+  "located": 11,
+  "near50_pct": 64,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 11 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-006": {
+  "scientific": "Freycinetia formosana",
+  "common": "山露兜",
+  "fam_zh": "露兜樹科",
+  "fam_sci": "Pandanaceae",
+  "nobs": 9,
+  "nyears": 6,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 8,
+  "near50": 5,
+  "located": 9,
+  "near50_pct": 56,
+  "pheno": {},
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 9 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-007": {
+  "scientific": "Quercus glauca",
+  "common": "青剛櫟",
+  "fam_zh": "殼斗科",
+  "fam_sci": "Fagaceae",
+  "nobs": 4,
+  "nyears": 2,
+  "y0": 2024,
+  "y1": 2026,
+  "observers": 4,
+  "near50": 4,
+  "located": 4,
+  "near50_pct": 100,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 4 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-008": {
+  "scientific": "Antidesma japonicum",
+  "common": "日本五月茶",
+  "fam_zh": "葉下珠科",
+  "fam_sci": "Phyllanthaceae",
+  "nobs": 8,
+  "nyears": 4,
+  "y0": 2023,
+  "y1": 2026,
+  "observers": 5,
+  "near50": 8,
+  "located": 8,
+  "near50_pct": 100,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 8 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-009": {
+  "scientific": "Diospyros morrisiana",
+  "common": "山紅柿",
+  "fam_zh": "柿樹科",
+  "fam_sci": "Ebenaceae",
+  "nobs": 1,
+  "nyears": 1,
+  "y0": 2026,
+  "y1": 2026,
+  "observers": 1,
+  "near50": 1,
+  "located": 1,
+  "near50_pct": 100,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 1 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-010": {
+  "scientific": "Psychotria asiatica",
+  "common": "九節木",
+  "fam_zh": "茜草科",
+  "fam_sci": "Rubiaceae",
+  "nobs": 10,
+  "nyears": 5,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 6,
+  "near50": 9,
+  "located": 10,
+  "near50_pct": 90,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 10 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-011": {
+  "scientific": "Mallotus paniculatus",
+  "common": "白匏子",
+  "fam_zh": "大戟科",
+  "fam_sci": "Euphorbiaceae",
+  "nobs": 32,
+  "nyears": 9,
+  "y0": 2018,
+  "y1": 2026,
+  "observers": 17,
+  "near50": 4,
+  "located": 32,
+  "near50_pct": 12,
+  "pheno": {
+   "fruit": {
+    "n": 1,
+    "months": [
+     10
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "結果 10 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-012": {
+  "scientific": "Glochidion acuminatum",
+  "common": "裏白饅頭果",
+  "fam_zh": "葉下珠科",
+  "fam_sci": "Phyllanthaceae",
+  "nobs": 9,
+  "nyears": 2,
+  "y0": 2024,
+  "y1": 2026,
+  "observers": 5,
+  "near50": 2,
+  "located": 9,
+  "near50_pct": 22,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 9 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-013": {
+  "scientific": "Pyrenaria microcarpa",
+  "common": "烏皮茶",
+  "fam_zh": "茶科",
+  "fam_sci": "Theaceae",
+  "nobs": 17,
+  "nyears": 6,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 10,
+  "near50": 8,
+  "located": 17,
+  "near50_pct": 47,
+  "pheno": {
+   "fruit": {
+    "n": 1,
+    "months": [
+     8
+    ]
+   }
+  },
+  "endemic": true,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "結果 8 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-014": {
+  "scientific": "Quercus glauca",
+  "common": "青剛櫟",
+  "fam_zh": "殼斗科",
+  "fam_sci": "Fagaceae",
+  "nobs": 3,
+  "nyears": 3,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 3,
+  "near50": 2,
+  "located": 3,
+  "near50_pct": 67,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 3 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-015": {
+  "scientific": "Morella rubra",
+  "common": "楊梅",
+  "fam_zh": "楊梅科",
+  "fam_sci": "Myricaceae",
+  "nobs": 10,
+  "nyears": 4,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 8,
+  "near50": 8,
+  "located": 10,
+  "near50_pct": 80,
+  "pheno": {},
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 10 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-016": {
+  "scientific": "Psychotria asiatica",
+  "common": "九節木",
+  "fam_zh": "茜草科",
+  "fam_sci": "Rubiaceae",
+  "nobs": 8,
+  "nyears": 4,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 7,
+  "near50": 2,
+  "located": 8,
+  "near50_pct": 25,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 8 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-017": {
+  "scientific": "Calamus formosanus",
+  "common": "黃藤",
+  "fam_zh": "棕櫚科",
+  "fam_sci": "Arecaceae",
+  "nobs": 5,
+  "nyears": 3,
+  "y0": 2022,
+  "y1": 2026,
+  "observers": 4,
+  "near50": 1,
+  "located": 5,
+  "near50_pct": 20,
+  "pheno": {
+   "bud": {
+    "n": 1,
+    "months": [
+     4
+    ]
+   }
+  },
+  "endemic": true,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "花苞 4 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-018": {
+  "scientific": "Meliosma squamulata",
+  "common": "綠樟",
+  "fam_zh": "清風藤科",
+  "fam_sci": "Sabiaceae",
+  "nobs": 43,
+  "nyears": 9,
+  "y0": 2014,
+  "y1": 2026,
+  "observers": 23,
+  "near50": 4,
+  "located": 43,
+  "near50_pct": 9,
+  "pheno": {
+   "flower": {
+    "n": 5,
+    "months": [
+     4
+    ]
+   },
+   "bud": {
+    "n": 2,
+    "months": [
+     3
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 4 月（n=5）；花苞 3 月（n=2）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-019": {
+  "scientific": "Ilex maximowicziana",
+  "common": "倒卵葉冬青",
+  "fam_zh": "冬青科",
+  "fam_sci": "Aquifoliaceae",
+  "nobs": 6,
+  "nyears": 4,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 4,
+  "near50": 3,
+  "located": 6,
+  "near50_pct": 50,
+  "pheno": {},
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 6 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-020": {
+  "scientific": "Ardisia quinquegona",
+  "common": "小葉樹杞",
+  "fam_zh": "報春花科",
+  "fam_sci": "Primulaceae",
+  "nobs": 11,
+  "nyears": 5,
+  "y0": 2022,
+  "y1": 2026,
+  "observers": 5,
+  "near50": 5,
+  "located": 11,
+  "near50_pct": 45,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 11 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-021": {
+  "scientific": "Rhododendron latoucheae",
+  "common": "西施花",
+  "fam_zh": "杜鵑花科",
+  "fam_sci": "Ericaceae",
+  "nobs": 35,
+  "nyears": 9,
+  "y0": 2014,
+  "y1": 2026,
+  "observers": 20,
+  "near50": 2,
+  "located": 35,
+  "near50_pct": 6,
+  "pheno": {
+   "flower": {
+    "n": 2,
+    "months": [
+     4
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 4 月（n=2）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-022": {
+  "scientific": "Diospyros morrisiana",
+  "common": "山紅柿",
+  "fam_zh": "柿樹科",
+  "fam_sci": "Ebenaceae",
+  "nobs": 6,
+  "nyears": 5,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 3,
+  "near50": 5,
+  "located": 6,
+  "near50_pct": 83,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 6 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-023": {
+  "scientific": "Fissistigma oldhamii",
+  "common": "瓜馥木",
+  "fam_zh": "番荔枝科",
+  "fam_sci": "Annonaceae",
+  "nobs": 36,
+  "nyears": 7,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 21,
+  "near50": 1,
+  "located": 36,
+  "near50_pct": 3,
+  "pheno": {},
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 36 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-024": {
+  "scientific": "Ardisia sieboldii",
+  "common": "樹杞",
+  "fam_zh": "報春花科",
+  "fam_sci": "Primulaceae",
+  "nobs": 5,
+  "nyears": 3,
+  "y0": 2023,
+  "y1": 2026,
+  "observers": 3,
+  "near50": 2,
+  "located": 5,
+  "near50_pct": 40,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 5 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-025": {
+  "scientific": "Prunus phaeosticta",
+  "common": "墨點櫻桃",
+  "fam_zh": "薔薇科",
+  "fam_sci": "Rosaceae",
+  "nobs": 25,
+  "nyears": 9,
+  "y0": 2009,
+  "y1": 2026,
+  "observers": 14,
+  "near50": 1,
+  "located": 25,
+  "near50_pct": 4,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 25 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-026": {
+  "scientific": "Ilex maximowicziana",
+  "common": "倒卵葉冬青",
+  "fam_zh": "冬青科",
+  "fam_sci": "Aquifoliaceae",
+  "nobs": 3,
+  "nyears": 3,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 2,
+  "near50": 3,
+  "located": 3,
+  "near50_pct": 100,
+  "pheno": {},
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 3 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-027": {
+  "scientific": "Machilus thunbergii",
+  "common": "紅楠",
+  "fam_zh": "樟科",
+  "fam_sci": "Lauraceae",
+  "nobs": 14,
+  "nyears": 8,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 8,
+  "near50": 3,
+  "located": 14,
+  "near50_pct": 21,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 14 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-028": {
+  "scientific": "Maesa perlaria formosana",
+  "common": "臺灣山桂花",
+  "fam_zh": "報春花科",
+  "fam_sci": "Primulaceae",
+  "nobs": 29,
+  "nyears": 9,
+  "y0": 2018,
+  "y1": 2026,
+  "observers": 18,
+  "near50": 5,
+  "located": 29,
+  "near50_pct": 17,
+  "pheno": {
+   "flower": {
+    "n": 3,
+    "months": [
+     3
+    ]
+   },
+   "fruit": {
+    "n": 1,
+    "months": [
+     3
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 3 月（n=3）；結果 3 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-029": {
+  "scientific": "Calamus formosanus",
+  "common": "黃藤",
+  "fam_zh": "棕櫚科",
+  "fam_sci": "Arecaceae",
+  "nobs": 16,
+  "nyears": 7,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 11,
+  "near50": 1,
+  "located": 16,
+  "near50_pct": 6,
+  "pheno": {
+   "fruit": {
+    "n": 1,
+    "months": [
+     11
+    ]
+   }
+  },
+  "endemic": true,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "結果 11 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-030": {
+  "scientific": "Wendlandia formosana",
+  "common": "水金京",
+  "fam_zh": "茜草科",
+  "fam_sci": "Rubiaceae",
+  "nobs": 38,
+  "nyears": 9,
+  "y0": 2018,
+  "y1": 2026,
+  "observers": 22,
+  "near50": 4,
+  "located": 38,
+  "near50_pct": 11,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 38 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-031": {
+  "scientific": "Gardenia jasminoides",
+  "common": "山黃梔",
+  "fam_zh": "茜草科",
+  "fam_sci": "Rubiaceae",
+  "nobs": 32,
+  "nyears": 9,
+  "y0": 2018,
+  "y1": 2026,
+  "observers": 15,
+  "near50": 5,
+  "located": 32,
+  "near50_pct": 16,
+  "pheno": {
+   "flower": {
+    "n": 2,
+    "months": [
+     5
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 5 月（n=2）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-032": {
+  "scientific": "Symplocos glauca",
+  "common": "山羊耳",
+  "fam_zh": "灰木科",
+  "fam_sci": "Symplocaceae",
+  "nobs": 17,
+  "nyears": 6,
+  "y0": 2020,
+  "y1": 2026,
+  "observers": 9,
+  "near50": 4,
+  "located": 17,
+  "near50_pct": 24,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 17 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-033": {
+  "scientific": "Trachelospermum asiaticum",
+  "common": "細梗絡石",
+  "fam_zh": "夾竹桃科",
+  "fam_sci": "Apocynaceae",
+  "nobs": 29,
+  "nyears": 8,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 16,
+  "near50": 8,
+  "located": 29,
+  "near50_pct": 28,
+  "pheno": {
+   "flower": {
+    "n": 3,
+    "months": [
+     4
+    ]
+   },
+   "bud": {
+    "n": 1,
+    "months": [
+     4
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 4 月（n=3）；花苞 4 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-034": {
+  "scientific": "Diospyros morrisiana",
+  "common": "山紅柿",
+  "fam_zh": "柿樹科",
+  "fam_sci": "Ebenaceae",
+  "nobs": 1,
+  "nyears": 1,
+  "y0": 2026,
+  "y1": 2026,
+  "observers": 1,
+  "near50": 1,
+  "located": 1,
+  "near50_pct": 100,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 1 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-035": {
+  "scientific": "Helicia cochinchinensis",
+  "common": "紅葉樹",
+  "fam_zh": "山龍眼科",
+  "fam_sci": "Proteaceae",
+  "nobs": 28,
+  "nyears": 8,
+  "y0": 2010,
+  "y1": 2026,
+  "observers": 13,
+  "near50": 8,
+  "located": 28,
+  "near50_pct": 29,
+  "pheno": {
+   "flower": {
+    "n": 1,
+    "months": [
+     7
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 7 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-036": {
+  "scientific": "Diospyros morrisiana",
+  "common": "山紅柿",
+  "fam_zh": "柿樹科",
+  "fam_sci": "Ebenaceae",
+  "nobs": 2,
+  "nyears": 2,
+  "y0": 2021,
+  "y1": 2026,
+  "observers": 1,
+  "near50": 2,
+  "located": 2,
+  "near50_pct": 100,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 2 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-037": {
+  "scientific": "Clerodendrum cyrtophyllum",
+  "common": "大青",
+  "fam_zh": "唇形科",
+  "fam_sci": "Lamiaceae",
+  "nobs": 44,
+  "nyears": 9,
+  "y0": 2018,
+  "y1": 2026,
+  "observers": 19,
+  "near50": 14,
+  "located": 44,
+  "near50_pct": 32,
+  "pheno": {
+   "fruit": {
+    "n": 2,
+    "months": [
+     9,
+     10
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "結果 9–10 月（n=2）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-038": {
+  "scientific": "Hydrangea chinensis",
+  "common": "華八仙",
+  "fam_zh": "八仙花科",
+  "fam_sci": "Hydrangeaceae",
+  "nobs": 49,
+  "nyears": 10,
+  "y0": 2008,
+  "y1": 2026,
+  "observers": 22,
+  "near50": 21,
+  "located": 49,
+  "near50_pct": 43,
+  "pheno": {
+   "flower": {
+    "n": 9,
+    "months": [
+     2,
+     3,
+     4
+    ]
+   },
+   "fruit": {
+    "n": 3,
+    "months": [
+     4,
+     5
+    ]
+   },
+   "bud": {
+    "n": 5,
+    "months": [
+     2,
+     4
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 2–4 月（n=9）；結果 4–5 月（n=3）；花苞 2、4 月（n=5）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-039": {
+  "scientific": "Glochidion rubrum",
+  "common": "細葉饅頭果",
+  "fam_zh": "葉下珠科",
+  "fam_sci": "Phyllanthaceae",
+  "nobs": 11,
+  "nyears": 8,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 3,
+  "near50": 10,
+  "located": 11,
+  "near50_pct": 91,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 11 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-040": {
+  "scientific": "Eurya chinensis",
+  "common": "米碎柃木",
+  "fam_zh": "五列木科",
+  "fam_sci": "Pentaphylacaceae",
+  "nobs": 13,
+  "nyears": 6,
+  "y0": 2021,
+  "y1": 2026,
+  "observers": 6,
+  "near50": 4,
+  "located": 13,
+  "near50_pct": 31,
+  "pheno": {},
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 13 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-041": {
+  "scientific": "Glochidion acuminatum",
+  "common": "裏白饅頭果",
+  "fam_zh": "葉下珠科",
+  "fam_sci": "Phyllanthaceae",
+  "nobs": 13,
+  "nyears": 6,
+  "y0": 2020,
+  "y1": 2026,
+  "observers": 9,
+  "near50": 1,
+  "located": 13,
+  "near50_pct": 8,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 13 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-042": {
+  "scientific": "Ardisia sieboldii",
+  "common": "樹杞",
+  "fam_zh": "報春花科",
+  "fam_sci": "Primulaceae",
+  "nobs": 27,
+  "nyears": 7,
+  "y0": 2018,
+  "y1": 2026,
+  "observers": 11,
+  "near50": 13,
+  "located": 27,
+  "near50_pct": 48,
+  "pheno": {
+   "flower": {
+    "n": 1,
+    "months": [
+     6
+    ]
+   },
+   "fruit": {
+    "n": 1,
+    "months": [
+     1
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 6 月（n=1）；結果 1 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-043": {
+  "scientific": "Ilex asprella",
+  "common": "燈稱花",
+  "fam_zh": "冬青科",
+  "fam_sci": "Aquifoliaceae",
+  "nobs": 28,
+  "nyears": 8,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 17,
+  "near50": 11,
+  "located": 28,
+  "near50_pct": 39,
+  "pheno": {
+   "flower": {
+    "n": 8,
+    "months": [
+     3,
+     4
+    ]
+   },
+   "fruit": {
+    "n": 1,
+    "months": [
+     6
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 3–4 月（n=8）；結果 6 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-044": {
+  "scientific": "Arenga engleri",
+  "common": "山棕",
+  "fam_zh": "棕櫚科",
+  "fam_sci": "Arecaceae",
+  "nobs": 6,
+  "nyears": 4,
+  "y0": 2020,
+  "y1": 2026,
+  "observers": 3,
+  "near50": 4,
+  "located": 6,
+  "near50_pct": 67,
+  "pheno": {},
+  "endemic": true,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 6 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-045": {
+  "scientific": "Diospyros eriantha",
+  "common": "軟毛柿",
+  "fam_zh": "柿樹科",
+  "fam_sci": "Ebenaceae",
+  "nobs": 5,
+  "nyears": 4,
+  "y0": 2021,
+  "y1": 2026,
+  "observers": 1,
+  "near50": 4,
+  "located": 5,
+  "near50_pct": 80,
+  "pheno": {
+   "fruit": {
+    "n": 1,
+    "months": [
+     2
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "結果 2 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-046": {
+  "scientific": "Diospyros morrisiana",
+  "common": "山紅柿",
+  "fam_zh": "柿樹科",
+  "fam_sci": "Ebenaceae",
+  "nobs": 34,
+  "nyears": 8,
+  "y0": 2010,
+  "y1": 2026,
+  "observers": 14,
+  "near50": 14,
+  "located": 34,
+  "near50_pct": 41,
+  "pheno": {
+   "fruit": {
+    "n": 1,
+    "months": [
+     1
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "結果 1 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-047": {
+  "scientific": "Camellia brevistyla",
+  "common": "短柱山茶",
+  "fam_zh": "茶科",
+  "fam_sci": "Theaceae",
+  "nobs": 16,
+  "nyears": 7,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 9,
+  "near50": 10,
+  "located": 16,
+  "near50_pct": 62,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 16 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-048": {
+  "scientific": "Glochidion rubrum",
+  "common": "細葉饅頭果",
+  "fam_zh": "葉下珠科",
+  "fam_sci": "Phyllanthaceae",
+  "nobs": 19,
+  "nyears": 6,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 7,
+  "near50": 8,
+  "located": 19,
+  "near50_pct": 42,
+  "pheno": {
+   "flower": {
+    "n": 1,
+    "months": [
+     9
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 9 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-049": {
+  "scientific": "Freycinetia formosana",
+  "common": "山露兜",
+  "fam_zh": "露兜樹科",
+  "fam_sci": "Pandanaceae",
+  "nobs": 18,
+  "nyears": 6,
+  "y0": 2020,
+  "y1": 2026,
+  "observers": 10,
+  "near50": 4,
+  "located": 18,
+  "near50_pct": 22,
+  "pheno": {
+   "flower": {
+    "n": 1,
+    "months": [
+     7
+    ]
+   },
+   "fruit": {
+    "n": 1,
+    "months": [
+     1
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 7 月（n=1）；結果 1 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-050": {
+  "scientific": "Quercus glauca",
+  "common": "青剛櫟",
+  "fam_zh": "殼斗科",
+  "fam_sci": "Fagaceae",
+  "nobs": 12,
+  "nyears": 7,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 9,
+  "near50": 8,
+  "located": 12,
+  "near50_pct": 67,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 12 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-051": {
+  "scientific": "Quercus sessilifolia",
+  "common": "毽子櫟",
+  "fam_zh": "殼斗科",
+  "fam_sci": "Fagaceae",
+  "nobs": 12,
+  "nyears": 5,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 6,
+  "near50": 9,
+  "located": 12,
+  "near50_pct": 75,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 12 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-052": {
+  "scientific": "Rhododendron oldhamii",
+  "common": "金毛杜鵑",
+  "fam_zh": "杜鵑花科",
+  "fam_sci": "Ericaceae",
+  "nobs": 102,
+  "nyears": 10,
+  "y0": 2017,
+  "y1": 2026,
+  "observers": 51,
+  "near50": 17,
+  "located": 102,
+  "near50_pct": 17,
+  "pheno": {
+   "flower": {
+    "n": 10,
+    "months": [
+     1,
+     2,
+     3,
+     4
+    ]
+   },
+   "fruit": {
+    "n": 1,
+    "months": [
+     8
+    ]
+   }
+  },
+  "endemic": true,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 1–4 月（n=10）；結果 8 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-053": {
+  "scientific": "Lithocarpus brevicaudatus",
+  "common": "短尾葉石櫟",
+  "fam_zh": "殼斗科",
+  "fam_sci": "Fagaceae",
+  "nobs": 7,
+  "nyears": 4,
+  "y0": 2022,
+  "y1": 2026,
+  "observers": 3,
+  "near50": 6,
+  "located": 7,
+  "near50_pct": 86,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 7 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-054": {
+  "scientific": "Dendropanax dentigerus",
+  "common": "樹參",
+  "fam_zh": "五加科",
+  "fam_sci": "Araliaceae",
+  "nobs": 7,
+  "nyears": 5,
+  "y0": 2014,
+  "y1": 2026,
+  "observers": 5,
+  "near50": 5,
+  "located": 7,
+  "near50_pct": 71,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 7 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-055": {
+  "scientific": "Meliosma rigida",
+  "common": "筆羅子",
+  "fam_zh": "清風藤科",
+  "fam_sci": "Sabiaceae",
+  "nobs": 7,
+  "nyears": 4,
+  "y0": 2022,
+  "y1": 2026,
+  "observers": 5,
+  "near50": 4,
+  "located": 7,
+  "near50_pct": 57,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 7 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-056": {
+  "scientific": "Arenga engleri",
+  "common": "山棕",
+  "fam_zh": "棕櫚科",
+  "fam_sci": "Arecaceae",
+  "nobs": 4,
+  "nyears": 2,
+  "y0": 2023,
+  "y1": 2026,
+  "observers": 3,
+  "near50": 2,
+  "located": 4,
+  "near50_pct": 50,
+  "pheno": {},
+  "endemic": true,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 4 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-057": {
+  "scientific": "Castanopsis carlesii",
+  "common": "長尾栲",
+  "fam_zh": "殼斗科",
+  "fam_sci": "Fagaceae",
+  "nobs": 19,
+  "nyears": 8,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 12,
+  "near50": 6,
+  "located": 19,
+  "near50_pct": 32,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 19 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-058": {
+  "scientific": "Quercus sessilifolia",
+  "common": "毽子櫟",
+  "fam_zh": "殼斗科",
+  "fam_sci": "Fagaceae",
+  "nobs": 6,
+  "nyears": 3,
+  "y0": 2022,
+  "y1": 2026,
+  "observers": 3,
+  "near50": 4,
+  "located": 6,
+  "near50_pct": 67,
+  "pheno": {
+   "flower": {
+    "n": 1,
+    "months": [
+     3
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 3 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-059": {
+  "scientific": "Ligustrum liukiuense",
+  "common": "琉球女貞",
+  "fam_zh": "木犀科",
+  "fam_sci": "Oleaceae",
+  "nobs": 15,
+  "nyears": 5,
+  "y0": 2022,
+  "y1": 2026,
+  "observers": 10,
+  "near50": 6,
+  "located": 15,
+  "near50_pct": 40,
+  "pheno": {
+   "fruit": {
+    "n": 1,
+    "months": [
+     9
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "結果 9 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-060": {
+  "scientific": "Symplocos theophrastifolia",
+  "common": "山豬肝",
+  "fam_zh": "灰木科",
+  "fam_sci": "Symplocaceae",
+  "nobs": 24,
+  "nyears": 7,
+  "y0": 2020,
+  "y1": 2026,
+  "observers": 12,
+  "near50": 4,
+  "located": 24,
+  "near50_pct": 17,
+  "pheno": {},
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 24 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-061": {
+  "scientific": "Acer serrulatum",
+  "common": "青楓",
+  "fam_zh": "無患子科",
+  "fam_sci": "Sapindaceae",
+  "nobs": 30,
+  "nyears": 8,
+  "y0": 2018,
+  "y1": 2026,
+  "observers": 20,
+  "near50": 1,
+  "located": 30,
+  "near50_pct": 3,
+  "pheno": {},
+  "endemic": true,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 30 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-062": {
+  "scientific": "Daphniphyllum pentandrum",
+  "common": "虎皮楠（交讓木）",
+  "fam_zh": "虎皮楠科",
+  "fam_sci": "Daphniphyllaceae",
+  "nobs": 33,
+  "nyears": 10,
+  "y0": 2010,
+  "y1": 2026,
+  "observers": 24,
+  "near50": 2,
+  "located": 33,
+  "near50_pct": 6,
+  "pheno": {
+   "flower": {
+    "n": 1,
+    "months": [
+     3
+    ]
+   },
+   "fruit": {
+    "n": 1,
+    "months": [
+     10
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 3 月（n=1）；結果 10 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-063": {
+  "scientific": "Ilex formosana",
+  "common": "糊樗",
+  "fam_zh": "冬青科",
+  "fam_sci": "Aquifoliaceae",
+  "nobs": 12,
+  "nyears": 7,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 8,
+  "near50": 7,
+  "located": 12,
+  "near50_pct": 58,
+  "pheno": {
+   "flower": {
+    "n": 1,
+    "months": [
+     4
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 4 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-064": {
+  "scientific": "Actinidia rufa",
+  "common": "山梨獼猴桃",
+  "fam_zh": "獼猴桃科",
+  "fam_sci": "Actinidiaceae",
+  "nobs": 22,
+  "nyears": 8,
+  "y0": 2017,
+  "y1": 2026,
+  "observers": 11,
+  "near50": 5,
+  "located": 22,
+  "near50_pct": 23,
+  "pheno": {
+   "flower": {
+    "n": 1,
+    "months": [
+     5
+    ]
+   },
+   "fruit": {
+    "n": 2,
+    "months": [
+     8,
+     10
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 5 月（n=1）；結果 8、10 月（n=2）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-065": {
+  "scientific": "Lithocarpus brevicaudatus",
+  "common": "短尾葉石櫟",
+  "fam_zh": "殼斗科",
+  "fam_sci": "Fagaceae",
+  "nobs": 22,
+  "nyears": 9,
+  "y0": 2014,
+  "y1": 2026,
+  "observers": 14,
+  "near50": 2,
+  "located": 22,
+  "near50_pct": 9,
+  "pheno": {
+   "fruit": {
+    "n": 1,
+    "months": [
+     11
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "結果 11 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-066": {
+  "scientific": "Ficus erecta",
+  "common": "牛奶榕",
+  "fam_zh": "桑科",
+  "fam_sci": "Moraceae",
+  "nobs": 3,
+  "nyears": 3,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 2,
+  "near50": 2,
+  "located": 3,
+  "near50_pct": 67,
+  "pheno": {},
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 3 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-067": {
+  "scientific": "Urceola rosea",
+  "common": "酸藤",
+  "fam_zh": "夾竹桃科",
+  "fam_sci": "Apocynaceae",
+  "nobs": 7,
+  "nyears": 4,
+  "y0": 2021,
+  "y1": 2026,
+  "observers": 5,
+  "near50": 3,
+  "located": 7,
+  "near50_pct": 43,
+  "pheno": {
+   "flower": {
+    "n": 1,
+    "months": [
+     5
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 5 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-068": {
+  "scientific": "Ilex maximowicziana",
+  "common": "倒卵葉冬青",
+  "fam_zh": "冬青科",
+  "fam_sci": "Aquifoliaceae",
+  "nobs": 20,
+  "nyears": 10,
+  "y0": 2008,
+  "y1": 2026,
+  "observers": 11,
+  "near50": 8,
+  "located": 20,
+  "near50_pct": 40,
+  "pheno": {
+   "fruit": {
+    "n": 2,
+    "months": [
+     1,
+     12
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "結果 1、12 月（n=2）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-069": {
+  "scientific": "Hydrangea chinensis",
+  "common": "華八仙",
+  "fam_zh": "八仙花科",
+  "fam_sci": "Hydrangeaceae",
+  "nobs": 65,
+  "nyears": 10,
+  "y0": 2010,
+  "y1": 2026,
+  "observers": 42,
+  "near50": 15,
+  "located": 65,
+  "near50_pct": 23,
+  "pheno": {
+   "flower": {
+    "n": 7,
+    "months": [
+     2,
+     3,
+     4
+    ]
+   },
+   "fruit": {
+    "n": 6,
+    "months": [
+     1,
+     5
+    ]
+   },
+   "bud": {
+    "n": 3,
+    "months": [
+     2,
+     4
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 2–4 月（n=7）；結果 1、5 月（n=6）；花苞 2、4 月（n=3）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-070": {
+  "scientific": "Quercus salicina",
+  "common": "白背櫟",
+  "fam_zh": "殼斗科",
+  "fam_sci": "Fagaceae",
+  "nobs": 13,
+  "nyears": 4,
+  "y0": 2023,
+  "y1": 2026,
+  "observers": 7,
+  "near50": 1,
+  "located": 13,
+  "near50_pct": 8,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 13 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-071": {
+  "scientific": "Sageretia randaiensis",
+  "common": "巒大雀梅藤",
+  "fam_zh": "鼠李科",
+  "fam_sci": "Rhamnaceae",
+  "nobs": 21,
+  "nyears": 8,
+  "y0": 2012,
+  "y1": 2026,
+  "observers": 13,
+  "near50": 10,
+  "located": 21,
+  "near50_pct": 48,
+  "pheno": {},
+  "endemic": true,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 21 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-072": {
+  "scientific": "Meliosma rigida",
+  "common": "筆羅子",
+  "fam_zh": "清風藤科",
+  "fam_sci": "Sabiaceae",
+  "nobs": 10,
+  "nyears": 5,
+  "y0": 2021,
+  "y1": 2026,
+  "observers": 7,
+  "near50": 4,
+  "located": 10,
+  "near50_pct": 40,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 10 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-073": {
+  "scientific": "Syzygium elliptifolium",
+  "common": "橢圓葉赤楠",
+  "fam_zh": "桃金孃科",
+  "fam_sci": "Myrtaceae",
+  "nobs": 27,
+  "nyears": 9,
+  "y0": 2014,
+  "y1": 2026,
+  "observers": 12,
+  "near50": 4,
+  "located": 27,
+  "near50_pct": 15,
+  "pheno": {
+   "bud": {
+    "n": 1,
+    "months": [
+     5
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "CR",
+  "threat": "CR",
+  "protected": null,
+  "insight": "花苞 5 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-074": {
+  "scientific": "Elaeagnus thunbergii",
+  "common": "鄧氏胡頹子",
+  "fam_zh": "胡頹子科",
+  "fam_sci": "Elaeagnaceae",
+  "nobs": 15,
+  "nyears": 5,
+  "y0": 2022,
+  "y1": 2026,
+  "observers": 10,
+  "near50": 4,
+  "located": 15,
+  "near50_pct": 27,
+  "pheno": {},
+  "endemic": true,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "目前 15 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-075": {
+  "scientific": "Quercus salicina",
+  "common": "白背櫟",
+  "fam_zh": "殼斗科",
+  "fam_sci": "Fagaceae",
+  "nobs": 37,
+  "nyears": 7,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 19,
+  "near50": 11,
+  "located": 37,
+  "near50_pct": 30,
+  "pheno": {
+   "flower": {
+    "n": 4,
+    "months": [
+     3
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 3 月（n=4）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-076": {
+  "scientific": "Dendropanax dentigerus",
+  "common": "樹參",
+  "fam_zh": "五加科",
+  "fam_sci": "Araliaceae",
+  "nobs": 11,
+  "nyears": 4,
+  "y0": 2022,
+  "y1": 2026,
+  "observers": 6,
+  "near50": 4,
+  "located": 11,
+  "near50_pct": 36,
+  "pheno": {
+   "fruit": {
+    "n": 1,
+    "months": [
+     9
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "結果 9 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-077": {
+  "scientific": "Machilus thunbergii",
+  "common": "紅楠",
+  "fam_zh": "樟科",
+  "fam_sci": "Lauraceae",
+  "nobs": 45,
+  "nyears": 9,
+  "y0": 2018,
+  "y1": 2026,
+  "observers": 26,
+  "near50": 11,
+  "located": 45,
+  "near50_pct": 24,
+  "pheno": {},
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "目前 45 筆觀察尚無 iNat 物候標記，待標記累積後方能判斷花/果期。"
+ },
+ "ERG-078": {
+  "scientific": "Berchemia formosana",
+  "common": "臺灣黃鱔藤",
+  "fam_zh": "鼠李科",
+  "fam_sci": "Rhamnaceae",
+  "nobs": 11,
+  "nyears": 8,
+  "y0": 2014,
+  "y1": 2026,
+  "observers": 5,
+  "near50": 6,
+  "located": 11,
+  "near50_pct": 55,
+  "pheno": {
+   "flower": {
+    "n": 1,
+    "months": [
+     6
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 6 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-079": {
+  "scientific": "Viburnum luzonicum",
+  "common": "呂宋莢蒾",
+  "fam_zh": "五福花科",
+  "fam_sci": "Adoxaceae",
+  "nobs": 56,
+  "nyears": 9,
+  "y0": 2018,
+  "y1": 2026,
+  "observers": 31,
+  "near50": 16,
+  "located": 56,
+  "near50_pct": 29,
+  "pheno": {
+   "flower": {
+    "n": 8,
+    "months": [
+     3,
+     4
+    ]
+   },
+   "fruit": {
+    "n": 11,
+    "months": [
+     9,
+     10,
+     12
+    ]
+   },
+   "bud": {
+    "n": 3,
+    "months": [
+     3,
+     4
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 3–4 月（n=8）；結果 9、10、12 月（n=11）；花苞 3–4 月（n=3）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-080": {
+  "scientific": "Antidesma japonicum",
+  "common": "日本五月茶",
+  "fam_zh": "葉下珠科",
+  "fam_sci": "Phyllanthaceae",
+  "nobs": 18,
+  "nyears": 7,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 8,
+  "near50": 6,
+  "located": 18,
+  "near50_pct": 33,
+  "pheno": {
+   "flower": {
+    "n": 2,
+    "months": [
+     5
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 5 月（n=2）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-081": {
+  "scientific": "Elaeocarpus japonicus",
+  "common": "薯豆",
+  "fam_zh": "杜英科",
+  "fam_sci": "Elaeocarpaceae",
+  "nobs": 37,
+  "nyears": 7,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 24,
+  "near50": 6,
+  "located": 37,
+  "near50_pct": 16,
+  "pheno": {
+   "fruit": {
+    "n": 1,
+    "months": [
+     8
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "結果 8 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-082": {
+  "scientific": "Psychotria serpens",
+  "common": "拎壁龍",
+  "fam_zh": "茜草科",
+  "fam_sci": "Rubiaceae",
+  "nobs": 48,
+  "nyears": 8,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 33,
+  "near50": 12,
+  "located": 48,
+  "near50_pct": 25,
+  "pheno": {
+   "flower": {
+    "n": 2,
+    "months": [
+     4
+    ]
+   },
+   "fruit": {
+    "n": 6,
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     12
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 4 月（n=2）；結果 1、2、3、4、12 月（n=6）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-083": {
+  "scientific": "Prunus phaeosticta",
+  "common": "墨點櫻桃",
+  "fam_zh": "薔薇科",
+  "fam_sci": "Rosaceae",
+  "nobs": 35,
+  "nyears": 9,
+  "y0": 2010,
+  "y1": 2026,
+  "observers": 20,
+  "near50": 4,
+  "located": 35,
+  "near50_pct": 11,
+  "pheno": {
+   "flower": {
+    "n": 2,
+    "months": [
+     4
+    ]
+   },
+   "fruit": {
+    "n": 1,
+    "months": [
+     2
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 4 月（n=2）；結果 2 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-084": {
+  "scientific": "Morella rubra",
+  "common": "楊梅",
+  "fam_zh": "楊梅科",
+  "fam_sci": "Myricaceae",
+  "nobs": 30,
+  "nyears": 7,
+  "y0": 2017,
+  "y1": 2026,
+  "observers": 19,
+  "near50": 15,
+  "located": 30,
+  "near50_pct": 50,
+  "pheno": {
+   "fruit": {
+    "n": 1,
+    "months": [
+     5
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "結果 5 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-085": {
+  "scientific": "Aidia cochinchinensis",
+  "common": "茜草樹",
+  "fam_zh": "茜草科",
+  "fam_sci": "Rubiaceae",
+  "nobs": 23,
+  "nyears": 8,
+  "y0": 2018,
+  "y1": 2026,
+  "observers": 13,
+  "near50": 1,
+  "located": 23,
+  "near50_pct": 4,
+  "pheno": {
+   "flower": {
+    "n": 3,
+    "months": [
+     3,
+     4
+    ]
+   },
+   "fruit": {
+    "n": 1,
+    "months": [
+     10
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 3–4 月（n=3）；結果 10 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-086": {
+  "scientific": "Ardisia quinquegona",
+  "common": "小葉樹杞",
+  "fam_zh": "報春花科",
+  "fam_sci": "Primulaceae",
+  "nobs": 13,
+  "nyears": 7,
+  "y0": 2010,
+  "y1": 2026,
+  "observers": 7,
+  "near50": 9,
+  "located": 13,
+  "near50_pct": 69,
+  "pheno": {
+   "fruit": {
+    "n": 2,
+    "months": [
+     1,
+     2
+    ]
+   },
+   "bud": {
+    "n": 1,
+    "months": [
+     5
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "結果 1–2 月（n=2）；花苞 5 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-087": {
+  "scientific": "Polyspora axillaris",
+  "common": "大頭茶",
+  "fam_zh": "茶科",
+  "fam_sci": "Theaceae",
+  "nobs": 53,
+  "nyears": 10,
+  "y0": 2010,
+  "y1": 2026,
+  "observers": 33,
+  "near50": 19,
+  "located": 53,
+  "near50_pct": 36,
+  "pheno": {
+   "flower": {
+    "n": 8,
+    "months": [
+     10,
+     11,
+     12
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 10–12 月（n=8）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-088": {
+  "scientific": "Ehretia longiflora",
+  "common": "長花厚殼樹",
+  "fam_zh": "厚殼樹科",
+  "fam_sci": "Ehretiaceae",
+  "nobs": 23,
+  "nyears": 7,
+  "y0": 2020,
+  "y1": 2026,
+  "observers": 13,
+  "near50": 6,
+  "located": 23,
+  "near50_pct": 26,
+  "pheno": {
+   "flower": {
+    "n": 5,
+    "months": [
+     3,
+     4
+    ]
+   },
+   "fruit": {
+    "n": 1,
+    "months": [
+     7
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 3–4 月（n=5）；結果 7 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-089": {
+  "scientific": "Quercus sessilifolia",
+  "common": "毽子櫟",
+  "fam_zh": "殼斗科",
+  "fam_sci": "Fagaceae",
+  "nobs": 50,
+  "nyears": 9,
+  "y0": 2018,
+  "y1": 2026,
+  "observers": 27,
+  "near50": 14,
+  "located": 50,
+  "near50_pct": 28,
+  "pheno": {
+   "flower": {
+    "n": 4,
+    "months": [
+     3,
+     4
+    ]
+   },
+   "bud": {
+    "n": 1,
+    "months": [
+     3
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 3–4 月（n=4）；花苞 3 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-090": {
+  "scientific": "Illicium arborescens",
+  "common": "臺灣八角",
+  "fam_zh": "五味子科",
+  "fam_sci": "Schisandraceae",
+  "nobs": 41,
+  "nyears": 8,
+  "y0": 2013,
+  "y1": 2026,
+  "observers": 17,
+  "near50": 19,
+  "located": 41,
+  "near50_pct": 46,
+  "pheno": {
+   "flower": {
+    "n": 2,
+    "months": [
+     1,
+     2
+    ]
+   },
+   "fruit": {
+    "n": 1,
+    "months": [
+     4
+    ]
+   },
+   "bud": {
+    "n": 1,
+    "months": [
+     1
+    ]
+   }
+  },
+  "endemic": true,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 1–2 月（n=2）；結果 4 月（n=1）；花苞 1 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-091": {
+  "scientific": "Vaccinium randaiense",
+  "common": "巒大越橘",
+  "fam_zh": "杜鵑花科",
+  "fam_sci": "Ericaceae",
+  "nobs": 3,
+  "nyears": 2,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 1,
+  "near50": 3,
+  "located": 3,
+  "near50_pct": 100,
+  "pheno": {
+   "flower": {
+    "n": 1,
+    "months": [
+     6
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 6 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-092": {
+  "scientific": "Helicia formosana",
+  "common": "山龍眼",
+  "fam_zh": "山龍眼科",
+  "fam_sci": "Proteaceae",
+  "nobs": 31,
+  "nyears": 7,
+  "y0": 2019,
+  "y1": 2026,
+  "observers": 16,
+  "near50": 16,
+  "located": 31,
+  "near50_pct": 52,
+  "pheno": {
+   "flower": {
+    "n": 4,
+    "months": [
+     6
+    ]
+   },
+   "fruit": {
+    "n": 1,
+    "months": [
+     2
+    ]
+   },
+   "bud": {
+    "n": 1,
+    "months": [
+     6
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": "LC",
+  "threat": null,
+  "protected": null,
+  "insight": "開花 6 月（n=4）；結果 2 月（n=1）；花苞 6 月（n=1）。其餘為僅照片觀察、葉/花/果待判讀。"
+ },
+ "ERG-093": {
+  "scientific": "Trochodendron aralioides",
+  "common": "昆欄樹",
+  "fam_zh": "昆欄樹科",
+  "fam_sci": "Trochodendraceae",
+  "nobs": 22,
+  "nyears": 7,
+  "y0": 2018,
+  "y1": 2026,
+  "observers": 13,
+  "near50": 8,
+  "located": 22,
+  "near50_pct": 36,
+  "pheno": {
+   "flower": {
+    "n": 4,
+    "months": [
+     3,
+     4
+    ]
+   }
+  },
+  "endemic": false,
+  "iucn": null,
+  "threat": null,
+  "protected": null,
+  "insight": "開花 3–4 月（n=4）。其餘為僅照片觀察、葉/花/果待判讀。"
+ }
+}

@@ -3,12 +3,13 @@
 brand palette, minimalist, summary cards (觀察/物種/科/屬/步道長/爬升),
 科別+屬別 filter dropdowns, photo tooltips. Mobile: pinch-zoom + pan, bottom-sheet
 tooltip, responsive cards. Also writes index.html (GitHub Pages entry)."""
-import json, os, math
+import json, os, math, html as _html
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = os.path.join(HERE, "data", "2026-04-25")
 pts = json.load(open(os.path.join(BASE, "profile_enriched.json")))
 TX = json.load(open(os.path.join(HERE, "data", "registry", "taxa_taicol.json")))
+INS = json.load(open(os.path.join(HERE, "data", "registry", "insights.json")))
 for p in pts:                                  # merge TaiCoL family/genus (中拉) + status
     e = TX.get(p["s"], {})
     p["famSci"] = e.get("fam_sci") or p["f"]
@@ -32,6 +33,44 @@ dist = int(round(pts[-1]["x"]))
 xmax = int(math.ceil(pts[-1]["x"] / 25) * 25)
 climb = int(round(pts[-1]["y"] - pts[0]["y"]))
 e0, e1 = int(pts[0]["y"]), int(pts[-1]["y"])
+
+
+# ── per-sample insight table (data from insights.py) ──────────────────────────
+def _months(ms):                       # compact: contiguous -> '3–4', else '3,5,7'
+    ms = sorted(set(ms))
+    if len(ms) >= 2 and ms == list(range(ms[0], ms[-1] + 1)):
+        return f"{ms[0]}–{ms[-1]}"
+    return ",".join(str(m) for m in ms)
+
+
+_PHZH = {"flower": "花", "fruit": "果", "bud": "苞"}
+trows = []
+for uid in sorted(INS):
+    d = INS[uid]
+    ph = " ".join(f'{_PHZH[k]}{_months(v["months"])}' for k, v in d["pheno"].items()) or "—"
+    cons = ""
+    if d["endemic"]:
+        cons += '<span class="t-end">特有</span>'
+    if d["threat"]:
+        lab = ("IUCN " + d["threat"]) if d["threat"] in ("CR", "EN", "VU", "NT") else ("紅皮書 " + d["threat"])
+        cons += f'<span class="t-thr">{lab}</span>'
+    prox = "—" if d["near50_pct"] is None else f'{d["near50_pct"]}%'
+    yspan = f'{d["y0"]}–{d["y1"]}' if d["y0"] else "—"
+    sci = _html.escape(d["scientific"])
+    trows.append(
+        f'<tr onclick="location.href=\'data/units/{uid}.html\'">'
+        f'<td class="u">{uid}</td>'
+        f'<td><b>{_html.escape(d["common"]) or "—"}</b><br><i class="sci">{sci}</i></td>'
+        f'<td>{_html.escape(d["fam_zh"])}</td>'
+        f'<td class="n" data-s="{d["nobs"]}">{d["nobs"]}</td>'
+        f'<td class="n" data-s="{d["nyears"]}">{d["nyears"]}<span class="yspan">{yspan}</span></td>'
+        f'<td class="n" data-s="{d["observers"]}">{d["observers"]}</td>'
+        f'<td class="n" data-s="{d["near50_pct"] if d["near50_pct"] is not None else -1}">{prox}</td>'
+        f'<td class="ph">{ph}</td>'
+        f'<td class="cons">{cons or "—"}</td></tr>')
+TABLE = "\n".join(trows)
+n_with_pheno = sum(1 for d in INS.values() if d["pheno"])
+n_endemic = sum(1 for d in INS.values() if d["endemic"])
 
 HTML = """<!DOCTYPE html>
 <html lang="zh-Hant">
@@ -77,6 +116,25 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
 .ctt .sci{font-style:italic;color:var(--gray)}
 .ctt .fam{color:var(--gray)}
 .ctt .lnk{display:inline-block;margin-top:6px;color:var(--green);font-weight:500;text-decoration:none}
+.tsec{margin:34px 0 0}
+.tsec h2{font-size:18px;color:var(--green);font-weight:700;margin:0 0 4px}
+.tsec .cap{font-size:12.5px;color:var(--gray);margin:0 0 12px}
+.twrap{overflow-x:auto;border:0.5px solid #e6e4dc;border-radius:10px}
+table.ins{border-collapse:collapse;width:100%;font-size:12.5px;min-width:720px}
+table.ins th,table.ins td{padding:8px 10px;text-align:left;border-bottom:0.5px solid #eceae2;vertical-align:top}
+table.ins thead th{background:#f5f4ef;color:var(--gray);font-weight:500;white-space:nowrap;cursor:pointer;position:sticky;top:0}
+table.ins thead th:hover{color:var(--green)}
+table.ins thead th.sorted::after{content:" ▾";color:var(--green2)}
+table.ins thead th.sorted.asc::after{content:" ▴"}
+table.ins tbody tr{cursor:pointer}
+table.ins tbody tr:hover{background:#faf9f4}
+table.ins td.u{font-weight:500;color:var(--green);white-space:nowrap}
+table.ins td.n{text-align:right;white-space:nowrap}
+table.ins .sci{font-style:italic;color:var(--gray)}
+table.ins .yspan{color:var(--gray2);font-size:11px;margin-left:5px}
+table.ins td.ph{color:var(--ink)}
+table.ins .t-end{background:#eaf3de;color:#3B6D11;border-radius:9px;padding:1px 7px;font-size:11px;margin-right:4px}
+table.ins .t-thr{background:#fcebeb;color:#A32D2D;border-radius:9px;padding:1px 7px;font-size:11px}
 .foot{margin-top:22px;font-size:11.5px;color:var(--gray2);line-height:1.6}
 @media(max-width:760px){
   .wrap{padding:24px 16px 30px}
@@ -117,6 +175,24 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
 
   <div class="chartbox"><canvas id="t" role="img"
     aria-label="二格山稜線植被海拔剖面圖，橫軸為沿步道水平距離，縱軸為海拔，點為植物觀察，可縮放、平移與依科屬篩選"></canvas></div>
+
+  <div class="tsec">
+    <h2>各樣點洞察 · per-sample insights</h2>
+    <p class="cap">93 樣點歷史觀察彙整：物候月份取自 iNat 註記（__NPHENO__ 樣點有標記）·
+      ≤50m 為定位落在樣點 50 m 內的比例（定位信心）· __NEND__ 樣點為臺灣特有 ·
+      點欄位標題排序，點列開啟該樣點物候時間軸。</p>
+    <div class="twrap">
+      <table class="ins" id="ins">
+        <thead><tr>
+          <th data-c="0">樣點</th><th data-c="1">物種 species</th><th data-c="2">科 family</th>
+          <th data-c="3" data-num="1">觀察</th><th data-c="4" data-num="1">年期</th>
+          <th data-c="5" data-num="1">觀察者</th><th data-c="6" data-num="1">≤50m</th>
+          <th data-c="7">物候 花/果/苞（月）</th><th data-c="8">保育</th>
+        </tr></thead>
+        <tbody>__TABLE__</tbody>
+      </table>
+    </div>
+  </div>
 
   <p class="foot">
     資料來源 iNaturalist API（觀察者 bunnytailgrass，地點 二格山 place_id 130869）·
@@ -207,6 +283,27 @@ function go(){
            grid:{color:'rgba(178,178,178,0.30)'},ticks:{color:'#666666',callback:function(v){return v+' m';}}}}}});
 }
 if(window.Chart){go();}else{var w=setInterval(function(){if(window.Chart){clearInterval(w);go();}},60);}
+
+// per-sample table: click-to-sort columns
+(function(){
+  var t=document.getElementById('ins'); if(!t)return;
+  var tb=t.tBodies[0], dir={};
+  t.querySelectorAll('thead th').forEach(function(th){
+    th.onclick=function(){
+      var c=+th.getAttribute('data-c'), num=th.getAttribute('data-num'), asc=!dir[c]; dir={}; dir[c]=asc;
+      t.querySelectorAll('thead th').forEach(function(h){h.classList.remove('sorted','asc');});
+      th.classList.add('sorted'); if(asc)th.classList.add('asc');
+      var rows=[].slice.call(tb.rows);
+      rows.sort(function(a,b){
+        var x,y;
+        if(num){x=+a.cells[c].getAttribute('data-s');y=+b.cells[c].getAttribute('data-s');}
+        else{x=a.cells[c].innerText.toLowerCase();y=b.cells[c].innerText.toLowerCase();}
+        return (x<y?-1:x>y?1:0)*(asc?1:-1);
+      });
+      rows.forEach(function(r){tb.appendChild(r);});
+    };
+  });
+})();
 </script>
 </body>
 </html>
@@ -216,7 +313,9 @@ HTML = (HTML.replace("__DATA__", DATA).replace("__N__", str(len(pts)))
             .replace("__XMAX__", str(xmax)).replace("__CLIMB__", str(climb))
             .replace("__E0__", str(e0)).replace("__E1__", str(e1))
             .replace("__AOBS__", f"{arch_obs:,}").replace("__AOBR__", str(arch_obr))
-            .replace("__AY0__", ay[0]).replace("__AY1__", ay[-1]))
+            .replace("__AY0__", ay[0]).replace("__AY1__", ay[-1])
+            .replace("__NPHENO__", str(n_with_pheno)).replace("__NEND__", str(n_endemic))
+            .replace("__TABLE__", TABLE))
 for path in (os.path.join(BASE, "transect_2026-04-25.html"), os.path.join(HERE, "index.html")):
     open(path, "w").write(HTML)
 print(f"wrote transect ({len(HTML)} bytes) + index.html | {len(pts)} obs, {nsp} sp, "

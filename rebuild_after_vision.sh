@@ -30,6 +30,9 @@ fi
 
 echo "==> AI cache: $(python3 -c "import json;print(len(json.load(open('$AI_JSON'))))") observations classified"
 
+echo "==> Refreshing per-sample insight digest (insights.py) …"
+python3 insights.py
+
 echo "==> Rebuilding per-unit timeline pages (build_unit_page.py --all) …"
 python3 build_unit_page.py --all
 

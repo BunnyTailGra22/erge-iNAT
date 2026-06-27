@@ -18,8 +18,9 @@ Run the scripts in order from the project root; each writes into `data/<survey-d
 | `fetch_inat.py [YYYY-MM-DD] ["snapshot label"]` | Pull observations from the iNat API for one survey day; enrich family (Latin) via `/taxa`; stamp a snapshot. | `observations_raw.json`, `observations.csv`, `metadata.json` |
 | `build_profile.py` | Scope to the ridgeline; **GPS-correct** unreliable fixes; sample SRTM elevation; compute along-trail distance; enrich photo + 中文科名. | `profile_before_1456.json`, `profile_enriched.json` |
 | `taicol.py` | Validate the 63 species against Catalogue of Life in Taiwan (TaiCoL): Taiwan-accepted name, family & genus 中拉, endemism, IUCN/Red List. Reuses the sibling erge-phenology cache; queries only new species. | `data/registry/taxa_taicol.json` |
-| `build_unit_page.py --all` | Per-unit phenology calendar pages (TaiCoL family/genus 中拉 + 特有/保育 badges). | `data/units/ERG-*.html` |
-| `build_transect_html.py` | Render the self-contained transect page + summary cards + 科/屬 filters (Chinese + Latin from TaiCoL). | `data/.../transect_2026-04-25.html`, **`index.html`** (Pages entry) |
+| `insights.py` | Per-sample digest from the history store + TaiCoL: phenophase months (花/果/苞 with counts, from iNat annotations only — sparse → 不足/尚無, never inferred), sampling depth (obs/年/觀察者/span), GPS proximity (≤50 m share), 特有/保育. Drives the unit-page insight line + transect table. | `data/registry/insights.json` |
+| `build_unit_page.py --all` | Per-unit phenology calendar pages (TaiCoL family/genus 中拉 + 特有/保育 badges; insight line from `insights.json`). | `data/units/ERG-*.html` |
+| `build_transect_html.py` | Render the self-contained transect page + summary cards + 科/屬 filters (Chinese + Latin from TaiCoL) + sortable 93-sample insights table (`insights.json`). | `data/.../transect_2026-04-25.html`, **`index.html`** (Pages entry) |
 
 `index.html` is the published transect (served by GitHub Pages from repo root).
 
@@ -94,6 +95,7 @@ term-12 annotations.
 ```bash
 python3 fetch_inat.py 2026-04-25 "2026/04/25 · 14:41 CST"
 python3 build_profile.py
+python3 insights.py            # refresh per-sample digest before rendering
 python3 build_transect_html.py
 ```
 New survey day: run `fetch_inat.py <date>`, adjust the scope cutoff in `build_profile.py`, rebuild.

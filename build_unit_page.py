@@ -14,6 +14,8 @@ _aifp = os.path.join(HERE, "data", "phenophase", "ai_flower.json")
 AIFLOWER = json.load(open(_aifp)) if os.path.exists(_aifp) else {}   # AI-suggested flowering layer
 _corrp = os.path.join(HERE, "data", "phenophase", "ai_corrections.json")
 AICORR = json.load(open(_corrp)) if os.path.exists(_corrp) else {}   # human overrides of AI flags (obs_id -> {flower: bool})
+_insp = os.path.join(HERE, "data", "registry", "insights.json")
+INS = json.load(open(_insp)) if os.path.exists(_insp) else {}        # per-sample digest (insights.py)
 BYUNIT = collections.defaultdict(list)
 for r in RECS:
     if r["observed_on"]:
@@ -176,14 +178,10 @@ def build(i):
     mid = sum(1 for x in dm if 50 < x <= 250)
     far = len(dm) - near - mid
     med = int(dm[len(dm) // 2]) if dm else 0
-    spring = sum(1 for p in pts if 60 <= p["doy"] <= 151)
-    if nobs == 0:
-        insight = "尚無歷史觀察，後續每日同步將累積。"
-    elif UNIT == "ERG-052":
-        insight = (f"觀察高峰落在 3–5 月（{100*spring//nobs}% 的觀察），對應金毛杜鵑花期；"
-                   "全年其餘月份為營養／果期照片。")
-    else:
-        insight = f"3–5 月觀察占 {100*spring//nobs}%；灰點為僅有照片、待判讀葉/花/果。"
+    # data-grounded per-sample insight (insights.py); fall back if not yet generated
+    insight = (INS.get(UNIT, {}).get("insight")
+               or ("尚無歷史觀察，後續每日同步將累積。" if nobs == 0
+                   else f"{nobs} 筆觀察；灰點為僅有照片、待判讀葉/花/果。"))
     n_aifl = sum(p["aifl"] for p in pts)
     if n_aifl:
         insight += f"　AI 另建議 {n_aifl} 筆開花（iNat 未標，紅圈標示）。"
