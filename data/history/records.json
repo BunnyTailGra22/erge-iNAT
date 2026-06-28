@@ -19305,6 +19305,19 @@
     "lng": 121.6219466667
   },
   {
+    "unit_id": "ERG-075",
+    "taxon_id": 448270,
+    "obs_id": 376089936,
+    "observed_on": "2025-10-10",
+    "user": "chunyukung",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://static.inaturalist.org/photos/687608933/small.jpg",
+    "dist_to_unit_m": 105.0,
+    "lat": 24.9671866667,
+    "lng": 121.6208283333
+  },
+  {
     "unit_id": "ERG-047",
     "taxon_id": 764696,
     "obs_id": 344681212,
