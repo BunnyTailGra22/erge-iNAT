@@ -23985,19 +23985,6 @@
     "lng": 121.6221359081
   },
   {
-    "unit_id": "ERG-066",
-    "taxon_id": 357816,
-    "obs_id": 353457676,
-    "observed_on": "2026-04-25",
-    "user": "bunnytailgrass",
-    "quality": "research",
-    "phenophase": "",
-    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/644921708/small.jpg",
-    "dist_to_unit_m": 0.0,
-    "lat": 24.9672527688,
-    "lng": 121.6221617066
-  },
-  {
     "unit_id": "ERG-067",
     "taxon_id": 556427,
     "obs_id": 353457810,
