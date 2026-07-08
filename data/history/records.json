@@ -23049,6 +23049,19 @@
     "lng": 121.6138216667
   },
   {
+    "unit_id": "ERG-028",
+    "taxon_id": 700177,
+    "obs_id": 353142319,
+    "observed_on": "2026-04-25",
+    "user": "stevenlslin",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/644398078/small.jpg",
+    "dist_to_unit_m": 971.4,
+    "lat": 24.9722954985,
+    "lng": 121.6167134614
+  },
+  {
     "unit_id": "ERG-031",
     "taxon_id": 210990,
     "obs_id": 353153416,
