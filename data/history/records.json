@@ -24921,6 +24921,19 @@
     "lng": 121.6209006701
   },
   {
+    "unit_id": "ERG-021",
+    "taxon_id": 348980,
+    "obs_id": 380028587,
+    "observed_on": "2026-07-02",
+    "user": "xingxing",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/695212121/small.jpg",
+    "dist_to_unit_m": 572.5,
+    "lat": 24.9613316237,
+    "lng": 121.6246584803
+  },
+  {
     "unit_id": "ERG-081",
     "taxon_id": 570931,
     "obs_id": 378236157,
