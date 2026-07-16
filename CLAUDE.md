@@ -77,12 +77,14 @@ resolved.
 - **Host-plant provenance is dual and additive.** The curated 97-species network is
   **《臺灣蝶類誌》+TaiCoL-derived** — never regenerate/overwrite it from an API. A *new* species'
   hosts are auto-sourced and only *extend* the network, `hostsrc` recording which source won:
-  **`臺灣蝶類誌`** if the sibling **`update-erge-papilionoidea` skill** cache
-  (`~/.claude/skills/update-erge-papilionoidea/hosts_book.json`, shape
-  `{butterfly_sci: [host_sci,…]}`) is installed and has the species — the book is the gold
-  standard; else **`GloBI`** (∩ TaiCoL). The skill cache is *soft-reused* exactly like `taicol.py`
-  reuses the `update-erge-phenology` cache: preferred when present, silently skipped in CI. Both
-  book and GloBI are real datasets, not encounter-frequency guesses.
+  **`臺灣蝶類誌`** if the book host cache (shape `{butterfly_sci: [host_sci,…]}`) has the species —
+  the book is the gold standard; else **`GloBI`** (∩ TaiCoL). The book cache is looked up in two
+  places, in order: (1) repo copy **`data/butterfly/hosts_book.json`** — the only one CI can see,
+  so commit the book data here to make it authoritative in the automated weekly sync; (2) the
+  sibling **`update-erge-papilionoidea` skill** cache
+  (`~/.claude/skills/update-erge-papilionoidea/hosts_book.json`) — soft-reused for *local* runs,
+  exactly like `taicol.py` reuses the `update-erge-phenology` cache, and absent in CI. Both no-op
+  cleanly when missing. Book and GloBI are real datasets, not encounter-frequency guesses.
 
 | Script | Does |
 |---|---|
