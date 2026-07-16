@@ -22,11 +22,17 @@ import globi, taicol
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REG = os.path.join(HERE, "data", "butterfly", "registry.json")
-# Book-curated 《臺灣蝶類誌》 host cache from the sibling `update-erge-papilionoidea`
-# skill — the canonical origin of this page. Soft-reused (like taicol.py reuses the
-# update-erge-phenology cache): preferred over GloBI when present, no-ops when absent
-# (e.g. in CI). Shape: {"<butterfly binomial>": ["<host binomial>", ...]}.
-SKILL_HOSTS = os.path.expanduser("~/.claude/skills/update-erge-papilionoidea/hosts_book.json")
+# Book-curated 《臺灣蝶類誌》 host cache, shape {"<butterfly binomial>": ["<host binomial>", ...]}.
+# Preferred over GloBI when present. Checked in two places, in order:
+#   1. REPO copy data/butterfly/hosts_book.json — the ONLY one CI can see, so commit the
+#      book data here if you want it authoritative in the automated weekly sync.
+#   2. the sibling `update-erge-papilionoidea` skill cache — soft-reused for LOCAL runs
+#      (like taicol.py reuses the update-erge-phenology cache); absent in CI.
+# Both no-op cleanly when missing → falls back to GloBI ∩ TaiCoL.
+BOOK_HOSTS = [
+    os.path.join(HERE, "data", "butterfly", "hosts_book.json"),
+    os.path.expanduser("~/.claude/skills/update-erge-papilionoidea/hosts_book.json"),
+]
 PLACE = "130869"
 TAXON = "47224"          # Papilionoidea superfamily (see papilionoidea.html footer)
 FAMORDER = ["鳳蝶科", "粉蝶科", "弄蝶科", "蛺蝶科", "灰蝶科", "蜆蝶科"]
@@ -34,13 +40,17 @@ UA = {"User-Agent": "erge-iNAT butterfly sync (github.com/bunnytailgra22/erge-iN
 
 
 def book_hosts(sci):
-    """《臺灣蝶類誌》 host binomials for a butterfly, from the update-erge-papilionoidea
-    skill cache when installed locally; [] otherwise. Book is the gold standard, so
-    it is tried before GloBI."""
-    try:
-        return json.load(open(SKILL_HOSTS)).get(sci, []) or []
-    except Exception:
-        return []
+    """《臺灣蝶類誌》 host binomials for a butterfly — repo copy first (visible to CI),
+    then the update-erge-papilionoidea skill cache (local only); [] if neither has it.
+    Book is the gold standard, so it is tried before GloBI."""
+    for path in BOOK_HOSTS:
+        try:
+            hits = json.load(open(path)).get(sci, []) or []
+        except Exception:
+            continue
+        if hits:
+            return hits
+    return []
 
 
 def get(url):
