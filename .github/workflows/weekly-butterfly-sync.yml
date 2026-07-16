@@ -1,0 +1,49 @@
+name: Weekly butterfly sync
+
+on:
+  schedule:
+    - cron: '30 22 * * 0'   # 22:30 UTC Sun = 06:30 CST Mon (Asia/Taipei), weekly
+  workflow_dispatch:          # allow manual runs
+
+permissions:
+  contents: write             # needed to push regenerated files back to main
+
+concurrency:
+  group: weekly-butterfly
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Refresh per-species iNat observation counts for Papilionoidea at the site
+      # (all observers) and append any newly-seen species (host plants left 待補).
+      # Host-plant network is book-derived and untouched. Pure stdlib, no deps.
+      - name: Sync butterfly counts from iNaturalist
+        run: python3 fetch_butterfly.py
+
+      - name: Re-inline registry into papilionoidea.html
+        run: python3 build_butterfly.py
+
+      # Commit + push only if the data actually changed; push to main triggers
+      # the GitHub Pages build automatically (Pages source = main / root).
+      - name: Commit & deploy if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No butterfly changes this week — nothing to deploy."
+          else
+            CL=$(python3 changelog_butterfly.py)
+            git commit -m "Weekly butterfly sync $(date -u +%Y-%m-%d)" -m "$CL"
+            git push
+            echo "Deployed: $CL"
+          fi

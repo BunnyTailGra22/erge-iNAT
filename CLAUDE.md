@@ -49,8 +49,31 @@ Run the scripts in order from the project root; each writes into `data/<survey-d
   term-12 annotations, read by `backfill.py`; annotate ON iNat (Identify/Annotate panel) and the
   daily sync ingests them — no separate codes file. Leaf has no native iNat annotation → deferred
   (would need an iNat Observation Field). Never auto-write annotations back to iNat.
-- **Daily changelog**: the sync workflow runs `changelog.py` (HEAD vs new `records.json`:
+- **Daily changelog**: the daily sync workflow runs `changelog.py` (HEAD vs new `records.json`:
   新增/移除/重新鑑定/品質變更/新物候註記) and puts the summary in each commit message.
+- **Two sync cadences (two topics)**: the ridgeline **plant** phenology syncs **daily**
+  (`.github/workflows/daily-sync.yml`, 06:00 CST); the **butterfly** page syncs **weekly**
+  (`.github/workflows/weekly-butterfly-sync.yml`, Mon 06:30 CST). They are independent — plants
+  are presence + phenophase of a fixed 93-unit registry; butterflies are per-species iNat counts
+  over a book-curated host-plant network (below).
+
+## Butterfly page (papilionoidea.html) — weekly sync
+Self-contained 鳳蝶總科 × 寄主植物 network page (iNat `place_id=130869`, `taxon 47224`
+Papilionoidea, **all observers** × 《臺灣蝶類誌》 host plants × TaiCoL taxonomy).
+- **Source of truth = `data/butterfly/registry.json`** — the entire inlined `DATA` object
+  (butterflies + fam_nodes/edges_bf_fam/gg_edges/bgenus/pgenus + meta). The host-plant network is
+  **book+TaiCoL-derived and NOT reproducible from iNat** — never regenerate it from the API. Only
+  each butterfly's `count` and the *set* of present species come from iNat.
+
+| Script | Does |
+|---|---|
+| `fetch_butterfly.py` | Pull iNat `species_counts` for Papilionoidea @ site (all observers); update each species' `count`; append newly-seen species with an EMPTY host list flagged `host_pending` (寄主待補), family/genus enriched from taxon ancestors. Curated species are never deleted; a species missing from a run keeps its count (partial fetch is non-destructive). |
+| `build_butterfly.py` | Recompute `meta`, re-inline `registry.json` as the single `const DATA=…;` line in `papilionoidea.html`. Compact JSON → **byte-identical** round-trip when data is unchanged (no spurious diff). |
+| `changelog_butterfly.py` | HEAD vs new registry: 新增蝶種 / 觀察數異動 / totals → weekly commit message. |
+
+- **New butterfly species** land with `host_pending:true`, `sp:[]`, no host edges (appears in the
+  蝶種 column with no links). Enrich its 《臺灣蝶類誌》 host plants by hand, then it joins the network.
+- **Reproduce**: `python3 fetch_butterfly.py && python3 build_butterfly.py` (fetch needs network).
 
 ## AI flower-suggestion layer (vision) — optional, separate from iNat
 The phenophase source of truth stays iNaturalist (above). On top of it a vision model adds an
