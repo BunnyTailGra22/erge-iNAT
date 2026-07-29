@@ -25181,6 +25181,19 @@
     "lng": 121.624769
   },
   {
+    "unit_id": "ERG-082",
+    "taxon_id": 425191,
+    "obs_id": 386267146,
+    "observed_on": "2026-07-26",
+    "user": "yuan96721",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/707221475/small.jpg",
+    "dist_to_unit_m": 907.4,
+    "lat": 24.9639805498,
+    "lng": 121.6291406273
+  },
+  {
     "unit_id": "ERG-062",
     "taxon_id": 930304,
     "obs_id": 385715641,
@@ -25283,5 +25296,70 @@
     "dist_to_unit_m": 64.9,
     "lat": 24.9671999722,
     "lng": 121.619951
+  },
+  {
+    "unit_id": "ERG-049",
+    "taxon_id": 577766,
+    "obs_id": 386144564,
+    "observed_on": "2026-07-28",
+    "user": "char0125",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/706988516/small.jpg",
+    "dist_to_unit_m": 374.3,
+    "lat": 24.9700794167,
+    "lng": 121.6216735833
+  },
+  {
+    "unit_id": "ERG-052",
+    "taxon_id": 602160,
+    "obs_id": 386144910,
+    "observed_on": "2026-07-28",
+    "user": "char0125",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/706989477/small.jpg",
+    "dist_to_unit_m": 365.8,
+    "lat": 24.9700794167,
+    "lng": 121.6216735833
+  },
+  {
+    "unit_id": "ERG-015",
+    "taxon_id": 551083,
+    "obs_id": 386148596,
+    "observed_on": "2026-07-28",
+    "user": "char0125",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/706996536/small.jpg",
+    "dist_to_unit_m": 536.5,
+    "lat": 24.9711933056,
+    "lng": 121.6249465833
+  },
+  {
+    "unit_id": "ERG-006",
+    "taxon_id": 577766,
+    "obs_id": 386178636,
+    "observed_on": "2026-07-28",
+    "user": "char0125",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/707054962/small.jpg",
+    "dist_to_unit_m": 1176.7,
+    "lat": 24.9752979167,
+    "lng": 121.6310271944
+  },
+  {
+    "unit_id": "ERG-029",
+    "taxon_id": 364884,
+    "obs_id": 386178672,
+    "observed_on": "2026-07-28",
+    "user": "char0125",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/707055042/small.jpg",
+    "dist_to_unit_m": 842.9,
+    "lat": 24.9732418056,
+    "lng": 121.6281356667
   }
 ]
