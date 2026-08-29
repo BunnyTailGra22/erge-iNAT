@@ -25400,5 +25400,83 @@
     "dist_to_unit_m": 842.9,
     "lat": 24.9732418056,
     "lng": 121.6281356667
+  },
+  {
+    "unit_id": "ERG-057",
+    "taxon_id": 556549,
+    "obs_id": 395425555,
+    "observed_on": "2026-08-29",
+    "user": "bunnytailgrass",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/725057781/small.jpg",
+    "dist_to_unit_m": 237.6,
+    "lat": 24.9661839484,
+    "lng": 121.6249798947
+  },
+  {
+    "unit_id": "ERG-040",
+    "taxon_id": 1040318,
+    "obs_id": 395425586,
+    "observed_on": "2026-08-29",
+    "user": "bunnytailgrass",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/725057846/small.jpg",
+    "dist_to_unit_m": 27.3,
+    "lat": 24.9668369297,
+    "lng": 121.6236500662
+  },
+  {
+    "unit_id": "ERG-062",
+    "taxon_id": 930304,
+    "obs_id": 395425654,
+    "observed_on": "2026-08-29",
+    "user": "bunnytailgrass",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/725057897/small.jpg",
+    "dist_to_unit_m": 90.7,
+    "lat": 24.9668907931,
+    "lng": 121.6234647886
+  },
+  {
+    "unit_id": "ERG-037",
+    "taxon_id": 472981,
+    "obs_id": 395425724,
+    "observed_on": "2026-08-29",
+    "user": "bunnytailgrass",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/725058065/small.jpg",
+    "dist_to_unit_m": 281.3,
+    "lat": 24.9673951221,
+    "lng": 121.6209841578
+  },
+  {
+    "unit_id": "ERG-075",
+    "taxon_id": 448270,
+    "obs_id": 395425758,
+    "observed_on": "2026-08-29",
+    "user": "bunnytailgrass",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/725058097/small.jpg",
+    "dist_to_unit_m": 93.2,
+    "lat": 24.9673951221,
+    "lng": 121.6209841578
+  },
+  {
+    "unit_id": "ERG-018",
+    "taxon_id": 556015,
+    "obs_id": 395425865,
+    "observed_on": "2026-08-29",
+    "user": "bunnytailgrass",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/725058290/small.jpg",
+    "dist_to_unit_m": 493.0,
+    "lat": 24.9698584972,
+    "lng": 121.6213778068
   }
 ]
