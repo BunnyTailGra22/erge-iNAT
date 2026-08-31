@@ -25478,5 +25478,83 @@
     "dist_to_unit_m": 493.0,
     "lat": 24.9698584972,
     "lng": 121.6213778068
+  },
+  {
+    "unit_id": "ERG-065",
+    "taxon_id": 903695,
+    "obs_id": 395732857,
+    "observed_on": "2026-08-30",
+    "user": "dennyyu",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://static.inaturalist.org/photos/725643554/small.jpg",
+    "dist_to_unit_m": 1129.3,
+    "lat": 24.9745666667,
+    "lng": 121.6144
+  },
+  {
+    "unit_id": "ERG-032",
+    "taxon_id": 710221,
+    "obs_id": 395733321,
+    "observed_on": "2026-08-30",
+    "user": "dennyyu",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://static.inaturalist.org/photos/725644726/small.jpg",
+    "dist_to_unit_m": 1291.2,
+    "lat": 24.9744944444,
+    "lng": 121.6143805556
+  },
+  {
+    "unit_id": "ERG-057",
+    "taxon_id": 556549,
+    "obs_id": 395734116,
+    "observed_on": "2026-08-30",
+    "user": "dennyyu",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://static.inaturalist.org/photos/725645807/small.jpg",
+    "dist_to_unit_m": 1183.9,
+    "lat": 24.9743777778,
+    "lng": 121.6143111111
+  },
+  {
+    "unit_id": "ERG-088",
+    "taxon_id": 556250,
+    "obs_id": 395735258,
+    "observed_on": "2026-08-30",
+    "user": "chinaberryhuang",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/725647996/small.jpg",
+    "dist_to_unit_m": 985.0,
+    "lat": 24.9741460406,
+    "lng": 121.6143904145
+  },
+  {
+    "unit_id": "ERG-035",
+    "taxon_id": 774568,
+    "obs_id": 395736133,
+    "observed_on": "2026-08-30",
+    "user": "dennyyu",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://static.inaturalist.org/photos/725649478/small.jpg",
+    "dist_to_unit_m": 1253.4,
+    "lat": 24.9735916667,
+    "lng": 121.6139222222
+  },
+  {
+    "unit_id": "ERG-018",
+    "taxon_id": 556015,
+    "obs_id": 395738033,
+    "observed_on": "2026-08-30",
+    "user": "dennyyu",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://static.inaturalist.org/photos/725653690/small.jpg",
+    "dist_to_unit_m": 1422.2,
+    "lat": 24.9737222222,
+    "lng": 121.6128833333
   }
 ]
