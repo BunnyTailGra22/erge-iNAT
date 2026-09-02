@@ -122,6 +122,16 @@
     "Taxillus lonicerifolius",
     "Santalum album"
   ],
+  "Deudorix epijarbas": [
+    "Litchi chinensis",
+    "Dimocarpus longan",
+    "Koelreuteria henryi",
+    "Helicia formosana",
+    "Diospyros eriantha",
+    "Elaeocarpus argenteus",
+    "Phanera championii",
+    "Pongamia pinnata"
+  ],
   "Dichorragia nesimachus": [
     "Meliosma rhoifolia",
     "Meliosma squamulata"
@@ -318,6 +328,10 @@
     "Bambusa oldhamii",
     "Bambusa ventricosa"
   ],
+  "Limenitis dudu": [
+    "Lonicera japonica",
+    "Lonicera hypoglauca"
+  ],
   "Limenitis sulpitia": [
     "Lonicera japonica"
   ],
@@ -463,10 +477,6 @@
   "Parantica swinhoei": [
     "Marsdenia tinctoria",
     "Vincetoxicum hirsutum"
-  ],
-  "Parasarpa dudu": [
-    "Lonicera japonica",
-    "Lonicera hypoglauca"
   ],
   "Penthema formosanum": [
     "Bambusa oldhamii",
