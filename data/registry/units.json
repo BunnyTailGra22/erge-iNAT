@@ -1300,5 +1300,39 @@
     "elev_m": 659.0,
     "dist_m": 635.6,
     "quality": "needs_id"
+  },
+  {
+    "unit_id": "ERG-094",
+    "base_obs_id": "395425555",
+    "taxon_id": 556549,
+    "scientific": "Castanopsis carlesii",
+    "common": "長尾栲",
+    "family": "Fagaceae",
+    "family_zh": "殼斗科",
+    "lat": 24.9661839484,
+    "lng": 121.6249798947,
+    "elev_m": 528.0,
+    "dist_m": 18.0,
+    "quality": "research",
+    "source": "manual",
+    "off_trail_m": 0.9,
+    "observed_on": "2026-08-29"
+  },
+  {
+    "unit_id": "ERG-095",
+    "base_obs_id": "343780669",
+    "taxon_id": 703472,
+    "scientific": "Quercus gilva",
+    "common": "赤皮",
+    "family": "Fagaceae",
+    "family_zh": "殼斗科",
+    "lat": 24.9663128535,
+    "lng": 121.62490433,
+    "elev_m": 532.0,
+    "dist_m": 43.3,
+    "quality": "research",
+    "source": "manual",
+    "off_trail_m": 1.0,
+    "observed_on": "2026-03-19"
   }
 ]

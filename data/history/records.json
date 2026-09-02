@@ -975,6 +975,19 @@
     "lng": 121.6214266667
   },
   {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 21769110,
+    "observed_on": "2019-03-30",
+    "user": "yeehoung",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://static.inaturalist.org/photos/33717575/small.jpeg",
+    "dist_to_unit_m": 394.0,
+    "lat": 24.9673833333,
+    "lng": 121.6211783333
+  },
+  {
     "unit_id": "ERG-089",
     "taxon_id": 627203,
     "obs_id": 21769242,
@@ -3081,6 +3094,45 @@
     "lng": 121.6183642949
   },
   {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 64717944,
+    "observed_on": "2020-11-01",
+    "user": "shuchen_huang",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/104091046/small.jpeg",
+    "dist_to_unit_m": 739.3,
+    "lat": 24.9705752396,
+    "lng": 121.6192750609
+  },
+  {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 64717947,
+    "observed_on": "2020-11-01",
+    "user": "shuchen_huang",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/104091174/small.jpeg",
+    "dist_to_unit_m": 672.2,
+    "lat": 24.9700661406,
+    "lng": 121.6196762641
+  },
+  {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 64717925,
+    "observed_on": "2020-11-01",
+    "user": "shuchen_huang",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/104090580/small.jpeg",
+    "dist_to_unit_m": 947.8,
+    "lat": 24.9711698134,
+    "lng": 121.617177962
+  },
+  {
     "unit_id": "ERG-087",
     "taxon_id": 627207,
     "obs_id": 65219692,
@@ -3664,6 +3716,19 @@
     "dist_to_unit_m": 5.6,
     "lat": 24.967,
     "lng": 121.622855
+  },
+  {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 69452496,
+    "observed_on": "2021-02-12",
+    "user": "bunnytailgrass",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/112692723/small.jpg",
+    "dist_to_unit_m": 366.0,
+    "lat": 24.967145,
+    "lng": 121.6213916667
   },
   {
     "unit_id": "ERG-075",
@@ -4366,6 +4431,19 @@
     "dist_to_unit_m": 1419.3,
     "lat": 24.9736366667,
     "lng": 121.6128533333
+  },
+  {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 75043538,
+    "observed_on": "2021-04-24",
+    "user": "sandy-huiping",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/122724551/small.jpeg",
+    "dist_to_unit_m": 2053.7,
+    "lat": 24.97983,
+    "lng": 121.61102
   },
   {
     "unit_id": "ERG-018",
@@ -6019,6 +6097,19 @@
     "lng": 121.6217212101
   },
   {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 104251381,
+    "observed_on": "2022-01-03",
+    "user": "bunnytailgrass",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/174661326/small.jpg",
+    "dist_to_unit_m": 360.8,
+    "lat": 24.9671817664,
+    "lng": 121.6214560905
+  },
+  {
     "unit_id": "ERG-077",
     "taxon_id": 341952,
     "obs_id": 104252040,
@@ -6890,6 +6981,19 @@
     "lng": 121.62292424
   },
   {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 112360467,
+    "observed_on": "2022-04-22",
+    "user": "rica_antares",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/189790592/small.jpg",
+    "dist_to_unit_m": 373.3,
+    "lat": 24.9671478271,
+    "lng": 121.62131758
+  },
+  {
     "unit_id": "ERG-084",
     "taxon_id": 551083,
     "obs_id": 112364058,
@@ -7345,6 +7449,19 @@
     "lng": 121.6218450108
   },
   {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 115876023,
+    "observed_on": "2022-05-07",
+    "user": "bunnytailgrass",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/195570886/small.jpg",
+    "dist_to_unit_m": 359.6,
+    "lat": 24.9672175991,
+    "lng": 121.6214789731
+  },
+  {
     "unit_id": "ERG-082",
     "taxon_id": 425191,
     "obs_id": 115876168,
@@ -7421,6 +7538,19 @@
     "dist_to_unit_m": 118.4,
     "lat": 24.9671583333,
     "lng": 121.62175
+  },
+  {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 118772777,
+    "observed_on": "2022-05-22",
+    "user": "jodyhsieh",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/200712749/small.jpg",
+    "dist_to_unit_m": 357.0,
+    "lat": 24.9672133333,
+    "lng": 121.621505
   },
   {
     "unit_id": "ERG-078",
@@ -13143,7 +13273,7 @@
     "lng": 121.607645
   },
   {
-    "unit_id": "ERG-057",
+    "unit_id": "ERG-094",
     "taxon_id": 556549,
     "obs_id": 194340342,
     "observed_on": "2023-12-14",
@@ -13151,7 +13281,7 @@
     "quality": "research",
     "phenophase": "",
     "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/341580787/small.jpg",
-    "dist_to_unit_m": 1085.6,
+    "dist_to_unit_m": 999.7,
     "lat": 24.9572944444,
     "lng": 121.6234944444
   },
@@ -16055,6 +16185,19 @@
     "lng": 121.6208333333
   },
   {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 249300126,
+    "observed_on": "2024-10-27",
+    "user": "gordonb09b01026",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/445622584/small.jpeg",
+    "dist_to_unit_m": 368.2,
+    "lat": 24.96722,
+    "lng": 121.6213916667
+  },
+  {
     "unit_id": "ERG-050",
     "taxon_id": 191183,
     "obs_id": 249299908,
@@ -18720,6 +18863,19 @@
     "lng": 121.6236722222
   },
   {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 299756431,
+    "observed_on": "2025-07-20",
+    "user": "isyuan",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/540055293/small.jpg",
+    "dist_to_unit_m": 363.7,
+    "lat": 24.9670277778,
+    "lng": 121.6213833333
+  },
+  {
     "unit_id": "ERG-037",
     "taxon_id": 472981,
     "obs_id": 299756540,
@@ -19695,6 +19851,19 @@
     "lng": 121.62378
   },
   {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 325331573,
+    "observed_on": "2025-11-07",
+    "user": "dorayoyo",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/589013731/small.jpg",
+    "dist_to_unit_m": 764.8,
+    "lat": 24.97067,
+    "lng": 121.6190333333
+  },
+  {
     "unit_id": "ERG-051",
     "taxon_id": 627203,
     "obs_id": 326389384,
@@ -19771,6 +19940,19 @@
     "dist_to_unit_m": 933.6,
     "lat": 24.9590633333,
     "lng": 121.62258
+  },
+  {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 325461224,
+    "observed_on": "2025-11-08",
+    "user": "yiinvve",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/589284290/small.jpg",
+    "dist_to_unit_m": 800.4,
+    "lat": 24.9701777263,
+    "lng": 121.6182060912
   },
   {
     "unit_id": "ERG-065",
@@ -19916,6 +20098,19 @@
     "lng": 121.60903
   },
   {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 329192212,
+    "observed_on": "2025-11-23",
+    "user": "friend1047",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/596668730/small.jpg",
+    "dist_to_unit_m": 1600.3,
+    "lat": 24.9639033333,
+    "lng": 121.6092533333
+  },
+  {
     "unit_id": "ERG-021",
     "taxon_id": 348980,
     "obs_id": 329192306,
@@ -19979,6 +20174,19 @@
     "dist_to_unit_m": 1323.7,
     "lat": 24.9647616667,
     "lng": 121.6101533333
+  },
+  {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 329192495,
+    "observed_on": "2025-11-23",
+    "user": "friend1047",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/596669240/small.jpg",
+    "dist_to_unit_m": 1370.4,
+    "lat": 24.9653666667,
+    "lng": 121.61135
   },
   {
     "unit_id": "ERG-089",
@@ -20174,6 +20382,19 @@
     "dist_to_unit_m": 681.0,
     "lat": 24.9705666667,
     "lng": 121.619295
+  },
+  {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 329189814,
+    "observed_on": "2025-11-23",
+    "user": "friend1047",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/596664793/small.jpg",
+    "dist_to_unit_m": 761.8,
+    "lat": 24.9706783333,
+    "lng": 121.61908
   },
   {
     "unit_id": "ERG-087",
@@ -22451,6 +22672,19 @@
     "lng": 121.6249951711
   },
   {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 343780669,
+    "observed_on": "2026-03-19",
+    "user": "bunnytailgrass",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/626333139/small.jpg",
+    "dist_to_unit_m": 0.0,
+    "lat": 24.9663128535,
+    "lng": 121.62490433
+  },
+  {
     "unit_id": "ERG-052",
     "taxon_id": 602160,
     "obs_id": 343791449,
@@ -24583,6 +24817,19 @@
     "lng": 121.6250412517
   },
   {
+    "unit_id": "ERG-095",
+    "taxon_id": 703472,
+    "obs_id": 360097395,
+    "observed_on": "2026-05-07",
+    "user": "bunnytailgrass",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/657065204/small.jpg",
+    "dist_to_unit_m": 87.0,
+    "lat": 24.9657367551,
+    "lng": 121.6243202191
+  },
+  {
     "unit_id": "ERG-032",
     "taxon_id": 710221,
     "obs_id": 359175620,
@@ -25025,7 +25272,7 @@
     "lng": 121.6250014319
   },
   {
-    "unit_id": "ERG-057",
+    "unit_id": "ERG-094",
     "taxon_id": 556549,
     "obs_id": 383881374,
     "observed_on": "2026-07-22",
@@ -25033,7 +25280,7 @@
     "quality": "research",
     "phenophase": "",
     "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/702650252/small.jpg",
-    "dist_to_unit_m": 237.3,
+    "dist_to_unit_m": 0.8,
     "lat": 24.9661794482,
     "lng": 121.6249740202
   },
@@ -25402,7 +25649,7 @@
     "lng": 121.6281356667
   },
   {
-    "unit_id": "ERG-057",
+    "unit_id": "ERG-094",
     "taxon_id": 556549,
     "obs_id": 395425555,
     "observed_on": "2026-08-29",
@@ -25410,7 +25657,7 @@
     "quality": "research",
     "phenophase": "",
     "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/725057781/small.jpg",
-    "dist_to_unit_m": 237.6,
+    "dist_to_unit_m": 0.0,
     "lat": 24.9661839484,
     "lng": 121.6249798947
   },
@@ -25460,7 +25707,7 @@
     "observed_on": "2026-08-29",
     "user": "bunnytailgrass",
     "quality": "research",
-    "phenophase": "",
+    "phenophase": "fruit",
     "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/725058097/small.jpg",
     "dist_to_unit_m": 93.2,
     "lat": 24.9673951221,
