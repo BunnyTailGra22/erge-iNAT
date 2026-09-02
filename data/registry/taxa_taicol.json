@@ -943,5 +943,20 @@
     "taxon_id": "t0055684",
     "src": "cache",
     "threat": null
+  },
+  "Quercus gilva": {
+    "accepted_sci": "Quercus gilva",
+    "accepted_zh": "赤皮",
+    "is_endemic": false,
+    "iucn": "LC",
+    "redlist": "NLC",
+    "protected": null,
+    "taxon_id": "t0055014",
+    "src": "taicol-sci",
+    "gen_zh": "櫟屬",
+    "gen_sci": "Quercus",
+    "fam_zh": "殼斗科",
+    "fam_sci": "Fagaceae",
+    "threat": null
   }
 }
