@@ -208,9 +208,12 @@ def main():
             next_id += 1
             added += 1
 
-    # resolve host plants for new species + retry any earlier host_pending ones
+    # Resolve host plants for any species that still has none — new arrivals, earlier
+    # host_pending retries, and curated species that predate the flag (the book network
+    # left a few without hosts). Empty `sp` is the trigger, not the flag, so nothing is
+    # skipped just because it was added before host_pending existed. Purely additive.
     for entry in bfs:
-        if entry.get("host_pending") and not entry.get("sp"):
+        if not entry.get("sp"):
             n = resolve_hosts(entry, data, seed)
             tag = "新增" if entry in new_entries else "重試"
             state = f"{n} 寄主" if n else "寄主待補（GloBI/TaiCoL 無解析）"
