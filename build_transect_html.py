@@ -202,7 +202,7 @@ function go(){
       scales:{
         x:{type:'linear',min:0,max:__XMAX__,
            title:{display:true,text:'沿步道水平距離 horizontal distance (m)',color:'#666666'},
-           grid:{color:'rgba(178,178,178,0.30)'},ticks:{color:'#666666',callback:function(v){return v+' m';}}},
+           grid:{color:'rgba(178,178,178,0.30)'},ticks:{color:'#666666',callback:function(v){return Math.round(v)+' m';}}},
         y:{min:512,max:668,title:{display:true,text:'海拔 elevation (m)',color:'#666666'},
            grid:{color:'rgba(178,178,178,0.30)'},ticks:{color:'#666666',callback:function(v){return v+' m';}}}}}});
 }
