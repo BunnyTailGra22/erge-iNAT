@@ -24,8 +24,8 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
   border:0.5px solid var(--gray2);border-radius:6px;padding:7px 6px;margin-top:3px;cursor:pointer}
 .legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--gray);margin:0 0 10px}
 .legend i{display:inline-block;vertical-align:middle;margin-right:6px}
-.dot{width:11px;height:11px;border-radius:50%}
-.tri{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:10px solid var(--green)}
+.dot{width:9px;height:9px;border-radius:50%}
+.tri{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:9px solid var(--green);position:relative;top:1px}
 .ctrl{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 8px;font-size:12px;color:var(--gray2)}
 .ctrl button{font-family:inherit;font-size:12px;color:var(--gray);background:#fff;border:0.5px solid var(--gray2);
   border-radius:6px;padding:5px 10px;cursor:pointer}
@@ -100,7 +100,8 @@ function gen(d){return d.genSci;}
 function active(d){return (FAM==='*'||d.famSci===FAM)&&(GEN==='*'||gen(d)===GEN);}
 function pcol(c){var d=c.raw;if(!active(d))return '#D3D1C7';if(d.fl)return '#C85200';return d.g==='research'?'#587A30':'#90B821';}
 function pbord(c){var d=c.raw;if(!active(d))return '#D3D1C7';return d.fl?'#C85200':'#ffffff';}
-function prad(c){var d=c.raw;if(!active(d))return 0;return d.fl?5.5:(d.man?5:4);}
+var PR=4.5;                                    // one radius for every point
+function prad(c){return active(c.raw)?PR:0;}
 function pstyle(c){return c.raw.man?'triangle':'circle';}
 function extTip(ctx){
   var tip=ctx.tooltip, mob=isMobile();
@@ -156,7 +157,7 @@ function go(){
       backgroundColor:'rgba(178,178,178,0.20)',tension:0.3,
       pointBackgroundColor:pcol,pointBorderColor:pbord,pointBorderWidth:1,
       pointRadius:prad,pointStyle:pstyle,pointHitRadius:function(c){return active(c.raw)?10:0;},
-      pointHoverRadius:function(c){return active(c.raw)?prad(c)+2:0;}}]},
+      pointHoverRadius:function(c){return active(c.raw)?PR+2.5:0;}}]},
     options:{responsive:true,maintainAspectRatio:false,
       interaction:{mode:'nearest',intersect:true},
       onClick:function(e,els){if(!isMobile()&&els.length){var p=DATA[els[0].index];if(!active(p))return;
