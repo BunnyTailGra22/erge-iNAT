@@ -34,9 +34,112 @@ for i, p in enumerate(pts, 1):
                   "taxon_id": p["tid"], "scientific": p["s"], "common": p["c"],
                   "family": p["f"], "family_zh": p["fz"], "lat": p["lat"], "lng": p["lng"],
                   "elev_m": p["y"], "dist_m": p["x"], "quality": p["g"]})
+# ---- 1b. manually included units ----
+# Observations that the 2026-04-25 walk did not produce a unit for, but that should
+# still be tracked as ridgeline samples. They are appended AFTER the baseline units,
+# so ERG-001..ERG-093 keep their trail-order ids (and their page URLs) unchanged.
+# Position/elevation are resolved the same way as the baseline: iNat coordinates,
+# SRTM 30 m elevation, and along-trail distance = projection onto the 2026-04-25
+# trail polyline (perpendicular offset kept separately as off_trail_m, never folded
+# into dist_m). A id that cannot be fetched is skipped with a warning rather than
+# failing the whole daily sync.
+EXTRA_UNIT_IDS = [395425555, 343780669]
+
+
+def _get(url, timeout=40):
+    return json.load(urllib.request.urlopen(url, timeout=timeout))
+
+
+def trail_projection(lat, lng):
+    """(along-trail m, perpendicular offset m) of a point against the baseline trail.
+
+    Projected in local equirectangular metres (degrees are ~9% anisotropic at this
+    latitude, which would bias the nearest-segment parameter)."""
+    k = math.cos(math.radians(lat)) * 111320.0                      # m per ° lng
+    def xy(la, ln):
+        return (ln - lng) * k, (la - lat) * 110540.0                # m per ° lat
+    best = (0.0, float("inf"))
+    for a, b in zip(pts, pts[1:]):
+        ax, ay = xy(a["lat"], a["lng"]); bx, by = xy(b["lat"], b["lng"])
+        vx, vy = bx - ax, by - ay
+        seg2 = vx * vx + vy * vy
+        t = 0.0 if seg2 == 0 else max(0.0, min(1.0, (-ax * vx + -ay * vy) / seg2))
+        px, py = ax + t * vx, ay + t * vy
+        off = math.hypot(px, py)                                    # point is at the origin
+        if off < best[1]:
+            best = (a["x"] + t * (b["x"] - a["x"]), off)
+    return round(best[0], 1), round(best[1], 1)
+
+
+def fetch_extra_units(ids, start_index):
+    if not ids:
+        return []
+    try:
+        obs = _get("https://api.inaturalist.org/v1/observations/" +
+                   ",".join(map(str, ids)) + "?locale=zh-TW")["results"]
+    except Exception as e:
+        print("extra units: iNat fetch failed, skipping:", e)
+        return []
+    found = {o["id"]: o for o in obs}
+    for i in ids:
+        if i not in found:
+            print(f"extra units: observation {i} not returned by iNat — skipped")
+
+    # family (Latin + 中文) via /taxa ancestors, same enrichment as fetch_inat.py
+    fam = {}
+    txids = sorted({(o.get("taxon") or {}).get("id") for o in obs} - {None})
+    if txids:
+        try:
+            for t in _get("https://api.inaturalist.org/v1/taxa/" +
+                          ",".join(map(str, txids)) + "?locale=zh-TW")["results"]:
+                a = next((x for x in (t.get("ancestors") or []) if x.get("rank") == "family"), None)
+                fam[t["id"]] = (a.get("name", ""), a.get("preferred_common_name", "")) if a else ("", "")
+        except Exception as e:
+            print("extra units: family enrichment failed:", e)
+
+    out = []
+    for n, i in enumerate(ids):
+        o = found.get(i)
+        if not o:
+            continue
+        coords = (o.get("geojson") or {}).get("coordinates")
+        if not coords:
+            print(f"extra units: observation {i} has no coordinates — skipped")
+            continue
+        lng, lat = coords
+        tx = o.get("taxon") or {}
+        dist_m, off_m = trail_projection(lat, lng)
+        elev = None
+        try:
+            d = _get("https://api.opentopodata.org/v1/srtm30m?" + urllib.parse.urlencode(
+                {"locations": f"{lat:.7f},{lng:.7f}", "interpolation": "bilinear"}))
+            if d.get("status") == "OK":
+                elev = d["results"][0]["elevation"]
+        except Exception as e:
+            print(f"extra units: DEM sample failed for {i}:", e)
+        if elev is None:
+            print(f"extra units: observation {i} has no DEM elevation — skipped")
+            continue
+        f_sci, f_zh = fam.get(tx.get("id"), ("", ""))
+        out.append({"unit_id": f"ERG-{start_index + n:03d}", "base_obs_id": str(i),
+                    "taxon_id": tx.get("id"), "scientific": tx.get("name"),
+                    "common": tx.get("preferred_common_name") or "",
+                    "family": f_sci, "family_zh": f_zh, "lat": lat, "lng": lng,
+                    "elev_m": elev, "dist_m": dist_m, "quality": o.get("quality_grade"),
+                    "source": "manual", "off_trail_m": off_m,
+                    "observed_on": o.get("observed_on")})
+        print(f"extra unit {out[-1]['unit_id']}: {out[-1]['scientific']} "
+              f"obs {i} · {out[-1]['observed_on']} · {elev} m · "
+              f"trail {dist_m} m (offset {off_m} m)")
+    return out
+
+
+units += fetch_extra_units(EXTRA_UNIT_IDS, len(units) + 1)
+
 json.dump(units, open(os.path.join(REG, "units.json"), "w"), ensure_ascii=False, indent=2)
 with open(os.path.join(REG, "units.csv"), "w", newline="") as f:
-    w = csv.DictWriter(f, fieldnames=list(units[0].keys())); w.writeheader(); w.writerows(units)
+    cols = list(dict.fromkeys(k for u in units for k in u))          # baseline keys first
+    w = csv.DictWriter(f, fieldnames=cols, restval=""); w.writeheader(); w.writerows(units)
 
 by_tid = collections.defaultdict(list)
 for u in units:
@@ -116,7 +219,7 @@ with open(os.path.join(HIST, "coverage.csv"), "w", newline="") as f:
 # ---- summary ----
 N = len(units)
 def pct(n): return f"{n} ({100*n//N}%)"
-print("\n=== COVERAGE across 93 units ===")
+print(f"\n=== COVERAGE across {N} units ===")
 print("units with >=1 PRIOR (pre-baseline) obs:", pct(sum(1 for c in cov if c["n_prior"] > 0)))
 print("units with >=1 phenology annotation:    ", pct(sum(1 for c in cov if c["n_pheno"] > 0)))
 print("units with obs in >=2 distinct years:    ", pct(sum(1 for c in cov if c["n_years"] >= 2)))
