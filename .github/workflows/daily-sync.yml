@@ -28,6 +28,13 @@ jobs:
       - name: Backfill historical observations from iNaturalist
         run: python3 backfill.py
 
+      # Validate any species not yet in data/registry/taxa_taicol.json against TaiCoL
+      # (Taiwan-accepted name, family/genus 中拉, endemism, Red List). Already-resolved
+      # species are reused from the committed file, so this is one or two queries on a
+      # normal day and a no-op when nothing new appeared.
+      - name: Resolve new species against TaiCoL
+        run: python3 taicol.py
+
       - name: Rebuild per-unit phenology timeline pages
         run: python3 build_unit_page.py --all
 

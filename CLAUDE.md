@@ -17,9 +17,9 @@ Run the scripts in order from the project root; each writes into `data/<survey-d
 |---|---|---|
 | `fetch_inat.py [YYYY-MM-DD] ["snapshot label"]` | Pull observations from the iNat API for one survey day; enrich family (Latin) via `/taxa`; stamp a snapshot. | `observations_raw.json`, `observations.csv`, `metadata.json` |
 | `build_profile.py` | Scope to the ridgeline; **GPS-correct** unreliable fixes; sample SRTM elevation; compute along-trail distance; enrich photo + 中文科名. | `profile_before_1456.json`, `profile_enriched.json` |
-| `taicol.py` | Validate the 63 species against Catalogue of Life in Taiwan (TaiCoL): Taiwan-accepted name, family & genus 中拉, endemism, IUCN/Red List. Reuses the sibling erge-phenology cache; queries only new species. | `data/registry/taxa_taicol.json` |
+| `taicol.py` | Validate the registry species against Catalogue of Life in Taiwan (TaiCoL): Taiwan-accepted name, family & genus 中拉, endemism, IUCN/Red List. Reuses the sibling erge-phenology cache **and its own previous output**; queries only species not yet resolved. Runs in the daily sync (between `backfill.py` and the page builds). | `data/registry/taxa_taicol.json` |
 | `build_unit_page.py --all` | Per-unit phenology calendar pages (TaiCoL family/genus 中拉 + 特有/保育 badges). | `data/units/ERG-*.html` |
-| `build_transect_html.py` | Render the self-contained transect page + summary cards + 科/屬 filters (Chinese + Latin from TaiCoL). | `data/.../transect_2026-04-25.html`, **`index.html`** (Pages entry) |
+| `build_transect_html.py` | Render the self-contained transect page + summary cards + 科/屬 filters (Chinese + Latin from TaiCoL); merges the supplementary units from `units.json`. | `data/.../transect_2026-04-25.html`, **`index.html`** (Pages entry) |
 
 `index.html` is the published transect (served by GitHub Pages from repo root).
 
@@ -30,8 +30,17 @@ Run the scripts in order from the project root; each writes into `data/<survey-d
 - Elevation is **not** in iNat — sampled from SRTM 30 m (Open Topo Data, bilinear).
 
 ## Key decisions
+- **Supplementary samples**: `EXTRA_UNIT_IDS` in `backfill.py` lists observations the 2026-04-25 walk
+  did not produce a unit for. They are resolved against iNat and **appended after** the 93 baseline
+  units (ERG-094+), so ERG-001–ERG-093 keep their trail-order ids and page URLs; their taxa join the
+  backfill query, so the archive picks up those species' history too. Position from iNat, elevation
+  from SRTM, `dist_m` = projection onto the 2026-04-25 trail polyline with the perpendicular offset
+  kept separately as `off_trail_m` (never folded into `dist_m`). The transect draws them as
+  **triangles** with their own observation date in the tooltip — they are on the trail but not from
+  the survey day, so they must never read as baseline points. Currently ERG-094 *Castanopsis carlesii*
+  (obs 395425555) and ERG-095 *Quercus gilva* 赤皮 (obs 343780669, the 64th species).
 - **Ridgeline scope = observations before 14:56 CST, minus the first two trailhead points**
-  (93 obs / 63 species; excluded IDs 353345277, 353345653 via `EXCLUDE_IDS` in build_profile.py). The real off-crest
+  (93 obs / 63 species from the walk itself; excluded IDs 353345277, 353345653 via `EXCLUDE_IDS` in build_profile.py). The real off-crest
   descent begins at the 14:56 time-gap, not the earlier 14:37:27 trial cutoff (DEM-confirmed:
   crest ~645 m, roadside herbs after 14:56 drop 584→502 m and are excluded).
 - **GPS handling**: any fix with `positional_accuracy > 100 m` (6 points, incl. the displaced

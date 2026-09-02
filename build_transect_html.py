@@ -9,6 +9,24 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = os.path.join(HERE, "data", "2026-04-25")
 pts = json.load(open(os.path.join(BASE, "profile_enriched.json")))
 TX = json.load(open(os.path.join(HERE, "data", "registry", "taxa_taicol.json")))
+RECS = json.load(open(os.path.join(HERE, "data", "history", "records.json")))
+UNITS = json.load(open(os.path.join(HERE, "data", "registry", "units.json")))
+
+# --- supplementary samples (backfill.py EXTRA_UNIT_IDS) ---------------------------
+# They are NOT from the 2026-04-25 walk, so they carry their own observation date and
+# are drawn as triangles; their x is the projection onto that day's trail polyline, so
+# they still sit on the profile. Photo comes from the archive record of the same obs.
+PHOTO = {str(r.get("obs_id")): r.get("photo") for r in RECS}
+man = [{"n": int(u["unit_id"].split("-")[1]), "t": u.get("observed_on") or "",
+        "s": u["scientific"], "c": u["common"], "f": u["family"], "fz": u["family_zh"],
+        "g": u["quality"], "a": None, "x": u["dist_m"], "y": u["elev_m"],
+        "fl": 0, "corr": 0, "man": 1, "off": u.get("off_trail_m"),
+        "u": "https://www.inaturalist.org/observations/" + str(u["base_obs_id"]),
+        "ph": PHOTO.get(str(u["base_obs_id"]), ""), "tid": u["taxon_id"],
+        "lat": u["lat"], "lng": u["lng"]}
+       for u in UNITS if u.get("source") == "manual"]
+pts = sorted(pts + man, key=lambda p: p["x"])
+
 for p in pts:                                  # merge TaiCoL family/genus (中拉) + status
     e = TX.get(p["s"], {})
     p["famSci"] = e.get("fam_sci") or p["f"]
@@ -22,8 +40,7 @@ DATA = json.dumps(pts, ensure_ascii=False)
 nsp = len({p["s"] for p in pts})
 nfam = len({p["famSci"] for p in pts})
 ngen = len({p["genSci"] for p in pts})
-
-RECS = json.load(open(os.path.join(HERE, "data", "history", "records.json")))
+sub = f"2026-04-25 踏查 · 稜線段 {len(pts)} 樣點" + (f"（含 {len(man)} 筆補登）" if man else "")
 arch_obs = len(RECS)                                   # total observations in the archive
 arch_obr = len({r["user"] for r in RECS if r.get("user")})   # distinct observers
 ay = sorted({r["observed_on"][:4] for r in RECS if r.get("observed_on")})
@@ -60,6 +77,7 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
 .legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--gray);margin:0 0 10px}
 .legend i{display:inline-block;vertical-align:middle;margin-right:6px}
 .dot{width:11px;height:11px;border-radius:50%}
+.tri{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:10px solid var(--green)}
 .ctrl{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 8px;font-size:12px;color:var(--gray2)}
 .ctrl button{font-family:inherit;font-size:12px;color:var(--gray);background:#fff;border:0.5px solid var(--gray2);
   border-radius:6px;padding:5px 10px;cursor:pointer}
@@ -92,7 +110,7 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
 <body>
 <div class="wrap">
   <h1>二格山稜線 · 植被海拔剖面圖</h1>
-  <p class="sub">2026-04-25 踏查 · 稜線段 93 樣點　|　歷史資料庫 archive：<b>__AOBS__</b> 筆觀察 · <b>__AOBR__</b> 位觀察者 · __AY0__–__AY1__（每日同步 daily）</p>
+  <p class="sub">__SUB__　|　歷史資料庫 archive：<b>__AOBS__</b> 筆觀察 · <b>__AOBR__</b> 位觀察者 · __AY0__–__AY1__（每日同步 daily）</p>
 
   <div class="cards">
     <div class="card"><div class="lbl">樣點 units</div><div class="val">__N__</div></div>
@@ -107,6 +125,7 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
     <span><i class="dot" style="background:var(--green)"></i>研究等級 research</span>
     <span><i class="dot" style="background:var(--green2)"></i>需鑑定 needs-ID</span>
     <span><i class="dot" style="background:var(--orange)"></i>GPS &gt;100 m · 位置/高程內插 interpolated</span>
+    <span><i class="tri"></i>補登樣點 supplementary · 非 2026-04-25 踏查</span>
   </div>
 
   <div class="ctrl">
@@ -133,7 +152,8 @@ function gen(d){return d.genSci;}
 function active(d){return (FAM==='*'||d.famSci===FAM)&&(GEN==='*'||gen(d)===GEN);}
 function pcol(c){var d=c.raw;if(!active(d))return '#D3D1C7';if(d.fl)return '#C85200';return d.g==='research'?'#587A30':'#90B821';}
 function pbord(c){var d=c.raw;if(!active(d))return '#D3D1C7';return d.fl?'#C85200':'#ffffff';}
-function prad(c){var d=c.raw;if(!active(d))return 0;return d.fl?5.5:4;}
+function prad(c){var d=c.raw;if(!active(d))return 0;return d.fl?5.5:(d.man?5:4);}
+function pstyle(c){return c.raw.man?'triangle':'circle';}
 function extTip(ctx){
   var tip=ctx.tooltip, mob=isMobile();
   var el=document.getElementById('ctt');
@@ -148,7 +168,8 @@ function extTip(ctx){
   el.innerHTML=img+'<div>'+'<div class="nm">'+(d.c||'—')+'</div><div class="sci">'+d.s+
     '</div><div class="fam">'+(d.famZh||'')+' '+d.famSci+'</div><div class="fam">'+(d.genZh||'')+' '+d.genSci+'</div>'+
     (bd?'<div class="fam">'+bd+'</div>':'')+
-    (d.fl?'<div class="fam" style="color:#C85200">GPS ±'+Math.round(d.a)+'m</div>':'')+link+'</div>';
+    (d.fl?'<div class="fam" style="color:#C85200">GPS ±'+Math.round(d.a)+'m</div>':'')+
+    (d.man?'<div class="fam">補登 · '+d.t+'（離步道 '+d.off+' m）</div>':'')+link+'</div>';
   if(mob){
     el.className='ctt sheet';
     el.style.left='0';el.style.right='0';el.style.bottom='0';el.style.top='auto';el.style.width='';
@@ -186,7 +207,7 @@ function go(){
     data:{datasets:[{data:DATA,borderColor:'#666666',borderWidth:1.5,fill:'start',
       backgroundColor:'rgba(178,178,178,0.20)',tension:0.3,
       pointBackgroundColor:pcol,pointBorderColor:pbord,pointBorderWidth:1,
-      pointRadius:prad,pointHitRadius:function(c){return active(c.raw)?10:0;},
+      pointRadius:prad,pointStyle:pstyle,pointHitRadius:function(c){return active(c.raw)?10:0;},
       pointHoverRadius:function(c){return active(c.raw)?prad(c)+2:0;}}]},
     options:{responsive:true,maintainAspectRatio:false,
       interaction:{mode:'nearest',intersect:true},
@@ -208,7 +229,7 @@ if(window.Chart){go();}else{var w=setInterval(function(){if(window.Chart){clearI
 </body>
 </html>
 """
-HTML = (HTML.replace("__DATA__", DATA).replace("__N__", str(len(pts)))
+HTML = (HTML.replace("__DATA__", DATA).replace("__N__", str(len(pts))).replace("__SUB__", sub)
             .replace("__SP__", str(nsp)).replace("__DIST__", str(dist))
             .replace("__XMAX__", str(xmax)).replace("__CLIMB__", str(climb))
             .replace("__E0__", str(e0)).replace("__E1__", str(e1))

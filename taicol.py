@@ -72,6 +72,16 @@ def query_taicol(sci, common):
     return e
 
 
+# already-resolved entries from a previous run are themselves a cache. Without this
+# the daily job would re-query every species, and a TaiCoL outage would overwrite good
+# rows with nulls; with it, only genuinely new species hit the API.
+PREV = json.load(open(OUT)) if os.path.exists(OUT) else {}
+
+
+def resolved(e):
+    return bool(e) and e.get("src") != "unresolved" and bool(e.get("fam_sci") or e.get("accepted_sci"))
+
+
 # seed indexes from the sibling skill's cache (keyed by zh; values carry accepted_sci)
 seed = {}
 if os.path.exists(SKILL_CACHE):
@@ -89,6 +99,11 @@ for u in UNITS:
 
 out, reused, queried, unresolved = {}, 0, 0, []
 for sci, common in species.items():
+    if resolved(PREV.get(sci)):
+        e = dict(PREV[sci], threat=conserv(PREV[sci].get("iucn"), PREV[sci].get("redlist")))
+        out[sci] = e
+        reused += 1
+        continue
     v = (seed.get("sci", {}).get(sci.lower()) or seed.get("zh", {}).get(common))
     if v:
         e = {"accepted_sci": v.get("accepted_sci"), "accepted_zh": v.get("accepted_zh"),
@@ -102,6 +117,10 @@ for sci, common in species.items():
         e = query_taicol(sci, common)
         if e:
             queried += 1
+        elif PREV.get(sci):                       # query failed: keep what we already had
+            out[sci] = dict(PREV[sci])
+            reused += 1
+            continue
         else:
             unresolved.append(sci)
             e = {"accepted_sci": sci, "accepted_zh": common, "fam_zh": None, "fam_sci": None,
