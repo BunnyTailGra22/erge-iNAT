@@ -44,7 +44,7 @@ HTML = """<!DOCTYPE html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js"></script>
 <style>
-:root{--green:#587A30;--green2:#90B821;--gray:#666;--gray2:#B2B2B2;--yellow:#FFD900;--red:#E8380D;--ink:#3a3a36}
+:root{--green:#587A30;--green2:#90B821;--gray:#666;--gray2:#B2B2B2;--yellow:#FFD900;--orange:#C85200;--ink:#3a3a36}
 *{box-sizing:border-box}
 body{margin:0;background:#fff;color:var(--ink);font-family:"Noto Sans TC",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1000px;margin:0 auto;padding:46px 28px 36px}
@@ -60,7 +60,6 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
 .legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--gray);margin:0 0 10px}
 .legend i{display:inline-block;vertical-align:middle;margin-right:6px}
 .dot{width:11px;height:11px;border-radius:50%}
-.diam{width:10px;height:10px;background:var(--green);border:1.5px solid var(--red);transform:rotate(45deg)}
 .ctrl{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 8px;font-size:12px;color:var(--gray2)}
 .ctrl button{font-family:inherit;font-size:12px;color:var(--gray);background:#fff;border:0.5px solid var(--gray2);
   border-radius:6px;padding:5px 10px;cursor:pointer}
@@ -107,7 +106,7 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
   <div class="legend">
     <span><i class="dot" style="background:var(--green)"></i>研究等級 research</span>
     <span><i class="dot" style="background:var(--green2)"></i>需鑑定 needs-ID</span>
-    <span><i class="diam"></i>GPS &gt;100 m · 位置/高程內插 interpolated</span>
+    <span><i class="dot" style="background:var(--orange)"></i>GPS &gt;100 m · 位置/高程內插 interpolated</span>
   </div>
 
   <div class="ctrl">
@@ -132,11 +131,9 @@ var FAM='*', GEN='*', chart;
 function isMobile(){return window.matchMedia('(max-width:760px)').matches;}
 function gen(d){return d.genSci;}
 function active(d){return (FAM==='*'||d.famSci===FAM)&&(GEN==='*'||gen(d)===GEN);}
-function pcol(c){var d=c.raw;if(!active(d))return '#D3D1C7';return d.g==='research'?'#587A30':'#90B821';}
-function pbord(c){var d=c.raw;if(!active(d))return '#D3D1C7';return d.fl?'#E8380D':'#ffffff';}
-function pbw(c){return (c.raw.fl&&active(c.raw))?2.5:1;}
+function pcol(c){var d=c.raw;if(!active(d))return '#D3D1C7';if(d.fl)return '#C85200';return d.g==='research'?'#587A30':'#90B821';}
+function pbord(c){var d=c.raw;if(!active(d))return '#D3D1C7';return d.fl?'#C85200':'#ffffff';}
 function prad(c){var d=c.raw;if(!active(d))return 0;return d.fl?5.5:4;}
-function pstyle(c){return c.raw.fl?'rectRot':'circle';}
 function extTip(ctx){
   var tip=ctx.tooltip, mob=isMobile();
   var el=document.getElementById('ctt');
@@ -151,7 +148,7 @@ function extTip(ctx){
   el.innerHTML=img+'<div>'+'<div class="nm">'+(d.c||'—')+'</div><div class="sci">'+d.s+
     '</div><div class="fam">'+(d.famZh||'')+' '+d.famSci+'</div><div class="fam">'+(d.genZh||'')+' '+d.genSci+'</div>'+
     (bd?'<div class="fam">'+bd+'</div>':'')+
-    (d.fl?'<div class="fam" style="color:#E8380D">GPS ±'+Math.round(d.a)+'m</div>':'')+link+'</div>';
+    (d.fl?'<div class="fam" style="color:#C85200">GPS ±'+Math.round(d.a)+'m</div>':'')+link+'</div>';
   if(mob){
     el.className='ctt sheet';
     el.style.left='0';el.style.right='0';el.style.bottom='0';el.style.top='auto';el.style.width='';
@@ -188,8 +185,8 @@ function go(){
   chart=new Chart(document.getElementById('t'),{type:'line',
     data:{datasets:[{data:DATA,borderColor:'#666666',borderWidth:1.5,fill:'start',
       backgroundColor:'rgba(178,178,178,0.20)',tension:0.3,
-      pointBackgroundColor:pcol,pointBorderColor:pbord,pointBorderWidth:pbw,
-      pointRadius:prad,pointStyle:pstyle,pointHitRadius:function(c){return active(c.raw)?10:0;},
+      pointBackgroundColor:pcol,pointBorderColor:pbord,pointBorderWidth:1,
+      pointRadius:prad,pointHitRadius:function(c){return active(c.raw)?10:0;},
       pointHoverRadius:function(c){return active(c.raw)?prad(c)+2:0;}}]},
     options:{responsive:true,maintainAspectRatio:false,
       interaction:{mode:'nearest',intersect:true},

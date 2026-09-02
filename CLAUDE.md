@@ -85,7 +85,9 @@ term-12 annotations.
 ## Conventions
 - **Brand palette = 荒野保護協會 (SOW)**; tokens in `SOW/brand/` (`sow_palette.css/json`).
   research = 荒野綠 `#587A30`, needs-ID = 荒野綠2 `#90B821`, terrain/grid = 荒野灰 `#666666`/`#B2B2B2`,
-  GPS-flag = 紅 `#E8380D`. Minimalist, font Noto Sans TC.
+  GPS-flag = 橘 `#C85200`（Tableau color-blind 深橘，非 SOW 色票；剖面圖以**實心橘點**呈現，
+  半徑略大於一般點；該 6 點不再顯示 research/needs-ID 品質色）. 單元頁物候的 開花/AI 建議開花
+  仍用紅 `#E8380D`. Minimalist, font Noto Sans TC.
 - Deliverables are **self-contained HTML** (CDN for Chart.js/fonts; data inlined; photos from iNat CDN).
 - 中文科名 from iNat `locale=zh-TW`, with a manual fallback map in `build_profile.py`.
 - Dates/timestamps in **CST (UTC+8)**.
