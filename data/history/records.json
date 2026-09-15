@@ -25818,6 +25818,32 @@
     "lng": 121.6193
   },
   {
+    "unit_id": "ERG-056",
+    "taxon_id": 180178,
+    "obs_id": 400079419,
+    "observed_on": "2026-09-12",
+    "user": "lululiaw",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/734101281/small.jpg",
+    "dist_to_unit_m": 1231.8,
+    "lat": 24.9780916667,
+    "lng": 121.622475
+  },
+  {
+    "unit_id": "ERG-029",
+    "taxon_id": 364884,
+    "obs_id": 400088338,
+    "observed_on": "2026-09-12",
+    "user": "lululiaw",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/734119287/small.jpg",
+    "dist_to_unit_m": 1198.3,
+    "lat": 24.9773283333,
+    "lng": 121.6224216667
+  },
+  {
     "unit_id": "ERG-066",
     "taxon_id": 357816,
     "obs_id": 399801180,
@@ -25862,7 +25888,7 @@
     "obs_id": 399817218,
     "observed_on": "2026-09-13",
     "user": "candycandyflower",
-    "quality": "needs_id",
+    "quality": "research",
     "phenophase": "",
     "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/733588257/small.jpg",
     "dist_to_unit_m": 362.0,
