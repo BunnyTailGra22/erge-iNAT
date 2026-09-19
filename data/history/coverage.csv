@@ -1,6 +1,6 @@
 unit_id,scientific,common,n_total,n_prior,n_pheno,n_photo,n_years,n_observers,first,last,near_50m
-ERG-001,Elaeocarpus decipiens,杜英,14,10,0,14,5,9,2019-10-19,2026-05-07,11
-ERG-002,Ardisia cornudentata,雨傘仔,8,5,0,8,3,8,2024-04-27,2026-09-13,2
+ERG-001,Elaeocarpus decipiens,杜英,15,10,0,15,5,10,2019-10-19,2026-07-05,11
+ERG-002,Ardisia cornudentata,雨傘仔,9,5,0,9,3,9,2024-04-27,2026-09-19,2
 ERG-003,Antidesma japonicum,日本五月茶,4,2,0,4,3,2,2024-11-28,2026-05-07,4
 ERG-004,Trachelospermum asiaticum,細梗絡石,3,0,0,3,1,2,2026-04-25,2026-05-07,1
 ERG-005,Machilus thunbergii,紅楠,11,10,0,11,4,9,2022-03-11,2026-04-25,7
@@ -18,7 +18,7 @@ ERG-016,Psychotria asiatica,九節木,8,7,0,8,4,7,2019-10-19,2026-04-25,2
 ERG-017,Calamus formosanus,黃藤,6,3,1,6,3,5,2022-04-30,2026-05-07,1
 ERG-018,Meliosma squamulata,綠樟,45,42,7,45,9,24,2014-04-15,2026-08-30,4
 ERG-019,Ilex maximowicziana,倒卵葉冬青,6,5,0,6,4,4,2019-10-19,2026-04-25,3
-ERG-020,Ardisia quinquegona,小葉樹杞,12,9,0,12,5,5,2022-04-30,2026-07-22,5
+ERG-020,Ardisia quinquegona,小葉樹杞,13,9,0,13,5,6,2022-04-30,2026-09-19,5
 ERG-021,Rhododendron latoucheae,西施花,36,34,2,36,9,20,2014-04-15,2026-07-02,2
 ERG-022,Diospyros morrisiana,山紅柿,6,5,0,6,5,3,2019-10-19,2026-04-25,5
 ERG-023,Fissistigma oldhamii,瓜馥木,36,35,0,36,7,21,2019-04-27,2026-04-25,1
@@ -55,7 +55,7 @@ ERG-053,Lithocarpus brevicaudatus,短尾葉石櫟,7,6,0,7,4,3,2022-01-01,2026-04
 ERG-054,Dendropanax dentigerus,樹參,8,6,0,8,5,5,2014-08-23,2026-07-22,5
 ERG-055,Meliosma rigida,筆羅子,7,6,0,7,4,5,2022-01-01,2026-04-25,4
 ERG-056,Arenga engleri,山棕,7,3,0,7,2,5,2023-05-03,2026-09-13,2
-ERG-057,Castanopsis carlesii,長尾栲,19,17,0,19,8,13,2019-06-08,2026-08-30,6
+ERG-057,Castanopsis carlesii,長尾栲,20,17,0,20,8,14,2019-06-08,2026-09-19,6
 ERG-058,Quercus sessilifolia,毽子櫟,6,5,1,6,3,3,2022-01-01,2026-04-25,4
 ERG-059,Ligustrum liukiuense,琉球女貞,15,14,1,15,5,10,2022-05-07,2026-04-25,6
 ERG-060,Symplocos theophrastifolia,山豬肝,24,22,0,24,7,12,2020-03-14,2026-06-18,4
@@ -73,7 +73,7 @@ ERG-071,Sageretia randaiensis,巒大雀梅藤,21,20,0,21,8,13,2012-03-31,2026-04
 ERG-072,Meliosma rigida,筆羅子,10,9,0,10,5,7,2021-05-01,2026-04-25,4
 ERG-073,Syzygium elliptifolium,橢圓葉赤楠,27,24,1,27,9,12,2014-04-15,2026-05-23,4
 ERG-074,Elaeagnus thunbergii,鄧氏胡頹子,15,13,0,15,5,10,2022-11-22,2026-05-07,4
-ERG-075,Quercus salicina,白背櫟,42,36,5,42,7,22,2019-03-30,2026-08-29,11
+ERG-075,Quercus salicina,白背櫟,43,36,5,43,7,23,2019-03-30,2026-09-19,11
 ERG-076,Dendropanax dentigerus,樹參,11,10,1,11,4,6,2022-01-03,2026-04-25,4
 ERG-077,Machilus thunbergii,紅楠,45,44,0,45,9,26,2018-11-17,2026-04-25,11
 ERG-078,Berchemia formosana,臺灣黃鱔藤,13,10,1,13,8,7,2014-04-15,2026-07-26,8
@@ -87,7 +87,7 @@ ERG-085,Aidia cochinchinensis,茜草樹,23,21,4,23,8,13,2018-03-31,2026-06-13,1
 ERG-086,Ardisia quinquegona,小葉樹杞,13,12,3,13,7,7,2010-11-24,2026-04-25,9
 ERG-087,Polyspora axillaris,大頭茶,53,51,8,53,10,33,2010-11-24,2026-04-25,19
 ERG-088,Ehretia longiflora,長花厚殼樹,24,20,6,24,7,13,2020-03-20,2026-08-30,6
-ERG-089,Quercus sessilifolia,毽子櫟,53,48,5,53,9,29,2018-11-03,2026-09-13,15
+ERG-089,Quercus sessilifolia,毽子櫟,54,48,5,54,9,30,2018-11-03,2026-09-19,15
 ERG-090,Illicium arborescens,臺灣八角,41,40,4,41,8,17,2013-01-29,2026-04-25,19
 ERG-091,Vaccinium randaiense,巒大越橘,3,2,1,3,2,1,2019-06-08,2026-04-25,3
 ERG-092,Helicia formosana,山龍眼,31,29,6,31,7,16,2019-06-08,2026-06-18,16
