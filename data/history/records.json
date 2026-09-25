@@ -26661,5 +26661,31 @@
     "dist_to_unit_m": 387.3,
     "lat": 24.9656390778,
     "lng": 121.617652444
+  },
+  {
+    "unit_id": "ERG-047",
+    "taxon_id": 764696,
+    "obs_id": 402960959,
+    "observed_on": "2026-09-24",
+    "user": "bunnytailgrass",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/739803743/small.jpg",
+    "dist_to_unit_m": 190.8,
+    "lat": 24.9663309698,
+    "lng": 121.6249601171
+  },
+  {
+    "unit_id": "ERG-075",
+    "taxon_id": 448270,
+    "obs_id": 402961084,
+    "observed_on": "2026-09-24",
+    "user": "bunnytailgrass",
+    "quality": "research",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/739803976/small.jpg",
+    "dist_to_unit_m": 104.9,
+    "lat": 24.9674409916,
+    "lng": 121.6208788793
   }
 ]
