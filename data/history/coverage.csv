@@ -1,6 +1,6 @@
 unit_id,scientific,common,n_total,n_prior,n_pheno,n_photo,n_years,n_observers,first,last,near_50m
 ERG-001,Elaeocarpus decipiens,杜英,15,10,0,15,5,10,2019-10-19,2026-07-05,11
-ERG-002,Ardisia cornudentata,雨傘仔,10,5,0,10,3,10,2024-04-27,2026-09-20,2
+ERG-002,Ardisia cornudentata,雨傘仔,11,5,0,11,3,11,2024-04-27,2026-09-20,2
 ERG-003,Antidesma japonicum,日本五月茶,4,2,0,4,3,2,2024-11-28,2026-05-07,4
 ERG-004,Trachelospermum asiaticum,細梗絡石,3,0,0,3,1,2,2026-04-25,2026-05-07,1
 ERG-005,Machilus thunbergii,紅楠,11,10,0,11,4,9,2022-03-11,2026-04-25,7
@@ -31,7 +31,7 @@ ERG-029,Calamus formosanus,黃藤,19,15,1,19,7,14,2019-08-18,2026-09-12,1
 ERG-030,Wendlandia formosana,水金京,42,35,0,42,9,24,2018-12-08,2026-09-20,4
 ERG-031,Gardenia jasminoides,山黃梔,32,24,2,32,9,15,2018-11-03,2026-05-09,5
 ERG-032,Symplocos glauca,山羊耳,19,15,0,19,6,11,2020-02-22,2026-09-20,4
-ERG-033,Trachelospermum asiaticum,細梗絡石,29,27,3,29,8,16,2019-06-08,2026-05-07,8
+ERG-033,Trachelospermum asiaticum,細梗絡石,30,27,3,30,8,17,2019-06-08,2026-09-28,8
 ERG-034,Diospyros morrisiana,山紅柿,1,0,0,1,1,1,2026-04-25,2026-04-25,1
 ERG-035,Helicia cochinchinensis,紅葉樹,32,26,1,32,8,15,2010-11-24,2026-09-20,9
 ERG-036,Diospyros morrisiana,山紅柿,2,1,0,2,2,1,2021-12-18,2026-04-25,2
