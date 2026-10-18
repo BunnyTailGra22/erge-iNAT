@@ -26728,6 +26728,32 @@
     "lng": 121.6200360997
   },
   {
+    "unit_id": "ERG-074",
+    "taxon_id": 603652,
+    "obs_id": 409173979,
+    "observed_on": "2026-10-09",
+    "user": "kuman",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/752260886/small.jpg",
+    "dist_to_unit_m": 270.9,
+    "lat": 24.9651841196,
+    "lng": 121.6234526349
+  },
+  {
+    "unit_id": "ERG-087",
+    "taxon_id": 627207,
+    "obs_id": 409173999,
+    "observed_on": "2026-10-09",
+    "user": "kuman",
+    "quality": "needs_id",
+    "phenophase": "",
+    "photo": "https://inaturalist-open-data.s3.amazonaws.com/photos/752261005/small.jpg",
+    "dist_to_unit_m": 373.7,
+    "lat": 24.9651841196,
+    "lng": 121.6234526349
+  },
+  {
     "unit_id": "ERG-050",
     "taxon_id": 191183,
     "obs_id": 406942351,
