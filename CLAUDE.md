@@ -93,14 +93,20 @@ resolved.
   (`~/.claude/skills/update-erge-papilionoidea/hosts_book.json`) — soft-reused for *local* runs,
   exactly like `taicol.py` reuses the `update-erge-phenology` cache, and absent in CI. Both no-op
   cleanly when missing. Book and GloBI are real datasets, not encounter-frequency guesses.
-- **Book 中文 names for new species** keep the priority 書 > TaiCoL > iNat (the c72eb2f decision)
-  via the same two-place lookup: `data/butterfly/names_book.json` (repo, CI-visible) then the skill
-  cache, shape `{butterfly_sci: {zh, zhlist, genzh}}`. A hit sets `zhsrc:"臺灣蝶類誌"` and keeps the
-  iNat 俗名 as the searchable `alias`; a miss falls back to the iNat common name
-  (`zhsrc:"iNaturalist"`). Without this the retired skill's book naming would have been lost at
-  handover. **Extend both `hosts_book.json` and `names_book.json` from 《臺灣蝶類誌》** for species
-  beyond the current roster — that is what makes the book, not GloBI/iNat, authoritative for the
-  next new arrival.
+- **中文 names for new species — priority 書 > TaiCoL > iNat**, three real tiers (the c72eb2f
+  俗名 / 7a06fc0 屬中文名 decisions), applied to both `zh` (俗名) and `genzh` (屬中文名):
+  1. **書** — `data/butterfly/names_book.json` (repo, CI-visible) then the skill cache, shape
+     `{butterfly_sci: {zh, zhlist, genzh}}` → `zhsrc:"臺灣蝶類誌"`, `zhlist` carries the book's
+     full name list.
+  2. **TaiCoL** — on a book miss, `taicol.resolve(sci, …)` is queried for the *butterfly itself*
+     (TaiCoL covers Taiwan fauna, not just the host plants) → `zhsrc:"TaiCoL"`.
+  3. **iNat** — last resort, the `locale=zh-TW` common name → `zhsrc:"iNaturalist"`.
+
+  The iNat 俗名 is always kept as the searchable `alias` whenever it differs from the chosen name,
+  so searching by the iNat name still finds the species. Without this the retired skill's book
+  naming would have been lost at handover. **Extend both `hosts_book.json` and `names_book.json`
+  from 《臺灣蝶類誌》** for species beyond the current roster — that is what makes the book, not
+  TaiCoL/GloBI/iNat, authoritative for the next new arrival.
 
 | Script | Does |
 |---|---|
