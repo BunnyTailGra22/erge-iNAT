@@ -66,6 +66,10 @@ HTML = """<!DOCTYPE html>
 body{margin:0;background:#fff;color:var(--ink);font-family:"Noto Sans TC",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1000px;margin:0 auto;padding:46px 28px 36px}
 h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spacing:.5px}
+.sisternav{font-size:12.5px;margin:0 0 9px;color:var(--gray)}
+.sisternav .dot{color:var(--gray2)}
+.sisternav a{color:var(--green);text-decoration:none}
+.sisternav a:hover{text-decoration:underline}
 .sub{font-size:14px;color:var(--gray);margin:0 0 22px}
 .cards{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:0 0 22px}
 .card{background:#f5f4ef;border-radius:10px;padding:11px 12px}
@@ -109,6 +113,7 @@ h1{font-weight:700;font-size:25px;color:var(--green);margin:0 0 6px;letter-spaci
 </head>
 <body>
 <div class="wrap">
+  <div class="sisternav"><span>🌿 植被海拔剖面圖（本頁）</span> <span class="dot">·</span> <a href="papilionoidea.html">🦋 蝶類 × 寄主植物 →</a></div>
   <h1>二格山稜線 · 植被海拔剖面圖</h1>
   <p class="sub">__SUB__　|　歷史資料庫 archive：<b>__AOBS__</b> 筆觀察 · <b>__AOBR__</b> 位觀察者 · __AY0__–__AY1__（每日同步 daily）</p>
 
