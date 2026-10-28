@@ -217,16 +217,28 @@ def main():
             b["count"] = info["count"]
         else:
             fam_zh, gen, genzh = enrich_new(info["taxon_id"])
-            # 中文 naming priority 書 > iNat: the book's 俗名 wins when the name cache
-            # has this species; the iNat common name stays as a searchable alias.
+            # 中文命名優先序 書 > TaiCoL > iNat (c72eb2f 俗名 / 7a06fc0 屬中文名).
+            # TaiCoL covers Taiwan fauna too, so the butterfly itself is resolved there
+            # when the book cache has no entry; the iNat 俗名 is the last resort and is
+            # always kept as the searchable `alias` when it differs from the chosen name.
             nm = book_names(sci)
             inat_zh = info["common"] or ""
-            zh = nm.get("zh") or inat_zh or sci
+            if nm.get("zh"):
+                zh, zhsrc = nm["zh"], "臺灣蝶類誌"
+            else:
+                tx = taicol.resolve(sci, inat_zh or None, seed)
+                tw_zh = tx.get("accepted_zh") if tx.get("src") != "unresolved" else None
+                tw_genzh = tx.get("gen_zh") if tx.get("src") != "unresolved" else None
+                if tw_zh:
+                    zh, zhsrc = tw_zh, "TaiCoL"
+                else:
+                    zh, zhsrc = inat_zh or sci, "iNaturalist"
+                genzh = tw_genzh or genzh          # TaiCoL 屬中文名優先於 iNat
             entry = {
                 "id": f"b{next_id}", "zh": zh,
-                "alias": inat_zh if (nm.get("zh") and inat_zh and inat_zh != zh) else "",
+                "alias": inat_zh if (inat_zh and inat_zh != zh) else "",
                 "zhlist": nm.get("zhlist", ""),
-                "zhsrc": "臺灣蝶類誌" if nm.get("zh") else "iNaturalist", "sci": sci,
+                "zhsrc": zhsrc, "sci": sci,
                 "gen": gen, "genzh": nm.get("genzh") or genzh, "fam": fam_zh,
                 "famo": FAMORDER.index(fam_zh) if fam_zh in FAMORDER else len(FAMORDER),
                 "count": info["count"], "nfam": 0, "sp": [],
