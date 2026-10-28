@@ -33,6 +33,14 @@ BOOK_HOSTS = [
     os.path.join(HERE, "data", "butterfly", "hosts_book.json"),
     os.path.expanduser("~/.claude/skills/update-erge-papilionoidea/hosts_book.json"),
 ]
+# Book-curated 《臺灣蝶類誌》 NAME cache, same two-place lookup as BOOK_HOSTS.
+# Shape {"<butterfly binomial>": {"zh": "青鳳蝶", "zhlist": "青鳳蝶/青帶鳳蝶", "genzh": "青鳳蝶屬"}}.
+# Keeps the 中文 naming priority 書 > TaiCoL > iNat for newly-seen species; without it a
+# new species falls back to the iNat common name (zhsrc "iNaturalist").
+BOOK_NAMES = [
+    os.path.join(HERE, "data", "butterfly", "names_book.json"),
+    os.path.expanduser("~/.claude/skills/update-erge-papilionoidea/names_book.json"),
+]
 PLACE = "130869"
 TAXON = "47224"          # Papilionoidea superfamily (see papilionoidea.html footer)
 FAMORDER = ["鳳蝶科", "粉蝶科", "弄蝶科", "蛺蝶科", "灰蝶科", "蜆蝶科"]
@@ -51,6 +59,21 @@ def book_hosts(sci):
         if hits:
             return hits
     return []
+
+
+def book_names(sci):
+    """《臺灣蝶類誌》 names for a butterfly — repo copy first (visible to CI), then the
+    skill cache (local only); {} if neither has it. Keeps the 中文 naming priority
+    書 > TaiCoL > iNat for new species now that CI, not the local skill, maintains
+    the page. Keys: zh (main 俗名), zhlist (書中全名列表), genzh (中文屬名)."""
+    for path in BOOK_NAMES:
+        try:
+            hit = json.load(open(path)).get(sci) or {}
+        except Exception:
+            continue
+        if hit:
+            return hit
+    return {}
 
 
 def get(url):
@@ -194,10 +217,17 @@ def main():
             b["count"] = info["count"]
         else:
             fam_zh, gen, genzh = enrich_new(info["taxon_id"])
+            # 中文 naming priority 書 > iNat: the book's 俗名 wins when the name cache
+            # has this species; the iNat common name stays as a searchable alias.
+            nm = book_names(sci)
+            inat_zh = info["common"] or ""
+            zh = nm.get("zh") or inat_zh or sci
             entry = {
-                "id": f"b{next_id}", "zh": info["common"] or sci, "alias": "",
-                "zhlist": "", "zhsrc": "iNaturalist", "sci": sci,
-                "gen": gen, "genzh": genzh, "fam": fam_zh,
+                "id": f"b{next_id}", "zh": zh,
+                "alias": inat_zh if (nm.get("zh") and inat_zh and inat_zh != zh) else "",
+                "zhlist": nm.get("zhlist", ""),
+                "zhsrc": "臺灣蝶類誌" if nm.get("zh") else "iNaturalist", "sci": sci,
+                "gen": gen, "genzh": nm.get("genzh") or genzh, "fam": fam_zh,
                 "famo": FAMORDER.index(fam_zh) if fam_zh in FAMORDER else len(FAMORDER),
                 "count": info["count"], "nfam": 0, "sp": [],
                 "endemic": [], "conserv": [], "host_pending": True, "hostsrc": "",

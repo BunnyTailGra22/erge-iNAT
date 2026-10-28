@@ -72,6 +72,13 @@ Self-contained 鳳蝶總科 × 寄主植物 network page (iNat `place_id=130869`
 Papilionoidea, **all observers** × 《臺灣蝶類誌》 host plants × TaiCoL taxonomy). Fully
 automatic — **no manual step**; a newly-seen butterfly arrives with its host plants already
 resolved.
+- **CI is the sole maintainer of this page.** The monthly workflow owns `papilionoidea.html`.
+  The sibling **`update-erge-papilionoidea` skill is retired — do NOT run it by hand** any more:
+  it rewrites the same file from a local copy of the data, so running both would make the two
+  fight over the page and clobber each other's commits. The skill's caches stay useful only as
+  the *local* fallback half of the book lookups below; the repo copies are what CI reads.
+  Before this handover the page was refreshed weekly by that skill ("weekly butterfly page
+  refresh" commits up to 2026-10-25); from the handover on it is refreshed monthly by CI.
 - **Source of truth = `data/butterfly/registry.json`** — the entire inlined `DATA` object
   (butterflies + fam_nodes/edges_bf_fam/gg_edges/bgenus/pgenus + meta). Only each butterfly's
   `count` and the *set* of present species come from iNat.
@@ -86,6 +93,14 @@ resolved.
   (`~/.claude/skills/update-erge-papilionoidea/hosts_book.json`) — soft-reused for *local* runs,
   exactly like `taicol.py` reuses the `update-erge-phenology` cache, and absent in CI. Both no-op
   cleanly when missing. Book and GloBI are real datasets, not encounter-frequency guesses.
+- **Book 中文 names for new species** keep the priority 書 > TaiCoL > iNat (the c72eb2f decision)
+  via the same two-place lookup: `data/butterfly/names_book.json` (repo, CI-visible) then the skill
+  cache, shape `{butterfly_sci: {zh, zhlist, genzh}}`. A hit sets `zhsrc:"臺灣蝶類誌"` and keeps the
+  iNat 俗名 as the searchable `alias`; a miss falls back to the iNat common name
+  (`zhsrc:"iNaturalist"`). Without this the retired skill's book naming would have been lost at
+  handover. **Extend both `hosts_book.json` and `names_book.json` from 《臺灣蝶類誌》** for species
+  beyond the current roster — that is what makes the book, not GloBI/iNat, authoritative for the
+  next new arrival.
 
 | Script | Does |
 |---|---|
