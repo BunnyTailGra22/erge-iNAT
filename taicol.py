@@ -9,6 +9,7 @@ Writes data/registry/taxa_taicol.json keyed by our (iNat) scientific name."""
 import json, os, subprocess, urllib.parse, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+UNITS = json.load(open(os.path.join(HERE, "data", "registry", "units.json")))
 SKILL_CACHE = os.path.expanduser("~/.claude/skills/update-erge-phenology/taicol_cache.json")
 OUT = os.path.join(HERE, "data", "registry", "taxa_taicol.json")
 
@@ -71,35 +72,39 @@ def query_taicol(sci, common):
     return e
 
 
-# Entries already resolved by a previous run are themselves a cache. Without this the
-# daily job would re-query every species, and a TaiCoL outage would overwrite good
+# already-resolved entries from a previous run are themselves a cache. Without this
+# the daily job would re-query every species, and a TaiCoL outage would overwrite good
 # rows with nulls; with it, only genuinely new species hit the API.
-def load_prev():
-    return json.load(open(OUT)) if os.path.exists(OUT) else {}
+PREV = json.load(open(OUT)) if os.path.exists(OUT) else {}
 
 
 def resolved(e):
     return bool(e) and e.get("src") != "unresolved" and bool(e.get("fam_sci") or e.get("accepted_sci"))
 
 
-def load_seed():
-    """Index the sibling skill's TaiCoL cache by accepted sci-name and by zh-name."""
-    if not os.path.exists(SKILL_CACHE):
-        return {}
+# seed indexes from the sibling skill's cache (keyed by zh; values carry accepted_sci)
+seed = {}
+if os.path.exists(SKILL_CACHE):
     tc = json.load(open(SKILL_CACHE)).get("taicol", {})
     by_sci, by_zh = {}, {}
     for zh, v in tc.items():
         if v.get("accepted_sci"):
             by_sci[v["accepted_sci"].lower()] = v
         by_zh[zh] = v
-    return {"sci": by_sci, "zh": by_zh}
+    seed = {"sci": by_sci, "zh": by_zh}
 
+species = {}
+for u in UNITS:
+    species.setdefault(u["scientific"], u["common"])
 
-def resolve(sci, common, seed=None):
-    """Return a TaiCoL enrichment dict for one taxon: cache first, then live query,
-    then an 'unresolved' stub. Shared by the batch below and by fetch_butterfly.py."""
-    seed = seed if seed is not None else {}
-    v = (seed.get("sci", {}).get((sci or "").lower()) or seed.get("zh", {}).get(common))
+out, reused, queried, unresolved = {}, 0, 0, []
+for sci, common in species.items():
+    if resolved(PREV.get(sci)):
+        e = dict(PREV[sci], threat=conserv(PREV[sci].get("iucn"), PREV[sci].get("redlist")))
+        out[sci] = e
+        reused += 1
+        continue
+    v = (seed.get("sci", {}).get(sci.lower()) or seed.get("zh", {}).get(common))
     if v:
         e = {"accepted_sci": v.get("accepted_sci"), "accepted_zh": v.get("accepted_zh"),
              "fam_zh": v.get("fam_zh"), "fam_sci": v.get("fam_sci"),
@@ -107,61 +112,34 @@ def resolve(sci, common, seed=None):
              "is_endemic": bool(v.get("is_endemic")), "iucn": v.get("iucn"),
              "redlist": v.get("redlist"), "protected": v.get("protected"),
              "taxon_id": v.get("taxon_id"), "src": "cache"}
+        reused += 1
     else:
         e = query_taicol(sci, common)
-        if not e:
+        if e:
+            queried += 1
+        elif PREV.get(sci):                       # query failed: keep what we already had
+            out[sci] = dict(PREV[sci])
+            reused += 1
+            continue
+        else:
+            unresolved.append(sci)
             e = {"accepted_sci": sci, "accepted_zh": common, "fam_zh": None, "fam_sci": None,
-                 "gen_zh": None, "gen_sci": (sci or "").split(" ")[0], "is_endemic": False,
+                 "gen_zh": None, "gen_sci": sci.split(" ")[0], "is_endemic": False,
                  "iucn": None, "redlist": None, "protected": None, "taxon_id": None, "src": "unresolved"}
     e["threat"] = conserv(e.get("iucn"), e.get("redlist"))
-    return e
+    out[sci] = e
 
+json.dump(out, open(OUT, "w"), ensure_ascii=False, indent=2)
 
-def _main():
-    units = json.load(open(os.path.join(HERE, "data", "registry", "units.json")))
-    seed = load_seed()
-    prev = load_prev()
-    species = {}
-    for u in units:
-        species.setdefault(u["scientific"], u["common"])
-
-    def from_prev(sci):
-        return dict(prev[sci], threat=conserv(prev[sci].get("iucn"), prev[sci].get("redlist")))
-
-    out, reused, queried, unresolved = {}, 0, 0, []
-    for sci, common in species.items():
-        if resolved(prev.get(sci)):          # previous good row — don't hit the API again
-            out[sci] = from_prev(sci)
-            reused += 1
-            continue
-        e = resolve(sci, common, seed)
-        if e["src"] == "unresolved" and prev.get(sci):   # query failed: keep what we had
-            out[sci] = from_prev(sci)
-            reused += 1
-            continue
-        out[sci] = e
-        if e["src"] == "cache":
-            reused += 1
-        elif e["src"] == "unresolved":
-            unresolved.append(sci)
-        else:
-            queried += 1
-
-    json.dump(out, open(OUT, "w"), ensure_ascii=False, indent=2)
-
-    end = sum(1 for e in out.values() if e["is_endemic"])
-    threat = {k: v["threat"] for k, v in out.items() if v["threat"]}
-    mismatch = {k: v["accepted_sci"] for k, v in out.items() if v["accepted_sci"] and v["accepted_sci"] != k}
-    print(f"species: {len(out)}  | reused from cache: {reused}  queried TaiCoL: {queried}  unresolved: {len(unresolved)}")
-    print(f"endemic (特有): {end}")
-    print(f"threatened (IUCN/紅皮書): {len(threat)} -> {threat}")
-    print(f"name mismatches iNat→TaiCoL ({len(mismatch)}):")
-    for k, v in mismatch.items():
-        print(f"   {k}  ->  {v}")
-    if unresolved:
-        print("UNRESOLVED:", unresolved)
-    print("missing genus-zh:", [k for k, v in out.items() if not v["gen_zh"]])
-
-
-if __name__ == "__main__":
-    _main()
+end = sum(1 for e in out.values() if e["is_endemic"])
+threat = {k: v["threat"] for k, v in out.items() if v["threat"]}
+mismatch = {k: v["accepted_sci"] for k, v in out.items() if v["accepted_sci"] and v["accepted_sci"] != k}
+print(f"species: {len(out)}  | reused from cache: {reused}  queried TaiCoL: {queried}  unresolved: {len(unresolved)}")
+print(f"endemic (特有): {end}")
+print(f"threatened (IUCN/紅皮書): {len(threat)} -> {threat}")
+print(f"name mismatches iNat→TaiCoL ({len(mismatch)}):")
+for k, v in mismatch.items():
+    print(f"   {k}  ->  {v}")
+if unresolved:
+    print("UNRESOLVED:", unresolved)
+print("missing genus-zh:", [k for k, v in out.items() if not v["gen_zh"]])
