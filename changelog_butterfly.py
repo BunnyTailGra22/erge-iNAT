@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-line changelog for the weekly butterfly sync commit message: compares the
+"""One-line changelog for the monthly butterfly sync commit message: compares the
 committed (HEAD) registry against the freshly-built working copy — new species,
 observation-count changes, and totals. Mirrors changelog.py."""
 import json, subprocess, os

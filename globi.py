@@ -3,7 +3,7 @@
 https://api.globalbioticinteractions.org) — the machine-readable aggregator that
 includes the NHM "HOSTS – a Database of the World's Lepidopteran Hostplants".
 
-iNaturalist has no host-plant data, so this is what lets the weekly sync fill a
+iNaturalist has no host-plant data, so this is what lets the monthly sync fill a
 newly-seen butterfly's hosts automatically instead of by hand. Returns species-
 level plant names only; Taiwan-localisation + 中文 names come later via TaiCoL.
 

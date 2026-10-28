@@ -1,21 +1,21 @@
-name: Weekly butterfly sync
+name: Monthly butterfly sync
 
 on:
   schedule:
-    - cron: '30 22 * * 0'   # 22:30 UTC Sun = 06:30 CST Mon (Asia/Taipei), weekly
+    - cron: '30 22 1 * *'   # 22:30 UTC on the 1st = 06:30 CST on the 2nd (Asia/Taipei), monthly
   workflow_dispatch:          # allow manual runs
 
 permissions:
   contents: write             # needed to push regenerated files back to main
 
 concurrency:
-  group: weekly-butterfly
+  group: monthly-butterfly
   cancel-in-progress: false
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -23,10 +23,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      # Refresh per-species iNat observation counts for Papilionoidea at the site
-      # (all observers) and append any newly-seen species (host plants left 待補).
-      # Host-plant network is book-derived and untouched. Pure stdlib, no deps.
-      - name: Sync butterfly counts from iNaturalist
+      # Refresh the butterfly source data once a month: per-species iNat observation
+      # counts for Papilionoidea at the site (all observers), plus any newly-seen
+      # species with their larval host plants resolved (book cache > GloBI, each host
+      # enriched via TaiCoL). Curated book hosts are only extended, never overwritten.
+      - name: Sync butterfly source data (iNat + hosts)
         run: python3 fetch_butterfly.py
 
       - name: Re-inline registry into papilionoidea.html
@@ -40,10 +41,10 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           if git diff --cached --quiet; then
-            echo "No butterfly changes this week — nothing to deploy."
+            echo "No butterfly changes this month — nothing to deploy."
           else
             CL=$(python3 changelog_butterfly.py)
-            git commit -m "Weekly butterfly sync $(date -u +%Y-%m-%d)" -m "$CL"
+            git commit -m "Monthly butterfly sync $(date -u +%Y-%m-%d)" -m "$CL"
             git push
             echo "Deployed: $CL"
           fi

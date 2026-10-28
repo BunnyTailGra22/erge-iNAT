@@ -198,6 +198,17 @@
     "Pithecellobium dulce",
     "Calliandra emarginata"
   ],
+  "Eurema hecabe": [
+    "Albizia julibrissin",
+    "Cassia fistula",
+    "Senna surattensis",
+    "Senna siamea",
+    "Senna alata",
+    "Pithecellobium dulce",
+    "Dioscorea benthamii",
+    "Aeschynomene indica",
+    "Breynia officinalis"
+  ],
   "Graphium cloanthus": [
     "Camphora officinarum",
     "Machilus japonica",
@@ -466,6 +477,13 @@
     "Zanthoxylum armatum",
     "Zanthoxylum scandens"
   ],
+  "Papilio thaiwanus": [
+    "Toddalia asiatica",
+    "Zanthoxylum nitidum",
+    "Zanthoxylum ailanthoides",
+    "Camphora officinarum",
+    "Camphora micrantha"
+  ],
   "Parantica aglea": [
     "Heterostemma brownii"
   ],
@@ -477,6 +495,11 @@
   "Parantica swinhoei": [
     "Marsdenia tinctoria",
     "Vincetoxicum hirsutum"
+  ],
+  "Parnara guttata": [
+    "Ischaemum ciliare",
+    "Cynodon dactylon",
+    "Paspalidium flavidum"
   ],
   "Penthema formosanum": [
     "Bambusa oldhamii",

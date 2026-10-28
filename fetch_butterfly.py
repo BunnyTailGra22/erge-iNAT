@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Weekly butterfly sync — fully automatic, no manual step.
+"""Monthly butterfly sync — fully automatic, no manual step.
 
 1. Pull per-species observation counts of Papilionoidea (taxon 47224) recorded at
    二格山 (place_id 130869, all observers) and update each curated butterfly's
@@ -12,7 +12,7 @@
 
 The curated 97-species 《臺灣蝶類誌》 network is never modified — new species only
 *extend* it. Anything GloBI/TaiCoL can't resolve leaves the species `host_pending`
-(empty hosts) to retry next week; nothing is ever fabricated. Curated species are
+(empty hosts) to retry next month; nothing is ever fabricated. Curated species are
 never deleted, and a species missing from a run keeps its count (partial fetch is
 non-destructive). Run `build_butterfly.py` afterwards to re-inline the registry.
 
@@ -25,7 +25,7 @@ REG = os.path.join(HERE, "data", "butterfly", "registry.json")
 # Book-curated 《臺灣蝶類誌》 host cache, shape {"<butterfly binomial>": ["<host binomial>", ...]}.
 # Preferred over GloBI when present. Checked in two places, in order:
 #   1. REPO copy data/butterfly/hosts_book.json — the ONLY one CI can see, so commit the
-#      book data here if you want it authoritative in the automated weekly sync.
+#      book data here if you want it authoritative in the automated monthly sync.
 #   2. the sibling `update-erge-papilionoidea` skill cache — soft-reused for LOCAL runs
 #      (like taicol.py reuses the update-erge-phenology cache); absent in CI.
 # Both no-op cleanly when missing → falls back to GloBI ∩ TaiCoL.
