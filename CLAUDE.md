@@ -61,24 +61,24 @@ Run the scripts in order from the project root; each writes into `data/<survey-d
 - **Daily changelog**: the daily sync workflow runs `changelog.py` (HEAD vs new `records.json`:
   新增/移除/重新鑑定/品質變更/新物候註記) and puts the summary in each commit message.
 - **Two sync cadences (two topics)**: the ridgeline **plant** phenology syncs **daily**
-  (`.github/workflows/daily-sync.yml`, 06:00 CST); the **butterfly** source data syncs **monthly**
-  (`.github/workflows/monthly-butterfly-sync.yml`, 1st 22:30 UTC = 2nd 06:30 CST). They are
+  (`.github/workflows/daily-sync.yml`, 06:00 CST); the **butterfly** source data syncs **weekly**
+  (`.github/workflows/weekly-butterfly-sync.yml`, Sun 22:30 UTC = Mon 06:30 CST). They are
   independent — plants are presence + phenophase of a fixed 93-unit registry; butterflies are
-  per-species iNat counts over a book-curated host-plant network (below). The butterfly source
-  data moves slowly (host plants, taxonomy), so monthly is deliberate — not a weaker daily.
+  per-species iNat counts over a book-curated host-plant network (below).
 
-## Butterfly page (papilionoidea.html) — monthly sync
+## Butterfly page (papilionoidea.html) — weekly sync
 Self-contained 鳳蝶總科 × 寄主植物 network page (iNat `place_id=130869`, `taxon 47224`
 Papilionoidea, **all observers** × 《臺灣蝶類誌》 host plants × TaiCoL taxonomy). Fully
 automatic — **no manual step**; a newly-seen butterfly arrives with its host plants already
 resolved.
-- **CI is the sole maintainer of this page.** The monthly workflow owns `papilionoidea.html`.
+- **CI is the sole maintainer of this page.** The weekly workflow owns `papilionoidea.html`.
   The sibling **`update-erge-papilionoidea` skill is retired — do NOT run it by hand** any more:
   it rewrites the same file from a local copy of the data, so running both would make the two
   fight over the page and clobber each other's commits. The skill's caches stay useful only as
   the *local* fallback half of the book lookups below; the repo copies are what CI reads.
   Before this handover the page was refreshed weekly by that skill ("weekly butterfly page
-  refresh" commits up to 2026-10-25); from the handover on it is refreshed monthly by CI.
+  refresh" commits up to 2026-10-25); from the handover on CI refreshes it weekly on the same
+  rhythm, so the page keeps its old cadence with no human in the loop.
 - **Source of truth = `data/butterfly/registry.json`** — the entire inlined `DATA` object
   (butterflies + fam_nodes/edges_bf_fam/gg_edges/bgenus/pgenus + meta). Only each butterfly's
   `count` and the *set* of present species come from iNat.
@@ -88,7 +88,7 @@ resolved.
   **`臺灣蝶類誌`** if the book host cache (shape `{butterfly_sci: [host_sci,…]}`) has the species —
   the book is the gold standard; else **`GloBI`** (∩ TaiCoL). The book cache is looked up in two
   places, in order: (1) repo copy **`data/butterfly/hosts_book.json`** — the only one CI can see,
-  so commit the book data here to make it authoritative in the automated monthly sync; (2) the
+  so commit the book data here to make it authoritative in the automated weekly sync; (2) the
   sibling **`update-erge-papilionoidea` skill** cache
   (`~/.claude/skills/update-erge-papilionoidea/hosts_book.json`) — soft-reused for *local* runs,
   exactly like `taicol.py` reuses the `update-erge-phenology` cache, and absent in CI. Both no-op
@@ -108,14 +108,14 @@ resolved.
 | `globi.py` | `host_species(sci)` → larval host-plant binomials from GloBI (NHM HOSTS lepidoptera dataset). Degrades to `[]` on any error — never invents hosts. |
 | `taicol.py` | `resolve(sci, common)` (also the `taicol.py` batch) → Taiwan-accepted name + 中文 科/屬 + 特有/保育 for a taxon. Reused to enrich each GloBI host. |
 | `build_butterfly.py` | Recompute `meta`, re-inline `registry.json` as the single `const DATA=…;` line in `papilionoidea.html`. Compact JSON → **byte-identical** round-trip when data is unchanged (no spurious diff). |
-| `changelog_butterfly.py` | HEAD vs new registry: 新增蝶種 / 觀察數異動 / totals → monthly commit message. |
+| `changelog_butterfly.py` | HEAD vs new registry: 新增蝶種 / 觀察數異動 / totals → weekly commit message. |
 
 - **Auto host resolution (new species)**: `globi.host_species(sci)` → for each host, `taicol.resolve`
   gives the Taiwan-accepted name + 中文 科/屬 + 特有/保育. Only TaiCoL-resolved hosts are kept — this
   both **Taiwan-localises** GloBI's global host list and **drops noise** (unresolved hosts are never
   written). The species' `sp` list + the derived structures (`edges_bf_fam`/`fam_nodes`/`pgenus`/
   `gg_edges`/`bgenus`) are extended from that. If GloBI/TaiCoL resolve nothing, the species stays
-  `host_pending:true` with empty `sp` and is **retried automatically next month** — still no manual step.
+  `host_pending:true` with empty `sp` and is **retried automatically next week** — still no manual step.
   Resolution triggers on an **empty `sp`**, not the flag, so curated species that predate the flag
   (6 at present, e.g. 黃星弄蝶／虎灰蝶) are retried too rather than skipped forever.
 - **Reproduce**: `python3 fetch_butterfly.py && python3 build_butterfly.py` (fetch needs network to
