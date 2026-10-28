@@ -759,6 +759,49 @@
       ]
     },
     {
+      "id": "b101",
+      "zh": "淡色黃蝶",
+      "alias": "",
+      "zhlist": "",
+      "zhsrc": "TaiCoL",
+      "sci": "Eurema andersoni",
+      "gen": "Eurema",
+      "genzh": "黃蝶屬",
+      "fam": "粉蝶科",
+      "famo": 1,
+      "count": 1,
+      "nfam": 3,
+      "sp": [
+        {
+          "zh": "止宮樹",
+          "sci": "Allophylus timoriensis",
+          "fam": "無患子科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "黃槐",
+          "sci": "Senna surattensis",
+          "fam": "豆科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "翼核木",
+          "sci": "Ventilago elegans",
+          "fam": "鼠李科",
+          "end": true,
+          "cons": null
+        }
+      ],
+      "endemic": [
+        "翼核木"
+      ],
+      "conserv": [],
+      "host_pending": false,
+      "hostsrc": "GloBI"
+    },
+    {
       "id": "b30",
       "zh": "亮色黃蝶",
       "alias": "檗黄粉蝶",
@@ -1216,9 +1259,21 @@
       "famo": 2,
       "count": 1,
       "nfam": 1,
-      "sp": [],
-      "endemic": [],
-      "conserv": []
+      "sp": [
+        {
+          "zh": "臺灣澤蘭",
+          "sci": "Eupatorium formosanum",
+          "fam": "菊科",
+          "end": true,
+          "cons": null
+        }
+      ],
+      "endemic": [
+        "臺灣澤蘭"
+      ],
+      "conserv": [],
+      "hostsrc": "GloBI",
+      "host_pending": false
     },
     {
       "id": "b87",
@@ -2913,10 +2968,92 @@
       "fam": "蛺蝶科",
       "famo": 3,
       "count": 12,
-      "nfam": 1,
-      "sp": [],
+      "nfam": 3,
+      "sp": [
+        {
+          "zh": "華澤蘭",
+          "sci": "Eupatorium chinense",
+          "fam": "菊科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "田代氏澤蘭",
+          "sci": "Eupatorium clematideum",
+          "fam": "菊科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "光冠水菊",
+          "sci": "Gymnocoronis spilanthoides",
+          "fam": "菊科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "毬蘭",
+          "sci": "Hoya carnosa",
+          "fam": "夾竹桃科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "馬櫻丹",
+          "sci": "Lantana camara",
+          "fam": "馬鞭草科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "絨毛芙蓉蘭",
+          "sci": "Marsdenia tinctoria",
+          "fam": "夾竹桃科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "爬森藤",
+          "sci": "Parsonsia alboflavescens",
+          "fam": "夾竹桃科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "牛皮消",
+          "sci": "Vincetoxicum atratum",
+          "fam": "夾竹桃科",
+          "end": false,
+          "cons": "NEN"
+        },
+        {
+          "zh": "鷗蔓",
+          "sci": "Vincetoxicum hirsutum",
+          "fam": "夾竹桃科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "",
+          "sci": "Vincetoxicum sieboldii",
+          "fam": "夾竹桃科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "",
+          "sci": "Vincetoxicum tanakae",
+          "fam": "夾竹桃科",
+          "end": false,
+          "cons": null
+        }
+      ],
       "endemic": [],
-      "conserv": []
+      "conserv": [
+        "牛皮消"
+      ],
+      "hostsrc": "GloBI",
+      "host_pending": false
     },
     {
       "id": "b40",
@@ -4261,10 +4398,12 @@
       "fam": "蛺蝶科",
       "famo": 3,
       "count": 3,
-      "nfam": 1,
+      "nfam": 0,
       "sp": [],
       "endemic": [],
-      "conserv": []
+      "conserv": [],
+      "hostsrc": "",
+      "host_pending": true
     },
     {
       "id": "b76",
@@ -4603,10 +4742,48 @@
       "fam": "灰蝶科",
       "famo": 4,
       "count": 2,
-      "nfam": 0,
-      "sp": [],
+      "nfam": 5,
+      "sp": [
+        {
+          "zh": "利比亞咖啡",
+          "sci": "Coffea liberica",
+          "fam": "茜草科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "細葉饅頭果",
+          "sci": "Glochidion rubrum",
+          "fam": "葉下珠科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "猿尾藤",
+          "sci": "Hiptage benghalensis",
+          "fam": "黃褥花科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "番石榴",
+          "sci": "Psidium guajava",
+          "fam": "桃金孃科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "",
+          "sci": "Terminalia paniculata",
+          "fam": "使君子科",
+          "end": false,
+          "cons": null
+        }
+      ],
       "endemic": [],
-      "conserv": []
+      "conserv": [],
+      "hostsrc": "GloBI",
+      "host_pending": false
     },
     {
       "id": "b11",
@@ -4620,10 +4797,27 @@
       "fam": "灰蝶科",
       "famo": 4,
       "count": 12,
-      "nfam": 0,
-      "sp": [],
+      "nfam": 2,
+      "sp": [
+        {
+          "zh": "",
+          "sci": "Gmelina arborea",
+          "fam": "馬鞭草科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "",
+          "sci": "Sambucus javanica",
+          "fam": "五福花科",
+          "end": false,
+          "cons": null
+        }
+      ],
       "endemic": [],
-      "conserv": []
+      "conserv": [],
+      "hostsrc": "GloBI",
+      "host_pending": false
     },
     {
       "id": "b62",
@@ -4713,10 +4907,50 @@
       "fam": "灰蝶科",
       "famo": 4,
       "count": 20,
-      "nfam": 0,
-      "sp": [],
+      "nfam": 3,
+      "sp": [
+        {
+          "zh": "野當歸",
+          "sci": "Angelica dahurica",
+          "fam": "繖形科",
+          "end": false,
+          "cons": "NVU"
+        },
+        {
+          "zh": "毛當歸",
+          "sci": "Angelica pubescens",
+          "fam": "繖形科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "火炭母草",
+          "sci": "Persicaria chinensis",
+          "fam": "蓼科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "羊蹄",
+          "sci": "Rumex japonicus",
+          "fam": "蓼科",
+          "end": false,
+          "cons": null
+        },
+        {
+          "zh": "",
+          "sci": "Sambucus javanica",
+          "fam": "五福花科",
+          "end": false,
+          "cons": null
+        }
+      ],
       "endemic": [],
-      "conserv": []
+      "conserv": [
+        "野當歸"
+      ],
+      "hostsrc": "GloBI",
+      "host_pending": false
     },
     {
       "id": "b19",
@@ -5675,6 +5909,22 @@
     {
       "zh": "八仙花科",
       "sci": ""
+    },
+    {
+      "zh": "桃金孃科",
+      "sci": "Myrtaceae"
+    },
+    {
+      "zh": "五福花科",
+      "sci": "Adoxaceae"
+    },
+    {
+      "zh": "繖形科",
+      "sci": "Apiaceae"
+    },
+    {
+      "zh": "蓼科",
+      "sci": "Polygonaceae"
     }
   ],
   "edges_bf_fam": [
@@ -6301,6 +6551,74 @@
     [
       "b100",
       "蕁麻科"
+    ],
+    [
+      "b95",
+      "菊科"
+    ],
+    [
+      "b10",
+      "夾竹桃科"
+    ],
+    [
+      "b10",
+      "菊科"
+    ],
+    [
+      "b10",
+      "馬鞭草科"
+    ],
+    [
+      "b67",
+      "使君子科"
+    ],
+    [
+      "b67",
+      "桃金孃科"
+    ],
+    [
+      "b67",
+      "茜草科"
+    ],
+    [
+      "b67",
+      "葉下珠科"
+    ],
+    [
+      "b67",
+      "黃褥花科"
+    ],
+    [
+      "b11",
+      "五福花科"
+    ],
+    [
+      "b11",
+      "馬鞭草科"
+    ],
+    [
+      "b4",
+      "五福花科"
+    ],
+    [
+      "b4",
+      "繖形科"
+    ],
+    [
+      "b4",
+      "蓼科"
+    ],
+    [
+      "b101",
+      "無患子科"
+    ],
+    [
+      "b101",
+      "豆科"
+    ],
+    [
+      "b101",
+      "鼠李科"
     ]
   ],
   "bgenus": [
@@ -7019,6 +7337,74 @@
     {
       "zh": "石薯屬",
       "sci": "Gonostegia"
+    },
+    {
+      "zh": "澤蘭屬",
+      "sci": "Eupatorium"
+    },
+    {
+      "zh": "光冠水菊屬",
+      "sci": "Gymnocoronis"
+    },
+    {
+      "zh": "毬蘭屬",
+      "sci": "Hoya"
+    },
+    {
+      "zh": "馬纓丹屬",
+      "sci": "Lantana"
+    },
+    {
+      "zh": "牛彌菜屬",
+      "sci": "Marsdenia"
+    },
+    {
+      "zh": "爬森藤屬",
+      "sci": "Parsonsia"
+    },
+    {
+      "zh": "鷗蔓屬",
+      "sci": "Vincetoxicum"
+    },
+    {
+      "zh": "咖啡屬",
+      "sci": "Coffea"
+    },
+    {
+      "zh": "猿尾藤屬",
+      "sci": "Hiptage"
+    },
+    {
+      "zh": "番石榴屬",
+      "sci": "Psidium"
+    },
+    {
+      "zh": "欖仁屬",
+      "sci": "Terminalia"
+    },
+    {
+      "zh": "石梓屬",
+      "sci": "Gmelina"
+    },
+    {
+      "zh": "接骨木屬",
+      "sci": "Sambucus"
+    },
+    {
+      "zh": "當歸屬",
+      "sci": "Angelica"
+    },
+    {
+      "zh": "春蓼屬",
+      "sci": "Persicaria"
+    },
+    {
+      "zh": "酸模屬",
+      "sci": "Rumex"
+    },
+    {
+      "zh": "止宮樹屬",
+      "sci": "Allophylus"
     }
   ],
   "gg_edges": [
@@ -7535,6 +7921,111 @@
     [
       "Telchinia",
       "霧水葛屬",
+      ""
+    ],
+    [
+      "Ampittia",
+      "澤蘭屬",
+      ""
+    ],
+    [
+      "Ideopsis",
+      "光冠水菊屬",
+      ""
+    ],
+    [
+      "Ideopsis",
+      "毬蘭屬",
+      ""
+    ],
+    [
+      "Ideopsis",
+      "澤蘭屬",
+      ""
+    ],
+    [
+      "Ideopsis",
+      "爬森藤屬",
+      ""
+    ],
+    [
+      "Ideopsis",
+      "牛彌菜屬",
+      ""
+    ],
+    [
+      "Ideopsis",
+      "馬纓丹屬",
+      ""
+    ],
+    [
+      "Ideopsis",
+      "鷗蔓屬",
+      ""
+    ],
+    [
+      "Cigaritis",
+      "咖啡屬",
+      ""
+    ],
+    [
+      "Cigaritis",
+      "欖仁屬",
+      ""
+    ],
+    [
+      "Cigaritis",
+      "猿尾藤屬",
+      ""
+    ],
+    [
+      "Cigaritis",
+      "番石榴屬",
+      ""
+    ],
+    [
+      "Cigaritis",
+      "饅頭果屬",
+      ""
+    ],
+    [
+      "Cigaritis",
+      "接骨木屬",
+      ""
+    ],
+    [
+      "Cigaritis",
+      "石梓屬",
+      ""
+    ],
+    [
+      "Heliophorus",
+      "接骨木屬",
+      ""
+    ],
+    [
+      "Heliophorus",
+      "春蓼屬",
+      ""
+    ],
+    [
+      "Heliophorus",
+      "當歸屬",
+      ""
+    ],
+    [
+      "Heliophorus",
+      "酸模屬",
+      ""
+    ],
+    [
+      "Eurema",
+      "止宮樹屬",
+      ""
+    ],
+    [
+      "Eurema",
+      "翼核木屬",
       ""
     ]
   ],
